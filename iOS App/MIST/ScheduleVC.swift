@@ -10,13 +10,15 @@ import UIKit
 
 class ScheduleVC: UIViewController {
 
+    @IBOutlet weak var segment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
         
                 // Do any additional setup after loading the view.
     }
+    
     
 
     
@@ -25,9 +27,18 @@ class ScheduleVC: UIViewController {
             UIApplication.shared.open(url)
         }
     }
+    
+    @IBAction func segChanged(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 0) {
+            self.performSegue(withIdentifier: "unwindToMIST", sender: self)
+            
+            self.segment.selectedSegmentIndex = 1
+            // Send USER DATA HERE
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

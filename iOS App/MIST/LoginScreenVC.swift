@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseInstanceID
 import FirebaseAuth
 import FirebaseDatabase
 
@@ -28,6 +29,9 @@ class LoginScreenVC: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.resignFirstResponder()
     }
+    @IBAction func unwindLogin(segue: UIStoryboardSegue) {
+    
+    }
     @IBAction func loginPressed(_ sender: UIButton) {
         if (emailField.text != nil) && (passField.text != nil) {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
@@ -39,6 +43,10 @@ class LoginScreenVC: UIViewController {
                 if user != nil {
                     // Segue to next screen
                     self.errorLabel.text=""
+                    if let refreshedToken = FIRInstanceID.instanceID().token() {
+                        self.ref.child("registered-user").child(user!.uid).setValue(refreshedToken, forKey: "token")
+                        print("TOOOOOKEEEEENNN")
+                    }
                     self.performSegue(withIdentifier: "passLogin", sender: nil)
                     print(UserDefaults.standard.bool(forKey: "isGuest"))
                     UserDefaults.standard.set(false, forKey: "isGuest")

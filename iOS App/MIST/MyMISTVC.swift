@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import FirebaseAuth
 
 class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var mobileLabel: UILabel!
+    var ref: FIRDatabaseReference!
    let allNames: [[String]] = [["Sameera Omar", "Mae Eldahshoury"], ["Shifa Khan", "Hasib Abdulrahmaan", "Samina Sattar", "Hasan Qadri", "Rabeea Ahmed", "Matib Ahmad"]]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +31,28 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if (FIRAuth.auth()?.currentUser != nil) {
             //emailLabel.text = FIRAuth.auth()?.currentUser?.email
             print("not nil and isGuest is \(UserDefaults.standard.bool(forKey: "isGuest"))")
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            self.ref = FIRDatabase.database().reference()
+            ref.child("registered-user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                self.nameLabel.text = value?["name"] as? String ?? ""
+                self.emailLabel.text = value?["email"] as? String ?? ""
+                self.mobileLabel.text = value?["phoneNumber"] as? String ?? ""
+                self.teamLabel.text = value?["team"] as? String ?? ""
+            })
+            //nameLabel.text = "\(user.) \()"
+        } else { // GUEST
+            myTable.isHidden = true;
+            nameLabel.text = "Hello, Guest"
+            teamLabel.isHidden = true
+            emailLabel.isHidden = true
+            mobileLabel.isHidden = true
+            profilePic.isHidden = true
+            
         }
+        
+        
+        // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +64,15 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             signOutButton.titleLabel?.text = "Sign In"
         }
     }
-
+    
+    @IBAction func segChanged(_ sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 1) {
+            self.performSegue(withIdentifier: "schedule", sender: self)
+            self.segment.selectedSegmentIndex = 0
+            // Send USER DATA HERE
+        }
+    }
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = allNames[indexPath.section][indexPath.row]
@@ -83,6 +119,8 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func unwindToMIST(unwindSegue: UIStoryboardSegue) {
+        
+    }
 }
 

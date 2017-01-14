@@ -7,15 +7,33 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var myPicker: UIPickerView!
-
+    @IBOutlet weak var rulesButton: UIButton!
+    @IBOutlet weak var bracketsButton: UIButton!
+    var ref:FIRDatabaseReference!
 //    var selectedString:String? = ""
-    let competitions:[String] = ["Basketball", "Debate", "Spoken Word"]
+    var competitions:NSDictionary? = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        rulesButton.layer.cornerRadius = 15.0
+        rulesButton.layer.masksToBounds = true
+        bracketsButton.layer.cornerRadius = 15.0
+        bracketsButton.layer.masksToBounds = true
+        self.ref = FIRDatabase.database().reference()
+        
+        // Read competitions from database
+        self.ref.child("competitions").observeSingleEvent(of: .value, with: {(snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                print(value)
+                self.competitions = value
+            } else {
+                print("value is nil")
+            }
+        })
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +47,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return competitions.count
+        return self.competitions!.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -39,14 +57,29 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //        selectedString = competitions[row]
 //    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return competitions[row]
+        if (self.competitions != nil) {
+            return (self.competitions?.allKeys[row] as! String)
+        } else {
+            return "no data"
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "bracketDetail") {
+        if (segue.identifier == "rules") {
             if let DestVC = segue.destination as? BracketDetailVC {
-                DestVC.titleString = competitions[myPicker.selectedRow(inComponent: 0)]
+                if (self.competitions != nil && (myPicker.numberOfRows(inComponent: 0) > 0)) {
+                    DestVC.titleString = self.competitions?.allKeys[myPicker.selectedRow(inComponent: 0)] as? String
+                } else {
+                    DestVC.titleString = "No Data"
+                }
             }
-            
+        } else if (segue.identifier == "brackets") {
+            if let DestVC = segue.destination as? BracketDetailVC {
+                if (self.competitions != nil && (myPicker.numberOfRows(inComponent: 0) > 0)) {
+                    DestVC.titleString = self.competitions?.allKeys[myPicker.selectedRow(inComponent: 0)] as? String
+                } else {
+                    DestVC.titleString = "No Data"
+                }
+            }
         }
     }
     /*

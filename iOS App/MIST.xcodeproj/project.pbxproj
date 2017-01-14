@@ -20,12 +20,12 @@
 		5294EB831E10F47400CF60A5 /* MyMISTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB821E10F47400CF60A5 /* MyMISTVC.swift */; };
 		5294EB851E10F47400CF60A5 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB841E10F47400CF60A5 /* SecondViewController.swift */; };
 		5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB861E10F47400CF60A5 /* Main.storyboard */; };
-		5294EB8A1E10F47400CF60A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB891E10F47400CF60A5 /* Assets.xcassets */; };
 		5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */; };
 		5294EB981E10F47400CF60A5 /* MISTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB971E10F47400CF60A5 /* MISTTests.swift */; };
 		5294EBA31E10F47400CF60A5 /* MISTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBA21E10F47400CF60A5 /* MISTUITests.swift */; };
 		5294EBB11E10FCEC00CF60A5 /* LoginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */; };
 		5294EBB31E1115C000CF60A5 /* SelectRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */; };
+		52D7BB901E2A83780034E487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D7BB8F1E2A83780034E487 /* Assets.xcassets */; };
 		52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF43E1E1D1451004EBE1E /* HelpVC.swift */; };
 		8E3FD9614A8502D71011895A /* Pods_MISTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC48BC64F2D710AE8989D8B /* Pods_MISTTests.framework */; };
 		B00AFEF7EF49CF39AFDAB1AB /* Pods_MISTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */; };
@@ -66,7 +66,6 @@
 		5294EB821E10F47400CF60A5 /* MyMISTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMISTVC.swift; sourceTree = "<group>"; };
 		5294EB841E10F47400CF60A5 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		5294EB871E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5294EB891E10F47400CF60A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5294EB8C1E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5294EB8E1E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5294EB931E10F47400CF60A5 /* MISTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MISTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +76,7 @@
 		5294EBA41E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenVC.swift; sourceTree = "<group>"; };
 		5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectRoleVC.swift; sourceTree = "<group>"; };
+		52D7BB8F1E2A83780034E487 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52EBF43E1E1D1451004EBE1E /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpVC.swift; path = ../HelpVC.swift; sourceTree = "<group>"; };
 		7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MISTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A464BDC9BDABEA5A8C335A2 /* Pods-MISTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MISTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MISTTests/Pods-MISTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,12 +153,12 @@
 				52815CD31E1230ED00D491A6 /* ScheduleVC.swift */,
 				52815CD51E12321500D491A6 /* MapVC.swift */,
 				5294EB861E10F47400CF60A5 /* Main.storyboard */,
+				52D7BB8F1E2A83780034E487 /* Assets.xcassets */,
 				5213DC691E1EB10200F14F9C /* BracketsVC.swift */,
 				5213DC2B1E1D229600F14F9C /* RulesVC.swift */,
 				5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */,
 				5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */,
 				521EFB1D1E111B3500E50FE1 /* THE OFFICIAL FINAL REDESIGNED MIST LOGO.png */,
-				5294EB891E10F47400CF60A5 /* Assets.xcassets */,
 				5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */,
 				5294EB8E1E10F47400CF60A5 /* Info.plist */,
 			);
@@ -331,10 +331,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */,
-				5294EB8A1E10F47400CF60A5 /* Assets.xcassets in Resources */,
 				5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */,
 				521EFB1E1E111B3500E50FE1 /* THE OFFICIAL FINAL REDESIGNED MIST LOGO.png in Resources */,
 				5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */,
+				52D7BB901E2A83780034E487 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
