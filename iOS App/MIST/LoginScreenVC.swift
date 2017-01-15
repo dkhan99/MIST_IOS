@@ -43,14 +43,20 @@ class LoginScreenVC: UIViewController {
                 if user != nil {
                     // Segue to next screen
                     self.errorLabel.text=""
+                    self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        UserDefaults.standard.set(value, forKey: "user")
+                        
+                    })
                     if let refreshedToken = FIRInstanceID.instanceID().token() {
-                        self.ref.child("registered-user").child(user!.uid).setValue(refreshedToken, forKey: "token")
-                        print("TOOOOOKEEEEENNN")
+                        self.ref.child("registered-user/\(user!.uid)/token").setValue(refreshedToken)
+                        
                     }
                     self.performSegue(withIdentifier: "passLogin", sender: nil)
                     print(UserDefaults.standard.bool(forKey: "isGuest"))
                     UserDefaults.standard.set(false, forKey: "isGuest")
                     print(UserDefaults.standard.bool(forKey: "isGuest"))
+                    
                 }
             })
             

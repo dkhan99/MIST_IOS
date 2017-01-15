@@ -48,6 +48,12 @@ class RegisterVC: UIViewController {
                         // Segue to next screen
                         let value = snapshot.value as? NSDictionary
                         self.ref.child("registered-user").child(user!.uid).setValue(value)
+                        UserDefaults.standard.set(value, forKey: "user")
+                        self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                            let teamObject = snapshot.value as! NSDictionary
+                            UserDefaults.standard.set(teamObject, forKey: "team")
+                            print(teamObject)
+                        })
                         self.errorLabel.text=""
                         if let refreshedToken = FIRInstanceID.instanceID().token() {
                             self.ref.child("registered-user/\(user!.uid)/token").setValue(refreshedToken)

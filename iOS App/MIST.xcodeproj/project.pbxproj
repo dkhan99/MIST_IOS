@@ -18,7 +18,6 @@
 		52815CD61E12321500D491A6 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD51E12321500D491A6 /* MapVC.swift */; };
 		5294EB811E10F47400CF60A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB801E10F47400CF60A5 /* AppDelegate.swift */; };
 		5294EB831E10F47400CF60A5 /* MyMISTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB821E10F47400CF60A5 /* MyMISTVC.swift */; };
-		5294EB851E10F47400CF60A5 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB841E10F47400CF60A5 /* SecondViewController.swift */; };
 		5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB861E10F47400CF60A5 /* Main.storyboard */; };
 		5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */; };
 		5294EB981E10F47400CF60A5 /* MISTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB971E10F47400CF60A5 /* MISTTests.swift */; };
@@ -64,7 +63,6 @@
 		5294EB7D1E10F47400CF60A5 /* MIST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5294EB801E10F47400CF60A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5294EB821E10F47400CF60A5 /* MyMISTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMISTVC.swift; sourceTree = "<group>"; };
-		5294EB841E10F47400CF60A5 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		5294EB871E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5294EB8C1E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5294EB8E1E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,22 +140,21 @@
 			isa = PBXGroup;
 			children = (
 				5267CF7C1E1435AA009AF182 /* MIST.entitlements */,
-				5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */,
+				5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */,
 				52264C201E2289A900D62553 /* RegisterVC.swift */,
-				5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */,
-				5294EB801E10F47400CF60A5 /* AppDelegate.swift */,
+				5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */,
 				5294EB821E10F47400CF60A5 /* MyMISTVC.swift */,
-				52815CD11E122D9500D491A6 /* MyTabBarController.swift */,
-				5294EB841E10F47400CF60A5 /* SecondViewController.swift */,
-				52EBF43E1E1D1451004EBE1E /* HelpVC.swift */,
 				52815CD31E1230ED00D491A6 /* ScheduleVC.swift */,
+				5213DC691E1EB10200F14F9C /* BracketsVC.swift */,
+				5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */,
+				5213DC2B1E1D229600F14F9C /* RulesVC.swift */,
+				5294EB801E10F47400CF60A5 /* AppDelegate.swift */,
+				52815CD11E122D9500D491A6 /* MyTabBarController.swift */,
+				52EBF43E1E1D1451004EBE1E /* HelpVC.swift */,
 				52815CD51E12321500D491A6 /* MapVC.swift */,
 				5294EB861E10F47400CF60A5 /* Main.storyboard */,
 				52D7BB8F1E2A83780034E487 /* Assets.xcassets */,
-				5213DC691E1EB10200F14F9C /* BracketsVC.swift */,
-				5213DC2B1E1D229600F14F9C /* RulesVC.swift */,
-				5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */,
-				5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */,
+				5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */,
 				521EFB1D1E111B3500E50FE1 /* THE OFFICIAL FINAL REDESIGNED MIST LOGO.png */,
 				5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */,
 				5294EB8E1E10F47400CF60A5 /* Info.plist */,
@@ -497,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5294EB851E10F47400CF60A5 /* SecondViewController.swift in Sources */,
 				52815CD41E1230ED00D491A6 /* ScheduleVC.swift in Sources */,
 				5294EB811E10F47400CF60A5 /* AppDelegate.swift in Sources */,
 				5294EB831E10F47400CF60A5 /* MyMISTVC.swift in Sources */,

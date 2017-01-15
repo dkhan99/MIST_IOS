@@ -10,17 +10,30 @@ import UIKit
 import Firebase
 import UserNotifications
 import FirebaseMessaging
+import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
     var storyboard: UIStoryboard?
     var window: UIWindow?
+    var ref:FIRDatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        ref = FIRDatabase.database().reference()
+        print("Time is .... ")
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if (FIRAuth.auth()?.currentUser) != nil {
+        if let user = FIRAuth.auth()?.currentUser {
+            self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                UserDefaults.standard.set(value, forKey: "user")
+                self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                    let teamObject = snapshot.value as! NSDictionary
+                    UserDefaults.standard.set(teamObject, forKey: "team")
+                })
+                
+            })
             self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
             UserDefaults.standard.set(false, forKey: "isGuest")
         } else {
