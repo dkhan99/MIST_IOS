@@ -8,22 +8,35 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 class SelectRoleVC: UIViewController {
-
+    var ref:FIRDatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if (FIRAuth.auth()?.currentUser != nil) {
-            self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            print("already logged in")
+        self.ref = FIRDatabase.database().reference()
+        print("current user \(FIRAuth.auth()?.currentUser)")
+        if let user = FIRAuth.auth()?.currentUser {
+            print("user uid is \(user.uid)")
+            self.ref?.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
+                let value = snapshot.value as! NSDictionary
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                print("already logged in")
+                self.ref?.child("team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                    let teamObject = snapshot.value as! NSDictionary
+                    UserDefaults.standard.set(teamObject, forKey: "team")
+                    self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+                    
+                })
+            })
         } else {
             UserDefaults.standard.set(false, forKey: "isLoggedIn")
             print("not logged in")
         }
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     @IBAction func guestSelected(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "isGuest")

@@ -16,6 +16,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var ref:FIRDatabaseReference!
 //    var selectedString:String? = ""
     var competitions:NSDictionary? = [:]
+    var compNames:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         rulesButton.layer.cornerRadius = 15.0
@@ -23,16 +24,9 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         bracketsButton.layer.cornerRadius = 15.0
         bracketsButton.layer.masksToBounds = true
         self.ref = FIRDatabase.database().reference()
-        
+        compNames = ((UserDefaults.standard.value(forKey: "competitions") as? NSDictionary)?.allKeys as! [String]).sorted()
         // Read competitions from database
-        self.ref.child("competitions").observeSingleEvent(of: .value, with: {(snapshot) in
-            if let value = snapshot.value as? NSDictionary {
-                print(value)
-                self.competitions = value
-            } else {
-                print("value is nil")
-            }
-        })
+        
         
         // Do any additional setup after loading the view.
     }
@@ -47,7 +41,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.competitions!.count
+        return self.compNames.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -57,8 +51,8 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //        selectedString = competitions[row]
 //    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (self.competitions != nil) {
-            return (self.competitions?.allKeys[row] as! String)
+        if (self.compNames.count != 0) {
+            return (self.compNames[row])
         } else {
             return "no data"
         }
@@ -66,16 +60,16 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "rules") {
             if let DestVC = segue.destination as? BracketDetailVC {
-                if (self.competitions != nil && (myPicker.numberOfRows(inComponent: 0) > 0)) {
-                    DestVC.titleString = self.competitions?.allKeys[myPicker.selectedRow(inComponent: 0)] as? String
+                if (compNames.count > 0 && (myPicker.numberOfRows(inComponent: 0) > 0)) {
+                    DestVC.titleString = self.compNames[myPicker.selectedRow(inComponent: 0)]
                 } else {
                     DestVC.titleString = "No Data"
                 }
             }
         } else if (segue.identifier == "brackets") {
             if let DestVC = segue.destination as? BracketDetailVC {
-                if (self.competitions != nil && (myPicker.numberOfRows(inComponent: 0) > 0)) {
-                    DestVC.titleString = self.competitions?.allKeys[myPicker.selectedRow(inComponent: 0)] as? String
+                if ((compNames.count > 0) && (myPicker.numberOfRows(inComponent: 0) > 0)) {
+                    DestVC.titleString = self.compNames[myPicker.selectedRow(inComponent: 0)]
                 } else {
                     DestVC.titleString = "No Data"
                 }

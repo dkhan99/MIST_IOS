@@ -21,9 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
-        ref = FIRDatabase.database().reference()
+        self.ref = FIRDatabase.database().reference()
         print("Time is .... ")
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        self.ref.child("competition").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let value = snapshot.value as? NSDictionary {
+                UserDefaults.standard.setValue(value, forKey: "competitions")
+            }
+        })
         if let user = FIRAuth.auth()?.currentUser {
             self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
@@ -31,10 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                     let teamObject = snapshot.value as! NSDictionary
                     UserDefaults.standard.set(teamObject, forKey: "team")
+                    self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
                 })
                 
             })
-            self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
+            
             UserDefaults.standard.set(false, forKey: "isGuest")
         } else {
             self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectRoleVC")
@@ -58,6 +64,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                name: .firInstanceIDTokenRefresh,
                                                object: nil)
         return true
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // Print message ID.
+        
+        // Print full message.
+        print(userInfo[AnyHashable("aps")]!)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        
+        // Print full message.
+        print(((userInfo[AnyHashable("aps")] as! NSDictionary).value(forKey: "alert") as! NSDictionary).value(forKey: "body")!)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
     }
     func connectToFcm() {
         // Won't connect since there is no token

@@ -35,7 +35,7 @@ class RegisterVC: UIViewController {
     }
     @IBAction func register(_ sender: UIButton) {
         roleString.text = ""
-        if ((emailField.text != nil) && (passField.text != nil) && (mistIDField.text != nil)) {
+        if ((emailField.text != "") && (passField.text != "") && (mistIDField.text != "")) {
             self.ref = FIRDatabase.database().reference()
             self.ref.child("user").child(mistIDField.text!).observeSingleEvent(of: .value, with: {(snapshot) in
                 FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.passField.text!) { (user, error) in

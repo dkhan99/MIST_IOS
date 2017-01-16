@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CGO-NH-YZE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -123,7 +123,7 @@
                                 <color key="textColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="day-gg-G7p">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="day-gg-G7p">
                                 <rect key="frame" x="94" y="62" width="187" height="29"/>
                                 <segments>
                                     <segment title="My Team"/>
@@ -556,6 +556,9 @@
                             <constraint firstItem="Niv-SD-alr" firstAttribute="centerX" secondItem="BX5-Qf-iq8" secondAttribute="centerX" id="sKR-oG-Wmq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="alreadyLoggedIn" id="s59-LE-RPt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EhA-Em-vUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1023,7 +1026,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xs6-aA-IUg"/>
+        <segue reference="s59-LE-RPt"/>
         <segue reference="TfD-oe-cI5"/>
         <segue reference="Zwp-9j-ip6"/>
         <segue reference="vMS-0q-jOh"/>

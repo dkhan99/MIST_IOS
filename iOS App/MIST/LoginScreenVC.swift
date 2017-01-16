@@ -46,13 +46,19 @@ class LoginScreenVC: UIViewController {
                     self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
                         let value = snapshot.value as? NSDictionary
                         UserDefaults.standard.set(value, forKey: "user")
-                        
+                        self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                            let teamObject = snapshot.value as! NSDictionary
+                            UserDefaults.standard.set(teamObject, forKey: "team")
+                            self.performSegue(withIdentifier: "passLogin", sender: nil)
+                        })
+
                     })
+                    
                     if let refreshedToken = FIRInstanceID.instanceID().token() {
                         self.ref.child("registered-user/\(user!.uid)/token").setValue(refreshedToken)
                         
                     }
-                    self.performSegue(withIdentifier: "passLogin", sender: nil)
+                    
                     print(UserDefaults.standard.bool(forKey: "isGuest"))
                     UserDefaults.standard.set(false, forKey: "isGuest")
                     print(UserDefaults.standard.bool(forKey: "isGuest"))
