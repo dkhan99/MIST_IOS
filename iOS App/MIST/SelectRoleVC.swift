@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseMessaging
+
 class SelectRoleVC: UIViewController {
     var ref:FIRDatabaseReference?
     override func viewDidLoad() {
@@ -25,7 +27,6 @@ class SelectRoleVC: UIViewController {
                     let teamObject = snapshot.value as! NSDictionary
                     UserDefaults.standard.set(teamObject, forKey: "team")
                     self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
-                    
                 })
             })
         } else {
@@ -60,7 +61,10 @@ class SelectRoleVC: UIViewController {
         if (segue.identifier == "coach") {
             if let DestVC = segue.destination as? RegisterVC {
                 DestVC.role = "Coach"
-            }
+                UserDefaults.standard.set("Coach", forKey: "role")
+            } 
+        } else if (segue.identifier == "student") {
+            UserDefaults.standard.set("Student", forKey: "role")
         } else if (segue.identifier == "isGuest") {
             UserDefaults.standard.set(true, forKey: "isGuest")
         }

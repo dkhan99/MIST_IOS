@@ -20,7 +20,7 @@ class RegisterVC: UIViewController {
     var role:String = "Student"
     override func viewDidLoad() {
         super.viewDidLoad()
-        roleString.text = "New \(role) Account"
+        roleString.text = "New \(UserDefaults.standard.value(forKey: "role")) Account"
         // Do any additional setup after loading the view.
         
     }
@@ -31,7 +31,8 @@ class RegisterVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.resignFirstResponder()
+        self.view.endEditing(true)
+        
     }
     @IBAction func register(_ sender: UIButton) {
         roleString.text = ""
@@ -46,13 +47,23 @@ class RegisterVC: UIViewController {
                     }
                     if user != nil {
                         // Segue to next screen
+                        
                         let value = snapshot.value as? NSDictionary
+                        if (value?.value(forKey: "userType") as? String == "competitor") {
+                            FIRMessaging.messaging().subscribe(toTopic: "competitor")
+                        } else {
+                            FIRMessaging.messaging().subscribe(toTopic: "coach")
+                        }
                         self.ref.child("registered-user").child(user!.uid).setValue(value)
                         UserDefaults.standard.set(value, forKey: "user")
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
                             print(teamObject)
+                            if (!teamObject.allKeys.isEmpty) {
+                                print("Subscribing to.. \(teamObject.allKeys[0] as! String)")
+                                FIRMessaging.messaging().subscribe(toTopic: teamObject.allKeys[0] as! String)
+                            }
                         })
                         self.errorLabel.text=""
                         if let refreshedToken = FIRInstanceID.instanceID().token() {

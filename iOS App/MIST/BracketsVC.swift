@@ -24,6 +24,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         bracketsButton.layer.cornerRadius = 15.0
         bracketsButton.layer.masksToBounds = true
         self.ref = FIRDatabase.database().reference()
+        competitions = (UserDefaults.standard.value(forKey: "competitions") as? NSDictionary)
         compNames = ((UserDefaults.standard.value(forKey: "competitions") as? NSDictionary)?.allKeys as! [String]).sorted()
         // Read competitions from database
         
@@ -47,9 +48,13 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        selectedString = competitions[row]
-//    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if ((competitions?[compNames[row]] as? NSDictionary)?["category"] as? String != "Bracket Competitions") {
+            bracketsButton.isHidden = true;
+        } else {
+            bracketsButton.isHidden = false;
+        }
+    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (self.compNames.count != 0) {
             return (self.compNames[row])

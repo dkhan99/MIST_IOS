@@ -24,6 +24,8 @@
 		5294EBA31E10F47400CF60A5 /* MISTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBA21E10F47400CF60A5 /* MISTUITests.swift */; };
 		5294EBB11E10FCEC00CF60A5 /* LoginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */; };
 		5294EBB31E1115C000CF60A5 /* SelectRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */; };
+		52C84D721E381CCC009E9C08 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C84D711E381CCC009E9C08 /* NotificationsVC.swift */; };
+		52C84D741E384731009E9C08 /* Reddot.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C84D731E384731009E9C08 /* Reddot.png */; };
 		52D7BB901E2A83780034E487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D7BB8F1E2A83780034E487 /* Assets.xcassets */; };
 		52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF43E1E1D1451004EBE1E /* HelpVC.swift */; };
 		8E3FD9614A8502D71011895A /* Pods_MISTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC48BC64F2D710AE8989D8B /* Pods_MISTTests.framework */; };
@@ -74,6 +76,8 @@
 		5294EBA41E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenVC.swift; sourceTree = "<group>"; };
 		5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectRoleVC.swift; sourceTree = "<group>"; };
+		52C84D711E381CCC009E9C08 /* NotificationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
+		52C84D731E384731009E9C08 /* Reddot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Reddot.png; sourceTree = "<group>"; };
 		52D7BB8F1E2A83780034E487 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52EBF43E1E1D1451004EBE1E /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpVC.swift; path = ../HelpVC.swift; sourceTree = "<group>"; };
 		7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MISTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +157,9 @@
 				52EBF43E1E1D1451004EBE1E /* HelpVC.swift */,
 				52815CD51E12321500D491A6 /* MapVC.swift */,
 				5294EB861E10F47400CF60A5 /* Main.storyboard */,
+				52C84D711E381CCC009E9C08 /* NotificationsVC.swift */,
 				52D7BB8F1E2A83780034E487 /* Assets.xcassets */,
+				52C84D731E384731009E9C08 /* Reddot.png */,
 				5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */,
 				521EFB1D1E111B3500E50FE1 /* THE OFFICIAL FINAL REDESIGNED MIST LOGO.png */,
 				5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */,
@@ -283,6 +289,9 @@
 						DevelopmentTeam = N26SEM8S6V;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -330,6 +339,7 @@
 				5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */,
 				5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */,
 				521EFB1E1E111B3500E50FE1 /* THE OFFICIAL FINAL REDESIGNED MIST LOGO.png in Resources */,
+				52C84D741E384731009E9C08 /* Reddot.png in Resources */,
 				5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */,
 				52D7BB901E2A83780034E487 /* Assets.xcassets in Resources */,
 			);
@@ -501,6 +511,7 @@
 				52815CD61E12321500D491A6 /* MapVC.swift in Sources */,
 				5213DC2C1E1D229600F14F9C /* RulesVC.swift in Sources */,
 				52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */,
+				52C84D721E381CCC009E9C08 /* NotificationsVC.swift in Sources */,
 				5213DC701E1EC7EC00F14F9C /* BracketDetailVC.swift in Sources */,
 				5294EBB11E10FCEC00CF60A5 /* LoginScreenVC.swift in Sources */,
 				52815CD21E122D9500D491A6 /* MyTabBarController.swift in Sources */,

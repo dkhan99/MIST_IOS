@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BracketsVC.pickerView(UIPickerView, titleForRow : Int, forComponent : Int) -&gt; String?:BracketsVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BracketsVC.pickerView(UIPickerView, didSelectRow : Int, inComponent : Int) -&gt; ():BracketsVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(NSDictionary)self.competitions.some.isa">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

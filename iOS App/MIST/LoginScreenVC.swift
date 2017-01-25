@@ -10,6 +10,7 @@ import UIKit
 import FirebaseInstanceID
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseMessaging
 
 class LoginScreenVC: UIViewController {
     @IBOutlet weak var emailField: UITextField!
@@ -27,7 +28,7 @@ class LoginScreenVC: UIViewController {
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.resignFirstResponder()
+        self.view.endEditing(true)
     }
     @IBAction func unwindLogin(segue: UIStoryboardSegue) {
     
@@ -45,6 +46,11 @@ class LoginScreenVC: UIViewController {
                     self.errorLabel.text=""
                     self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
                         let value = snapshot.value as? NSDictionary
+                        if (value?.value(forKey: "userType") as? String == "competitor") {
+                            FIRMessaging.messaging().subscribe(toTopic: "competitor")
+                        } else {
+                            FIRMessaging.messaging().subscribe(toTopic: "coach")
+                        }
                         UserDefaults.standard.set(value, forKey: "user")
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary

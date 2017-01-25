@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseMessaging
 
 class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -75,7 +76,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         myTable.reloadData()
-        if (teammembers != nil) {
+        if (!teammembers.isEmpty) {
             print("not nil")
         } else {
             print("still nil")
@@ -151,7 +152,13 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func signOut(_ sender: Any) {
         if (UserDefaults.standard.bool(forKey: "isGuest") == false) {
-        try! FIRAuth.auth()?.signOut()
+            let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
+            if (value?.value(forKey: "userType") as? String == "competitor") {
+                FIRMessaging.messaging().unsubscribe(fromTopic: "competitor")
+            } else {
+                FIRMessaging.messaging().unsubscribe(fromTopic: "coach")
+            }
+            try! FIRAuth.auth()?.signOut()
         }
     }
     override func didReceiveMemoryWarning() {
