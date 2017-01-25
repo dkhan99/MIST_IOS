@@ -35,22 +35,25 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if (FIRAuth.auth()?.currentUser != nil) {
             //emailLabel.text = FIRAuth.auth()?.currentUser?.email
             print("not nil and isGuest is \(UserDefaults.standard.bool(forKey: "isGuest"))")
-            let uid = FIRAuth.auth()?.currentUser?.uid
             self.ref = FIRDatabase.database().reference()
-            ref.child("registered-user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                self.nameLabel.text = value?["name"] as? String ?? ""
-                self.emailLabel.text = value?["email"] as? String ?? ""
-                if let num = value?["phoneNumber"] {
-                    self.mobileLabel.text = "\(num)"
-                } else {
-                    self.mobileLabel.text = ""
-                }
-                
-                self.teamLabel.text = value?["team"] as? String ?? ""
-            })
+            let user = (UserDefaults.standard.value(forKey: "user") as! NSDictionary)
+            self.nameLabel.text = user.value(forKey: "name") as? String
+            self.emailLabel.text = user.value(forKey: "email") as? String
+            self.mobileLabel.text = "\(user.value(forKey: "phoneNumber")!)"
+            self.teamLabel.text = user.value(forKey: "team") as? String
+//            ref.child("registered-user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+//                let value = snapshot.value as? NSDictionary
+//                self.nameLabel.text = value?["name"] as? String ?? ""
+//                self.emailLabel.text = value?["email"] as? String ?? ""
+//                if let num = value?["phoneNumber"] {
+//                    self.mobileLabel.text = "\(num)"
+//                } else {
+//                    self.mobileLabel.text = ""
+//                }
+//                
+//                self.teamLabel.text = value?["team"] as? String ?? ""
+//            })
             
-            //nameLabel.text = "\(user.) \()"
         } else { // GUEST
             myTable.isHidden = true;
             nameLabel.text = "Hello, Guest"

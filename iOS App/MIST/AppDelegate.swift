@@ -18,34 +18,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var ref:FIRDatabaseReference!
     let gcmMessageIDKey = "gcm.message_id"
+    var appIsStarting: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
         self.ref = FIRDatabase.database().reference()
-        print("Time is .... ")
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        self.ref.child("competition").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let value = snapshot.value as? NSDictionary {
-                UserDefaults.standard.setValue(value, forKey: "competitions")
-            }
-        })
         if let user = FIRAuth.auth()?.currentUser {
-            self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                UserDefaults.standard.set(value, forKey: "user")
-                self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
-                    let teamObject = snapshot.value as! NSDictionary
-                    UserDefaults.standard.set(teamObject, forKey: "team")
-                    self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
-                })
+            if (UserDefaults.standard.value(forKey: "user") != nil) {
+                self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
+            } else {
+                self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
+                    let value = snapshot.value as? NSDictionary
+                    UserDefaults.standard.set(value, forKey: "user")
+                    self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                        let teamObject = snapshot.value as! NSDictionary
+                        UserDefaults.standard.set(teamObject, forKey: "team")
+                        self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
+                    })
                 
-            })
-            
+                })
+            }
             UserDefaults.standard.set(false, forKey: "isGuest")
         } else {
             self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "SelectRoleVC")
+            self.ref.child("competition").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let value = snapshot.value as? NSDictionary {
+                    UserDefaults.standard.setValue(value, forKey: "competitions")
+                }
+            })
         }
+        
+        
         if #available(iOS 10.0, *) {
             let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
@@ -73,24 +78,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
         
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        print("didRecieveRemoteNotification!!!!")
-        // Print full message.
-        print(userInfo)
     }
     
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        var currentNotifications:[NSDictionary] = []
+//        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
+//            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
+//        }
+//            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String)], at: 0)
+//        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+//        completionHandler(.newData)
+//    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let state:UIApplicationState = application.applicationState
         var currentNotifications:[NSDictionary] = []
         if (UserDefaults.standard.value(forKey: "notifications") != nil) {
             currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
         }
-            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String)], at: 0)
-        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+        if(state==UIApplicationState.background || (state==UIApplicationState.inactive && !self.appIsStarting)) {
+            // Background
+            print("background")
+            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
+            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
+            UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+            var count = 0
+            for notification:NSDictionary in currentNotifications {
+                if notification.value(forKey: "read") as! Bool == false {
+                    count+=1
+                }
+            }
+            if count>0 {
+                let root = (self.window?.rootViewController as! UITabBarController)
+                root.tabBar.items?[4].badgeValue = "\(count)"
+            }
+        } else if (state == UIApplicationState.inactive && self.appIsStarting) {
+            // user tapped notification
+            print("user tapped notification")
+        } else {
+            // app is active
+            print("active")
+            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
+            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
+            UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+            var count = 0
+            for notification:NSDictionary in currentNotifications {
+                if notification.value(forKey: "read") as! Bool == false {
+                    count+=1
+                }
+            }
+            if count>0 {
+                let root = (self.window?.rootViewController as! UITabBarController)
+                root.tabBar.items?[4].badgeValue = "\(count)"
+            }
+
+        }
         completionHandler(.newData)
     }
+    
     func connectToFcm() {
         // Won't connect since there is no token
         guard FIRInstanceID.instanceID().token() != nil else {
@@ -120,11 +165,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        self.appIsStarting = false
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        self.appIsStarting = false
         FIRMessaging.messaging().disconnect()
         print("Disconnected from FCM.")
         print("Entering background")
@@ -133,10 +180,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        self.appIsStarting = true
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.appIsStarting = false
         connectToFcm()
         print(UserDefaults.standard.value(forKey: "gotmessage") ?? "nil")
     }
