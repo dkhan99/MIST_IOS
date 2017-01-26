@@ -99,8 +99,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if(state==UIApplicationState.background || (state==UIApplicationState.inactive && !self.appIsStarting)) {
             // Background
             print("background")
+//            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
+//            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
-            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
+            currentNotifications.insert(["title":userInfo["title"] ?? "","body":userInfo["body"] ?? "","time":date,"read":false], at: 0)
             UserDefaults.standard.set(currentNotifications, forKey: "notifications")
             var count = 0
             for notification:NSDictionary in currentNotifications {
@@ -108,9 +110,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     count+=1
                 }
             }
+            let root = (self.window?.rootViewController as! UITabBarController)
+            application.applicationIconBadgeNumber = count
+
             if count>0 {
-                let root = (self.window?.rootViewController as! UITabBarController)
+                
                 root.tabBar.items?[4].badgeValue = "\(count)"
+                
+            } else {
+                root.tabBar.items?[4].badgeValue = nil
             }
         } else if (state == UIApplicationState.inactive && self.appIsStarting) {
             // user tapped notification
@@ -119,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // app is active
             print("active")
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
-            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
+            currentNotifications.insert(["title":userInfo["title"] ?? "","body":userInfo["body"] ?? "","time":date,"read":false], at: 0)
             UserDefaults.standard.set(currentNotifications, forKey: "notifications")
             var count = 0
             for notification:NSDictionary in currentNotifications {
@@ -127,9 +135,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     count+=1
                 }
             }
+            let root = (self.window?.rootViewController as! UITabBarController)
+            application.applicationIconBadgeNumber = count
             if count>0 {
-                let root = (self.window?.rootViewController as! UITabBarController)
                 root.tabBar.items?[4].badgeValue = "\(count)"
+            } else {
+                root.tabBar.items?[4].badgeValue = nil
             }
 
         }

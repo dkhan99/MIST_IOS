@@ -9,7 +9,7 @@
 import UIKit
 
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    var selectedNotification:[String:Any] = [:]
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,8 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBAction func deleteAll(_ sender: UIButton) {
         let empty : [NSDictionary] = []
         UserDefaults.standard.set(empty, forKey: "notifications")
+        self.tabBarItem.badgeValue = nil
+        UIApplication.shared.applicationIconBadgeNumber = 0
         self.tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +48,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 count+=1
             }
         }
+        UIApplication.shared.applicationIconBadgeNumber = count
         if count>0 {
             self.tabBarItem.badgeValue = "\(count)"
         } else {
@@ -53,6 +56,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
+        self.selectedNotification = currentNotifications[indexPath.row]
+        selectedNotification["time"] = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
+        self.performSegue(withIdentifier: "detail", sender: self)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -84,8 +90,17 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @IBAction func myNotificationUnwindAction(unwindSegue: UIStoryboardSegue){
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "detail") {
+            let destVC = segue.destination as! NotificationDetailVC
+            destVC.titleText = self.selectedNotification["title"] as! String
+            destVC.timeText = self.selectedNotification["time"] as! String
+            destVC.bodyText = self.selectedNotification["body"] as! String
+        }
+    }
     /*
     // MARK: - Navigation
 
