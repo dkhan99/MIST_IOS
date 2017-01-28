@@ -59,10 +59,8 @@ class RegisterVC: UIViewController {
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
-                            print(teamObject)
                             if (!teamObject.allKeys.isEmpty) {
-                                print("Subscribing to.. \(teamObject.allKeys[0] as! String)")
-                                FIRMessaging.messaging().subscribe(toTopic: teamObject.allKeys[0] as! String)
+                                FIRMessaging.messaging().subscribe(toTopic: value!.value(forKey: "team") as! String)
                             }
                         })
                         self.errorLabel.text=""

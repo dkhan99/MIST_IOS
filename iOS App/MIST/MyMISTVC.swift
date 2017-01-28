@@ -26,6 +26,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
         super.viewDidLoad()
+        myTable.layer.cornerRadius = 15.0
         self.automaticallyAdjustsScrollViewInsets = false
         myTable.contentInset = UIEdgeInsets.zero;
         profilePic.layer.cornerRadius = self.profilePic.frame.size.height / 2;
@@ -110,6 +111,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
         cell.detailTextLabel?.text = String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!)
+        cell.layer.cornerRadius = 5.0
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -153,6 +155,11 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //        }
         return teammembers[section].count
     }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView{
+            headerView.textLabel?.textColor = UIColor.white
+        }
+    }
     @IBAction func signOut(_ sender: Any) {
         if (UserDefaults.standard.bool(forKey: "isGuest") == false) {
             let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
@@ -161,6 +168,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 FIRMessaging.messaging().unsubscribe(fromTopic: "coach")
             }
+            FIRMessaging.messaging().unsubscribe(fromTopic: (UserDefaults.standard.value(forKey: "user") as! [String:String])["team"]!)
             try! FIRAuth.auth()?.signOut()
         }
     }

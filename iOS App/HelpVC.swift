@@ -20,14 +20,25 @@ class HelpVC: UIViewController {
         CampusPoliceButton.layer.masksToBounds = true
         // Do any additional setup after loading the view.
     }
+    @IBAction func callMIST(_ sender: UIButton) {
+        let formatedNumber = "123-123-1234"
+        let phoneUrl = "telprompt://\(formatedNumber)"
+        let url:URL = URL(string: phoneUrl)!
+        UIApplication.shared.open(url)
+    }
 
+    @IBAction func callCampusPolice(_ sender: UIButton) {
+        let formatedNumber = "123-123-1234"
+        let phoneUrl = "telprompt://\(formatedNumber)"
+        let url:URL = URL(string: phoneUrl)!
+        UIApplication.shared.open(url)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
     }
     
 

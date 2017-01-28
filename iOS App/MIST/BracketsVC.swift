@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SafariServices
 
 class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var myPicker: UIPickerView!
@@ -41,6 +42,13 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func viewRules(_ sender: UIButton) {
+//        if let url = URL(string: "https://static1.squarespace.com/static/5670ede7a976af3e2f3af0af/t/5869929b20099ecdf7a0dc22/1483313820637/Culinary+Arts+Ballot+pdf.pdf") {
+//            UIApplication.shared.open(url)
+//        }
+        let svc = SFSafariViewController(url: URL(string: "https://static1.squarespace.com/static/5670ede7a976af3e2f3af0af/t/5869929b20099ecdf7a0dc22/1483313820637/Culinary+Arts+Ballot+pdf.pdf")!)
+        self.present(svc,animated:true, completion:nil)
+    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.compNames.count
     }
@@ -49,7 +57,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if ((competitions?[compNames[row]] as? NSDictionary)?["category"] as? String != "Bracket Competitions") {
+        if ((competitions?[compNames[row]] as? NSDictionary)?["isBracket"] as? Bool != true) {
             bracketsButton.isHidden = true;
         } else {
             bracketsButton.isHidden = false;

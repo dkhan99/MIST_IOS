@@ -55,6 +55,11 @@ class LoginScreenVC: UIViewController {
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
+                            
+                            if (!teamObject.allKeys.isEmpty) {
+                                FIRMessaging.messaging().subscribe(toTopic: teamObject.allKeys[0] as! String)
+                            }
+
                             self.performSegue(withIdentifier: "passLogin", sender: nil)
                         })
 

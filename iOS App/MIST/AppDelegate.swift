@@ -11,6 +11,8 @@ import Firebase
 import UserNotifications
 import FirebaseMessaging
 import FirebaseDatabase
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
@@ -21,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appIsStarting: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        GMSServices.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
+        GMSPlacesClient.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         // Override point for customization after application launch.
         FIRApp.configure()
         self.ref = FIRDatabase.database().reference()
@@ -104,6 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
             currentNotifications.insert(["title":userInfo["title"] ?? "","body":userInfo["body"] ?? "","time":date,"read":false], at: 0)
             UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+            
+            // make content for local notification
+            let content = UNMutableNotificationContent()
+            content.title = userInfo["title"] as! String
+            content.subtitle = "subtitle"
+            content.body = userInfo["body"] as! String
+            content.categoryIdentifier = "message"
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+            let request = UNNotificationRequest(identifier: "alert", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+            
             var count = 0
             for notification:NSDictionary in currentNotifications {
                 if notification.value(forKey: "read") as! Bool == false {
