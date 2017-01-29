@@ -85,7 +85,8 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             print("still nil")
         }
-        
+        let inset = UIEdgeInsetsMake(5, 0, 0, 0)
+        myTable.contentInset = inset
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }

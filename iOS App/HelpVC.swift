@@ -12,12 +12,18 @@ class HelpVC: UIViewController {
 
     @IBOutlet weak var MISTHelpButton: UIButton!
     @IBOutlet weak var CampusPoliceButton: UIButton!
+    @IBOutlet weak var fridayButton: UIButton!
+    @IBOutlet weak var saturdayButton: UIButton!
+    @IBOutlet weak var sundayButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         MISTHelpButton.layer.cornerRadius = 15.0
         MISTHelpButton.layer.masksToBounds = true
         CampusPoliceButton.layer.cornerRadius = 15.0
         CampusPoliceButton.layer.masksToBounds = true
+        fridayButton.layer.cornerRadius = 15.0
+        saturdayButton.layer.cornerRadius = 15.0
+        sundayButton.layer.cornerRadius = 15.0
         // Do any additional setup after loading the view.
     }
     @IBAction func callMIST(_ sender: UIButton) {
