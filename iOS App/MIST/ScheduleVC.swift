@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ScheduleVC: UIViewController {
+class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var segment: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -18,15 +19,32 @@ class ScheduleVC: UIViewController {
         
                 // Do any additional setup after loading the view.
     }
-    
-    
-
-    
-    @IBAction func viewSchedule(_ sender: UIButton) {
-        if let url = URL(string: "http://www.mistatlanta.com/s/School-Permission-Form.pdf") {
-            UIApplication.shared.open(url)
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
+        cell.nameLabel?.text = "\(indexPath.row+1):00 - Event Name"
+        cell.numberLabel?.text = "Event Location"
+        return cell
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ["Friday","Saturday","Sunday"][section]
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //        if let teammembers = teammembers {
+        //            return teammembers.count
+        //        } else {
+        //            return 0
+        //        }
+        return 3
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //        if let teammembers = teammembers {
+        //            return teammembers[section].count
+        //        } else {
+        //            return 0
+        //        }
+        return 5
+    }
+
     
     @IBAction func segChanged(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {

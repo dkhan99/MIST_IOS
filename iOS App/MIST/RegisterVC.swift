@@ -50,18 +50,15 @@ class RegisterVC: UIViewController {
                         
                         let value = snapshot.value as? NSDictionary
                         if (value?.value(forKey: "userType") as? String == "competitor") {
-                            FIRMessaging.messaging().subscribe(toTopic: "competitor")
+                            FIRMessaging.messaging().subscribe(toTopic: "/topics/competitor")
                         } else {
-                            FIRMessaging.messaging().subscribe(toTopic: "coach")
+                            FIRMessaging.messaging().subscribe(toTopic: "/topics/coach")
                         }
                         self.ref.child("registered-user").child(user!.uid).setValue(value)
                         UserDefaults.standard.set(value, forKey: "user")
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
-                            if (!teamObject.allKeys.isEmpty) {
-                                FIRMessaging.messaging().subscribe(toTopic: value!.value(forKey: "team") as! String)
-                            }
                         })
                         self.errorLabel.text=""
                         if let refreshedToken = FIRInstanceID.instanceID().token() {

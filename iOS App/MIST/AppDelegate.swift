@@ -74,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                name: .firInstanceIDTokenRefresh,
                                                object: nil)
         UserDefaults.standard.set("nothing", forKey: "data")
-        print("nothing")
         return true
     }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -214,7 +213,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.appIsStarting = false
         connectToFcm()
-        print(UserDefaults.standard.value(forKey: "gotmessage") ?? "nil")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

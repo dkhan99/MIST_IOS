@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5202B3A31E3DD8C400CF07AF /* MISTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5202B3A21E3DD8C400CF07AF /* MISTTableViewCell.swift */; };
 		5213DC2C1E1D229600F14F9C /* RulesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC2B1E1D229600F14F9C /* RulesVC.swift */; };
 		5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */; };
 		5213DC6A1E1EB10200F14F9C /* BracketsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC691E1EB10200F14F9C /* BracketsVC.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		0F8CDEA32D3EE18E6027BF9B /* Pods-MIST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MIST/Pods-MIST.debug.xcconfig"; sourceTree = "<group>"; };
+		5202B3A21E3DD8C400CF07AF /* MISTTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MISTTableViewCell.swift; sourceTree = "<group>"; };
 		5213DC2B1E1D229600F14F9C /* RulesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesVC.swift; sourceTree = "<group>"; };
 		5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5213DC691E1EB10200F14F9C /* BracketsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketsVC.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				52EBF43E1E1D1451004EBE1E /* HelpVC.swift */,
 				52815CD51E12321500D491A6 /* MapVC.swift */,
 				5294EB861E10F47400CF60A5 /* Main.storyboard */,
+				5202B3A21E3DD8C400CF07AF /* MISTTableViewCell.swift */,
 				52C84D751E39998C009E9C08 /* NotificationDetailVC.swift */,
 				52C84D711E381CCC009E9C08 /* NotificationsVC.swift */,
 				52D7BB8F1E2A83780034E487 /* Assets.xcassets */,
@@ -519,6 +522,7 @@
 				5213DC701E1EC7EC00F14F9C /* BracketDetailVC.swift in Sources */,
 				5294EBB11E10FCEC00CF60A5 /* LoginScreenVC.swift in Sources */,
 				52815CD21E122D9500D491A6 /* MyTabBarController.swift in Sources */,
+				5202B3A31E3DD8C400CF07AF /* MISTTableViewCell.swift in Sources */,
 				5213DC6A1E1EB10200F14F9C /* BracketsVC.swift in Sources */,
 				52264C211E2289A900D62553 /* RegisterVC.swift in Sources */,
 			);

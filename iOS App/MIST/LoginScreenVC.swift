@@ -21,6 +21,7 @@ class LoginScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
+        self.emailField.autocorrectionType = .no
         // Do any additional setup after loading the view.
         if (FIRAuth.auth()?.currentUser) != nil {
             // Segue to next screen
@@ -38,7 +39,7 @@ class LoginScreenVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
             
                 if let error = error {
-                    print(error.localizedDescription)
+                    //print(error.localizedDescription)
                         self.errorLabel.text = error.localizedDescription
                 }
                 if user != nil {
@@ -47,19 +48,14 @@ class LoginScreenVC: UIViewController {
                     self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
                         let value = snapshot.value as? NSDictionary
                         if (value?.value(forKey: "userType") as? String == "competitor") {
-                            FIRMessaging.messaging().subscribe(toTopic: "competitor")
+                            FIRMessaging.messaging().subscribe(toTopic: "/topics/competitor")
                         } else {
-                            FIRMessaging.messaging().subscribe(toTopic: "coach")
+                            FIRMessaging.messaging().subscribe(toTopic: "/topics/coach")
                         }
                         UserDefaults.standard.set(value, forKey: "user")
                         self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
-                            
-                            if (!teamObject.allKeys.isEmpty) {
-                                FIRMessaging.messaging().subscribe(toTopic: teamObject.allKeys[0] as! String)
-                            }
-
                             self.performSegue(withIdentifier: "passLogin", sender: nil)
                         })
 
@@ -70,9 +66,8 @@ class LoginScreenVC: UIViewController {
                         
                     }
                     
-                    print(UserDefaults.standard.bool(forKey: "isGuest"))
                     UserDefaults.standard.set(false, forKey: "isGuest")
-                    print(UserDefaults.standard.bool(forKey: "isGuest"))
+                    
                     
                 }
             })
