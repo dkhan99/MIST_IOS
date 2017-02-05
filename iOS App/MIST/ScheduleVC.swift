@@ -13,6 +13,8 @@ import FirebaseAuth
 class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Properties
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingString: UILabel!
     var items: [[String:Any]] = []
     var user: User!
     let dayArray = ["Friday","Saturday","Sunday"]
@@ -23,8 +25,18 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var competitions:[String:Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ref.observe(.value, with: { snapshot in
+        if let sched = (UserDefaults.standard.value(forKey: "schedule")) as? [[[String:Any]]] {
+            if (sched.count > 0) {
+                self.scheduleItems = sched
+                self.myTable.isHidden = false
+                self.loadingString.isHidden = true
+                self.indicator.stopAnimating()
+                self.indicator.isHidden = true
+                print("load schedule from USERDEFAULTS")
+            }
+        }
+            ref.observe(.value, with: { snapshot in
+            var newSchedule:[[[String:Any]]] = [[],[],[]]
             let mistUser = UserDefaults.standard.value(forKey: "user") as! [String:Any]
             if (mistUser["userType"] as! String == "competitor") {
                 var registeredCompetitions:[String] = []
@@ -69,22 +81,30 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             loc["date"] = date
                             let dformatter:DateFormatter = DateFormatter()
                             dformatter.dateFormat = "EEEE"
-                            self.scheduleItems[self.dayArray.index(of: dformatter.string(from: date!))!].append(loc)
+                            newSchedule[self.dayArray.index(of: dformatter.string(from: date!))!].append(loc)
                         }
-                        self.scheduleItems[0].sort(by: {
+                        newSchedule[0].sort(by: {
                             ($0["date"] as! Date) < ($1["date"] as! Date)
                         })
-                        self.scheduleItems[1].sort(by: {
+                        newSchedule[1].sort(by: {
                             ($0["date"] as! Date) < ($1["date"] as! Date)
                         })
-                        self.scheduleItems[2].sort(by: {
+                        newSchedule[2].sort(by: {
                             ($0["date"] as! Date) < ($1["date"] as! Date)
                         })
-                        //self.scheduleItems.sort(by: {$0["date"] as! Date > $1["date"] as! Date} )
+                        
+                        
                     }
                 }
-                
+                UserDefaults.standard.set(newSchedule, forKey: "schedule")
+                self.scheduleItems = newSchedule
                 self.myTable.reloadData()
+                self.myTable.isHidden = false
+                self.loadingString.isHidden = true
+                self.indicator.stopAnimating()
+                self.indicator.isHidden = true
+                print("Data loaded so we are hiding indicator and showing table")
+                
                 
             }
             
@@ -125,6 +145,14 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if (self.scheduleItems.count == 0) {
+            print("SCHEDULE ITEMS IS EMPTY so we are hiding table and showing indicator")
+            self.myTable.isHidden = true
+            self.indicator.isHidden = false
+            self.loadingString.isHidden = false
+            self.indicator.startAnimating()
+        }
+
         
     }
     override func didReceiveMemoryWarning() {

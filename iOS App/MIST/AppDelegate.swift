@@ -114,7 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // make content for local notification
             let content = UNMutableNotificationContent()
             content.title = userInfo["title"] as! String
-            content.subtitle = "subtitle"
             content.body = userInfo["body"] as! String
             content.categoryIdentifier = "message"
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)

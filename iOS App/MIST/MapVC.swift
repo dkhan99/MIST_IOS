@@ -8,16 +8,16 @@
 
 import UIKit
 import GoogleMaps
-let kMapStyle = "[" +
-    "  {" +
-    "    \"featureType\": \"poi\"," +
-    "    \"stylers\": [" +
-    "      {" +
-    "        \"visibility\": \"off\"" +
-    "      }" +
-    "    ]" +
-    "  }" +
-"]"
+//let kMapStyle = "[" +
+//    "  {" +
+//    "    \"featureType\": \"poi\"," +
+//    "    \"stylers\": [" +
+//    "      {" +
+//    "        \"visibility\": \"off\"" +
+//    "      }" +
+//    "    ]" +
+//    "  }" +
+//"]"
 class MapVC: UIViewController {
     var mapView: GMSMapView!
     @IBOutlet weak var sub: UIView!
@@ -25,15 +25,14 @@ class MapVC: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.update), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         let camera = GMSCameraPosition.camera(withLatitude: 33.95536, longitude: -83.37410, zoom: 17.0)
-        let position = CLLocationCoordinate2D(latitude: 33.956669, longitude: -83.375192)
-        let chapel = GMSMarker(position: position)
-        chapel.title = "Chapel"
+        
+        
         mapView = GMSMapView.map(withFrame: sub.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.setMinZoom(17.0, maxZoom: 20.0)
         mapView.settings.myLocationButton = true
         sub.addSubview(mapView)
-        chapel.map = mapView
+        addLocations()
         let path = GMSMutablePath()
         path.add(CLLocationCoordinate2D(latitude: 33.953483, longitude: -83.375382))
         path.add(CLLocationCoordinate2D(latitude: 33.956597, longitude: -83.376227))
@@ -42,13 +41,31 @@ class MapVC: UIViewController {
         path.add(CLLocationCoordinate2D(latitude: 33.953483, longitude: -83.375382))
         let rectangle = GMSPolyline(path: path)
         rectangle.strokeColor = UIColor.red
+        rectangle.strokeWidth = 5
         rectangle.map=mapView
-        do {
-            mapView.mapStyle = try GMSMapStyle(jsonString: kMapStyle)
-        } catch {
-            NSLog("Cannot load style")
-        }
+//        do {
+//            mapView.mapStyle = try GMSMapStyle(jsonString: kMapStyle)
+//        } catch {
+//            NSLog("Cannot load style")
+//        }
         // Do any additional setup after loading the view.
+    }
+    func addLocations() {
+        let chapel = GMSMarker(position: CLLocationCoordinate2D(latitude: 33.956669, longitude: -83.375192))
+        chapel.title = "Chapel"
+        chapel.map = mapView
+        let herty = GMSMarker(position: CLLocationCoordinate2D(latitude: 33.955942, longitude:  -83.375590))
+        herty.title = "Herty Field"
+        herty.map = mapView
+        let caldwell = GMSMarker(position: CLLocationCoordinate2D(latitude: 33.954917, longitude: -83.375304))
+        caldwell.title = "Caldwell"
+        caldwell.map = mapView
+        let sanford = GMSMarker(position: CLLocationCoordinate2D(latitude: 33.953701, longitude: -83.375024))
+        sanford.title = "Sanford"
+        sanford.map = mapView
+        let northDeck = GMSMarker(position: CLLocationCoordinate2D(latitude: 33.956125, longitude: -83.372546))
+        northDeck.title = "North Campus Parking Deck"
+        northDeck.map = mapView
     }
     func update() {
         let camera = GMSCameraPosition.camera(withLatitude: 33.95536, longitude: -83.37410, zoom: 17.0)

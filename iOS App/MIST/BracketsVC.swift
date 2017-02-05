@@ -26,7 +26,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         rulesButton.layer.masksToBounds = true
         bracketsButton.layer.cornerRadius = 15.0
         bracketsButton.layer.masksToBounds = true
-        competitions = UserDefaults.standard.value(forKey: "competitions") as! [String : Any]
+//        competitions = UserDefaults.standard.value(forKey: "competitions") as! [String : Any]
         resultref.observeSingleEvent(of: .value, with: { snapshot in
             self.compResults = snapshot.value as! [String:Any]
         })
@@ -84,6 +84,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        bracketsButton.isHidden = true;
         if (self.compNames.count != 0) {
             return (self.compNames[row])
         } else {

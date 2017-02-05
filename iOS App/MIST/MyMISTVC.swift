@@ -12,11 +12,14 @@ import FirebaseAuth
 import FirebaseMessaging
 
 class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var guestSTring: UILabel!
     
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var MyTeam: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
@@ -45,13 +48,23 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
                 FIRMessaging.messaging().subscribe(toTopic: "/topics/\(team)")
             }
+            guestSTring.isHidden = true
+            logo.isHidden = true
         } else { // GUEST
-            myTable.isHidden = true;
-            nameLabel.text = "Hello, Guest"
-            teamLabel.isHidden = true
-            mistIDLabel.isHidden = true
-            mobileLabel.isHidden = true
-            profilePic.isHidden = true
+//            myTable.isHidden = true;
+//            nameLabel.isHidden = true
+//            teamLabel.isHidden = true
+//            mistIDLabel.isHidden = true
+//            mobileLabel.isHidden = true
+//            profilePic.isHidden = true
+//            segment.isHidden = true
+//            MyTeam.isHidden = true
+            for v in self.view.subviews {
+                v.isHidden = true
+            }
+            signOutButton.isHidden = false
+            guestSTring.isHidden = false
+            logo.isHidden = false
             
         }
         let team = (UserDefaults.standard.value(forKey: "team") as! NSDictionary)
@@ -65,6 +78,8 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+        teammembers[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+        teammembers[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
         myTable.reloadData()
         self.tabBarController?.tabBar.isTranslucent = false
         var count = 0
