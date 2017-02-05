@@ -20,9 +20,14 @@ class NotificationDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         myView.layer.cornerRadius = 15.0
+        myView.layer.masksToBounds = false
+        myView.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        myView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        myView.layer.shadowOpacity = 0.8
         titleLabel.text = titleText
         time.text = timeText
         body.text = bodyText
+        
         // Do any additional setup after loading the view.
     }
 

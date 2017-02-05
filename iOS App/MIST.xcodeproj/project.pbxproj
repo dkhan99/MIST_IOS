@@ -29,6 +29,8 @@
 		52C84D741E384731009E9C08 /* Reddot.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C84D731E384731009E9C08 /* Reddot.png */; };
 		52C84D761E39998C009E9C08 /* NotificationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C84D751E39998C009E9C08 /* NotificationDetailVC.swift */; };
 		52D7BB901E2A83780034E487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D7BB8F1E2A83780034E487 /* Assets.xcassets */; };
+		52E3EBB81E467278003AF9D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3EBB71E467278003AF9D6 /* User.swift */; };
+		52E3EBBB1E4673D5003AF9D6 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3EBBA1E4673D5003AF9D6 /* Competition.swift */; };
 		52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF43E1E1D1451004EBE1E /* HelpVC.swift */; };
 		8E3FD9614A8502D71011895A /* Pods_MISTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC48BC64F2D710AE8989D8B /* Pods_MISTTests.framework */; };
 		B00AFEF7EF49CF39AFDAB1AB /* Pods_MISTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */; };
@@ -83,6 +85,8 @@
 		52C84D731E384731009E9C08 /* Reddot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Reddot.png; sourceTree = "<group>"; };
 		52C84D751E39998C009E9C08 /* NotificationDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailVC.swift; sourceTree = "<group>"; };
 		52D7BB8F1E2A83780034E487 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52E3EBB71E467278003AF9D6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		52E3EBBA1E4673D5003AF9D6 /* Competition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		52EBF43E1E1D1451004EBE1E /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpVC.swift; path = ../HelpVC.swift; sourceTree = "<group>"; };
 		7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MISTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A464BDC9BDABEA5A8C335A2 /* Pods-MISTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MISTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MISTTests/Pods-MISTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 		5294EB7F1E10F47400CF60A5 /* MIST */ = {
 			isa = PBXGroup;
 			children = (
+				52E3EBB61E46724F003AF9D6 /* Model */,
 				5267CF7C1E1435AA009AF182 /* MIST.entitlements */,
 				5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */,
 				52264C201E2289A900D62553 /* RegisterVC.swift */,
@@ -190,6 +195,15 @@
 				5294EBA41E10F47400CF60A5 /* Info.plist */,
 			);
 			path = MISTUITests;
+			sourceTree = "<group>";
+		};
+		52E3EBB61E46724F003AF9D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52E3EBB71E467278003AF9D6 /* User.swift */,
+				52E3EBBA1E4673D5003AF9D6 /* Competition.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		AD985D4AF754C181E14D428B /* Frameworks */ = {
@@ -512,8 +526,10 @@
 			files = (
 				52815CD41E1230ED00D491A6 /* ScheduleVC.swift in Sources */,
 				5294EB811E10F47400CF60A5 /* AppDelegate.swift in Sources */,
+				52E3EBBB1E4673D5003AF9D6 /* Competition.swift in Sources */,
 				5294EB831E10F47400CF60A5 /* MyMISTVC.swift in Sources */,
 				5294EBB31E1115C000CF60A5 /* SelectRoleVC.swift in Sources */,
+				52E3EBB81E467278003AF9D6 /* User.swift in Sources */,
 				52815CD61E12321500D491A6 /* MapVC.swift in Sources */,
 				5213DC2C1E1D229600F14F9C /* RulesVC.swift in Sources */,
 				52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */,

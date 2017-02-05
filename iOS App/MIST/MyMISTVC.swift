@@ -22,7 +22,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var mistIDLabel: UILabel!
     var ref: FIRDatabaseReference!
-   //let allNames: [[String]] = [["Sameera Omar", "Mae Eldahshoury"], ["Shifa Khan", "Hasib Abdulrahmaan", "Samina Sattar", "Hasan Qadri", "Rabeea Ahmed", "Matib Ahmad"]]
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +42,9 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
             self.mobileLabel.text = "\(number)"
             self.teamLabel.text = user.value(forKey: "team") as? String
-            FIRMessaging.messaging().subscribe(toTopic: "/topics/\((UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"]!)")
-//            ref.child("registered-user").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-//                let value = snapshot.value as? NSDictionary
-//                self.nameLabel.text = value?["name"] as? String ?? ""
-//                self.emailLabel.text = value?["email"] as? String ?? ""
-//                if let num = value?["phoneNumber"] {
-//                    self.mobileLabel.text = "\(num)"
-//                } else {
-//                    self.mobileLabel.text = ""
-//                }
-//                
-//                self.teamLabel.text = value?["team"] as? String ?? ""
-//            })
-            
+            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
+                FIRMessaging.messaging().subscribe(toTopic: "/topics/\(team)")
+            }
         } else { // GUEST
             myTable.isHidden = true;
             nameLabel.text = "Hello, Guest"
@@ -79,6 +67,21 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         myTable.reloadData()
         self.tabBarController?.tabBar.isTranslucent = false
+        var count = 0
+        if UserDefaults.standard.value(forKey: "notifications") != nil {
+            for notification:NSDictionary in UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary] {
+                if notification.value(forKey: "read") as! Bool == false {
+                    count+=1
+                }
+            }
+        }
+        if let root = (UIApplication.shared.keyWindow?.rootViewController as? UITabBarController) {
+            if count>0 {
+                root.tabBar.items?[4].badgeValue = "\(count)"
+            } else {
+                root.tabBar.items?[4].badgeValue = nil
+            }
+        }
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }

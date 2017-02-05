@@ -32,10 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let user = FIRAuth.auth()?.currentUser {
             if (UserDefaults.standard.value(forKey: "user") != nil) {
                 self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
+                print("CURRENT USER IS")
+                print(UserDefaults.standard.value(forKey: "user"))
             } else {
                 self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                     let value = snapshot.value as? NSDictionary
                     UserDefaults.standard.set(value, forKey: "user")
+                    print(value)
                     self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                         let teamObject = snapshot.value as! NSDictionary
                         UserDefaults.standard.set(teamObject, forKey: "team")
@@ -125,15 +128,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     count+=1
                 }
             }
-            let root = (self.window?.rootViewController as! UITabBarController)
             application.applicationIconBadgeNumber = count
-
-            if count>0 {
+            if let root = (self.window?.rootViewController as? UITabBarController) {
+            
+                if count>0 {
                 
-                root.tabBar.items?[4].badgeValue = "\(count)"
+                    root.tabBar.items?[4].badgeValue = "\(count)"
                 
-            } else {
-                root.tabBar.items?[4].badgeValue = nil
+                } else {
+                    root.tabBar.items?[4].badgeValue = nil
+                }
             }
         } else if (state == UIApplicationState.inactive && self.appIsStarting) {
             // user tapped notification
@@ -176,6 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Unable to connect with FCM. \(error)")
             } else {
                 print("Connected to FCM.")
+                FIRMessaging.messaging().subscribe(toTopic: "/topics/user")
             }
         }
     }
