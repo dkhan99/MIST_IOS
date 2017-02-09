@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SafariServices
 
 class HelpVC: UIViewController {
 
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var MISTHelpButton: UIButton!
     @IBOutlet weak var CampusPoliceButton: UIButton!
     @IBOutlet weak var fridayButton: UIButton!
@@ -31,6 +33,11 @@ class HelpVC: UIViewController {
         let phoneUrl = "telprompt://\(formatedNumber)"
         let url:URL = URL(string: phoneUrl)!
         UIApplication.shared.open(url)
+    }
+    @IBAction func viewFriday(_ sender: UIButton) {
+        let url = "http://www.getmistified.com/atlanta/wp-content/uploads/2015/03/ForPostingMIST2015OfficialDesignedProgram.pdf"
+        let svc = SFSafariViewController(url: URL(string: url)!)
+        self.present(svc,animated:true, completion:nil)
     }
 
     @IBAction func callCampusPolice(_ sender: UIButton) {

@@ -18,16 +18,17 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var MyTeam: UILabel!
+    @IBOutlet weak var signOutButton: UIBarButtonItem!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var mistIDLabel: UILabel!
-    var ref: FIRDatabaseReference!
+    var ref: FIRDatabaseReference! = FIRDatabase.database().reference()
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.automaticallyAdjustsScrollViewInsets = false
         myTable.contentInset = UIEdgeInsets.zero;
         profilePic.layer.cornerRadius = self.profilePic.frame.size.height / 2;
@@ -35,52 +36,37 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         myTable.sectionHeaderHeight = 0
         myTable.sectionFooterHeight = 0
         if (FIRAuth.auth()?.currentUser != nil) {
-            
-            self.ref = FIRDatabase.database().reference()
             let user = (UserDefaults.standard.value(forKey: "user") as! NSDictionary)
             self.nameLabel.text = user.value(forKey: "name") as? String
             self.mistIDLabel.text = user.value(forKey: "mistId") as? String
+            if let type = (user.value(forKey: "userType") as? String) {
+                self.segment.isHidden = (type == "coach")
+            }
             var number = "\(user.value(forKey: "phoneNumber") as! Int)"
             number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
             number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
             self.mobileLabel.text = "\(number)"
             self.teamLabel.text = user.value(forKey: "team") as? String
+            guestSTring.isHidden = true
+            logo.isHidden = true
+            self.title = "My MIST"
+            
             if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
                 FIRMessaging.messaging().subscribe(toTopic: "/topics/\(team)")
             }
-            guestSTring.isHidden = true
-            logo.isHidden = true
+            if (self.teammembers[1].isEmpty) {
+                setupTeam()
+            }
+            
         } else { // GUEST
-//            myTable.isHidden = true;
-//            nameLabel.isHidden = true
-//            teamLabel.isHidden = true
-//            mistIDLabel.isHidden = true
-//            mobileLabel.isHidden = true
-//            profilePic.isHidden = true
-//            segment.isHidden = true
-//            MyTeam.isHidden = true
             for v in self.view.subviews {
                 v.isHidden = true
             }
-            signOutButton.isHidden = false
+            self.title = "MIST"
             guestSTring.isHidden = false
             logo.isHidden = false
             
         }
-        let team = (UserDefaults.standard.value(forKey: "team") as! NSDictionary)
-        let keyList:[String] = team.allKeys as! [String]
-        for key in keyList {
-            if (key != (UserDefaults.standard.value(forKey: "user") as! NSDictionary).value(forKey: "mistId") as! String) {
-                if (((team.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
-                    teammembers[1].append(team.value(forKey: key) as! NSDictionary)
-                } else { //Coach
-                    teammembers[0].append(team.value(forKey: key) as! NSDictionary)
-                }
-            }
-        }
-        teammembers[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
-        teammembers[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
-        myTable.reloadData()
         self.tabBarController?.tabBar.isTranslucent = false
         var count = 0
         if UserDefaults.standard.value(forKey: "notifications") != nil {
@@ -97,16 +83,53 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 root.tabBar.items?[4].badgeValue = nil
             }
         }
+        UIApplication.shared.applicationIconBadgeNumber = count
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            let competitions = snapshot.value as! [String:Any]
+            UserDefaults.standard.set(competitions, forKey: "competitions")
+        })
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+    }
+    func setupTeam() {
+        var teamObject:NSDictionary = [:]
+        let user = UserDefaults.standard.value(forKey: "user") as! NSDictionary
+        if (UserDefaults.standard.value(forKey: "team") == nil) {
+            print("Team object is nil")
+            self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                teamObject = snapshot.value as! NSDictionary
+                UserDefaults.standard.set(teamObject, forKey: "team")
+            })
+        } else {
+            print("Team object exists")
+            teamObject = UserDefaults.standard.value(forKey: "team") as! NSDictionary
+        }
+        let keyList:[String] = teamObject.allKeys as! [String]
+        for key in keyList {
+            
+            if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
+                self.teammembers[1].append(teamObject.value(forKey: key) as! NSDictionary)
+            } else { //Coach
+                self.teammembers[0].append(teamObject.value(forKey: key) as! NSDictionary)
+            }
+        }
+        print("Team members count is \(self.teammembers[1].count)")
+        if (self.teammembers.count > 0) {
+            self.teammembers[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+            self.teammembers[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+            self.myTable.reloadData()
+        }
+        print("Reload data for table")
+
+        self.myTable.reloadData()
     }
     override func viewDidLayoutSubviews() {
         if (UserDefaults.standard.bool(forKey: "isGuest")) {
-            signOutButton.titleLabel?.text = "Sign In"
+            self.signOutButton.title  = "Sign In"
         }
     }
     
@@ -131,7 +154,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if (section == 0) {
             return "Coaches"
         } else {
-            return "Teammates"
+            return "Competitors"
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -152,25 +175,17 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-//        if let teammembers = teammembers {
-//            return teammembers.count
-//        } else {
-//            return 0
-//        }
         return teammembers.count
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if let teammembers = teammembers {
-//            return teammembers[section].count
-//        } else {
-//            return 0
-//        }
         return teammembers[section].count
     }
-    @IBAction func signOut(_ sender: Any) {
-        if (UserDefaults.standard.bool(forKey: "isGuest") == false) {
+    
+    @IBAction func signout(_ sender: UIBarButtonItem) {
+        if (FIRAuth.auth()?.currentUser != nil) {
             let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
+            
             if (value?.value(forKey: "userType") as? String == "competitor") {
                 FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/competitor")
             } else {
@@ -180,11 +195,14 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             do {
                 try
                     FIRAuth.auth()?.signOut()
+                print("signed out")
             } catch {
                 NSLog("Couldn't sign out")
             }
         }
+        self.performSegue(withIdentifier: "backToRole", sender: nil)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

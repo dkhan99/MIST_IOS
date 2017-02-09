@@ -27,6 +27,7 @@ class SelectRoleVC: UIViewController {
                     let teamObject = snapshot.value as! NSDictionary
                     UserDefaults.standard.set(teamObject, forKey: "team")
                     self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+                    print("ALREADY ALREADY LOGGED IN")
                 })
             })
         } else {
@@ -55,6 +56,7 @@ class SelectRoleVC: UIViewController {
     }
     
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) {
+        
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -25,10 +25,10 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.reloadData()
         
     }
-    @IBAction func deleteAll(_ sender: UIButton) {
+    @IBAction func deleteAll(_ sender: UIBarButtonItem) {
         let empty : [NSDictionary] = []
         UserDefaults.standard.set(empty, forKey: "notifications")
-        self.tabBarItem.badgeValue = nil
+        self.tabBarController?.tabBar.items?[4].badgeValue = nil
         UIApplication.shared.applicationIconBadgeNumber = 0
         self.tableView.reloadData()
     }
@@ -48,11 +48,13 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 count+=1
             }
         }
+        print("count is \(count)")
         UIApplication.shared.applicationIconBadgeNumber = count
         if count>0 {
-            self.tabBarItem.badgeValue = "\(count)"
+            self.tabBarController?.tabBar.items?[4].badgeValue = "\(count)"
         } else {
-            self.tabBarItem.badgeValue = nil
+            print("Set tab badge to 0")
+            self.tabBarController?.tabBar.items?[4].badgeValue = nil
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
@@ -72,13 +74,13 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (hours > 1) {
             unit = "\(hours) hours"
         } else if (mins > 1) {
-            unit = "\(mins) minutes"
+            unit = "\(mins) min"
         } else {
-            unit = "\(secs) seconds"
+            unit = "\(secs) sec"
         }
         cell.detailTextLabel?.text = unit + " ago"
         if ((UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary])?[indexPath.row].value(forKey: "read") as! Bool == false) {
-            cell.imageView?.image = #imageLiteral(resourceName: "Reddot.png")
+            cell.textLabel?.text = "🔴 \(cell.textLabel!.text!)"
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell.textLabel?.font.pointSize)!)
         } else {
             cell.imageView?.image = nil

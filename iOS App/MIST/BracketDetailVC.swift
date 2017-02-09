@@ -15,6 +15,7 @@ class BracketDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleString
+        navigationController?.navigationBar.tintColor = .white
         // Do any additional setup after loading the view.
     }
     

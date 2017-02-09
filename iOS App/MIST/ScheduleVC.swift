@@ -25,6 +25,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var competitions:[String:Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         if let sched = (UserDefaults.standard.value(forKey: "schedule")) as? [[[String:Any]]] {
             if (sched.count > 0) {
                 self.scheduleItems = sched

@@ -29,7 +29,6 @@ class MapVC: UIViewController {
         
         mapView = GMSMapView.map(withFrame: sub.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
-        mapView.setMinZoom(17.0, maxZoom: 20.0)
         mapView.settings.myLocationButton = true
         sub.addSubview(mapView)
         addLocations()
@@ -37,7 +36,13 @@ class MapVC: UIViewController {
         path.add(CLLocationCoordinate2D(latitude: 33.953483, longitude: -83.375382))
         path.add(CLLocationCoordinate2D(latitude: 33.956597, longitude: -83.376227))
         path.add(CLLocationCoordinate2D(latitude: 33.957399, longitude: -83.372573))
-        path.add(CLLocationCoordinate2D(latitude: 33.953884, longitude: -83.371395))
+        path.add(CLLocationCoordinate2D(latitude: 33.955504, longitude: -83.371899))
+        path.add(CLLocationCoordinate2D(latitude: 33.955439, longitude: -83.372497))
+        path.add(CLLocationCoordinate2D(latitude: 33.955913, longitude: -83.373452))
+        path.add(CLLocationCoordinate2D(latitude: 33.955488, longitude: -83.375131))
+        path.add(CLLocationCoordinate2D(latitude: 33.953626, longitude: -83.374462))
+        path.add(CLLocationCoordinate2D(latitude: 33.953468, longitude: -83.375287))
+        
         path.add(CLLocationCoordinate2D(latitude: 33.953483, longitude: -83.375382))
         let rectangle = GMSPolyline(path: path)
         rectangle.strokeColor = UIColor.red

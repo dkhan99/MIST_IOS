@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseMessaging
 
-class LoginScreenVC: UIViewController {
+class LoginScreenVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -30,19 +30,39 @@ class LoginScreenVC: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
     @IBAction func unwindLogin(segue: UIStoryboardSegue) {
-    
     }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if textField == passField {
+            self.view.frame = CGRect(x: 0, y: -85, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        }
+        return true
+    }
+    
     @IBAction func loginPressed(_ sender: UIButton) {
         if (emailField.text != nil) && (passField.text != nil) {
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
             
                 if let error = error {
                     //print(error.localizedDescription)
-                        self.errorLabel.text = error.localizedDescription
+                    //self.errorLabel.text = error.localizedDescription
+                    let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
+                        self.passField.text = ""
+                        self.emailField.text = ""
+                        self.emailField.becomeFirstResponder()
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
                 if user != nil {
+                    if (UserDefaults.standard.value(forKey: "user") != nil) {
+                        let appDomain = Bundle.main.bundleIdentifier
+                        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+                    }
                     // Segue to next screen
                     self.errorLabel.text=""
                     self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in

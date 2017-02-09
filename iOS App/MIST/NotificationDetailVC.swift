@@ -19,6 +19,7 @@ class NotificationDetailVC: UIViewController {
     var bodyText:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         myView.layer.cornerRadius = 15.0
         myView.layer.masksToBounds = false
         myView.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor

@@ -26,7 +26,9 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         rulesButton.layer.masksToBounds = true
         bracketsButton.layer.cornerRadius = 15.0
         bracketsButton.layer.masksToBounds = true
-//        competitions = UserDefaults.standard.value(forKey: "competitions") as! [String : Any]
+        if let competitions = UserDefaults.standard.value(forKey: "competitions") as? [String : Any] {
+            self.competitions = competitions
+        }
         resultref.observeSingleEvent(of: .value, with: { snapshot in
             self.compResults = snapshot.value as! [String:Any]
         })
@@ -37,18 +39,31 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             self.competitions = snapshot.value as! [String:Any]
             if (self.competitions.count > 0) {
                 self.compNames = self.competitions.keys.sorted()
+                self.myPicker.reloadAllComponents()
+                self.myPicker.selectRow(13, inComponent: 0, animated: true)
+                self.pickerView(self.myPicker, didSelectRow: 13, inComponent: 0)
+                self.bracketsButton.isEnabled = true;
+                self.bracketsButton.alpha = 1.0
+                UserDefaults.standard.set(self.competitions, forKey: "competitions")
             }
-            self.myPicker.reloadAllComponents()
-            UserDefaults.standard.set(self.competitions, forKey: "competitions")
-
+            
         })
-        
         
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (!competitions.isEmpty) {
+            if let indx = self.myPicker?.selectedRow(inComponent: 0) {
+                if ((competitions[compNames[indx]] as? NSDictionary)?["isBracket"] as? Bool == true) {
+                    bracketsButton.isEnabled = true
+                    bracketsButton.alpha = 1.0
+                } else {
+                    bracketsButton.isEnabled = false
+                    bracketsButton.alpha = 0.4
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,14 +92,17 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if ((competitions[compNames[row]] as? NSDictionary)?["isBracket"] as? Bool != true) {
-            bracketsButton.isHidden = true;
+        if ((competitions[compNames[row]] as? NSDictionary)?["isBracket"] as? Bool == true) {
+            bracketsButton.isEnabled = true
+            bracketsButton.alpha = 1.0
         } else {
-            bracketsButton.isHidden = false;
+            bracketsButton.isEnabled = false;
+            bracketsButton.alpha = 0.4
         }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        bracketsButton.isHidden = true;
+        self.bracketsButton.isEnabled = false
+        self.bracketsButton.alpha = 0.4
         if (self.compNames.count != 0) {
             return (self.compNames[row])
         } else {

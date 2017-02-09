@@ -11,6 +11,7 @@ import Firebase
 import UserNotifications
 import FirebaseMessaging
 import FirebaseDatabase
+import FirebaseAuth
 import GoogleMaps
 import GooglePlaces
 
@@ -23,22 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var appIsStarting: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FIRApp.configure()
+        try! FIRAuth.auth()!.signOut()
         GMSServices.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         GMSPlacesClient.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         // Override point for customization after application launch.
-        FIRApp.configure()
         self.ref = FIRDatabase.database().reference()
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let user = FIRAuth.auth()?.currentUser {
             if (UserDefaults.standard.value(forKey: "user") != nil) {
                 self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
-                print("CURRENT USER IS")
-                print(UserDefaults.standard.value(forKey: "user"))
             } else {
                 self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                     let value = snapshot.value as? NSDictionary
                     UserDefaults.standard.set(value, forKey: "user")
-                    print(value)
                     self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                         let teamObject = snapshot.value as! NSDictionary
                         UserDefaults.standard.set(teamObject, forKey: "team")
