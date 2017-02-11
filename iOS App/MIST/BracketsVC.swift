@@ -22,6 +22,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var resultArray:[[String:Any]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+
         rulesButton.layer.cornerRadius = 15.0
         rulesButton.layer.masksToBounds = true
         bracketsButton.layer.cornerRadius = 15.0
@@ -46,7 +47,6 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 self.bracketsButton.alpha = 1.0
                 UserDefaults.standard.set(self.competitions, forKey: "competitions")
             }
-            
         })
         
         // Do any additional setup after loading the view.

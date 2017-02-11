@@ -85,10 +85,10 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         UIApplication.shared.applicationIconBadgeNumber = count
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
-            let competitions = snapshot.value as! [String:Any]
-            UserDefaults.standard.set(competitions, forKey: "competitions")
-        })
+//        ref.observeSingleEvent(of: .value, with: { snapshot in
+//            let competitions = snapshot.value as! [String:Any]
+//            UserDefaults.standard.set(competitions, forKey: "competitions")
+//        })
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -99,13 +99,11 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         var teamObject:NSDictionary = [:]
         let user = UserDefaults.standard.value(forKey: "user") as! NSDictionary
         if (UserDefaults.standard.value(forKey: "team") == nil) {
-            print("Team object is nil")
             self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                 teamObject = snapshot.value as! NSDictionary
                 UserDefaults.standard.set(teamObject, forKey: "team")
             })
         } else {
-            print("Team object exists")
             teamObject = UserDefaults.standard.value(forKey: "team") as! NSDictionary
         }
         let keyList:[String] = teamObject.allKeys as! [String]
@@ -123,7 +121,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.teammembers[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
             self.myTable.reloadData()
         }
-        print("Reload data for table")
 
         self.myTable.reloadData()
     }
@@ -195,9 +192,8 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             do {
                 try
                     FIRAuth.auth()?.signOut()
-                print("signed out")
             } catch {
-                NSLog("Couldn't sign out")
+                print("could not sign out")
             }
         }
         self.performSegue(withIdentifier: "backToRole", sender: nil)

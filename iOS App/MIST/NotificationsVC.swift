@@ -11,14 +11,28 @@ import UIKit
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedNotification:[String:Any] = [:]
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var clearButton: UIBarButtonItem!
+    @IBOutlet weak var defaultLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        if let not = (UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary]) {
+            if (not.isEmpty) {
+                tableView.isHidden = true
+                defaultLabel.isHidden = false
+            } else {
+                tableView.reloadData()
+                tableView.isHidden = false
+                defaultLabel.isHidden = true
+            }
+        } else {
+            tableView.isHidden = true
+            defaultLabel.isHidden = false
+        }
+
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -31,6 +45,8 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tabBarController?.tabBar.items?[4].badgeValue = nil
         UIApplication.shared.applicationIconBadgeNumber = 0
         self.tableView.reloadData()
+        tableView.isHidden = true
+        defaultLabel.isHidden = false
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ((UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary]) ?? []).count
@@ -48,12 +64,10 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 count+=1
             }
         }
-        print("count is \(count)")
         UIApplication.shared.applicationIconBadgeNumber = count
         if count>0 {
             self.tabBarController?.tabBar.items?[4].badgeValue = "\(count)"
         } else {
-            print("Set tab badge to 0")
             self.tabBarController?.tabBar.items?[4].badgeValue = nil
         }
         tableView.deselectRow(at: indexPath, animated: true)
