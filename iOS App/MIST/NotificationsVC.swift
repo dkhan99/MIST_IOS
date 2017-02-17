@@ -94,8 +94,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         cell.detailTextLabel?.text = unit + " ago"
         if ((UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary])?[indexPath.row].value(forKey: "read") as! Bool == false) {
-            cell.textLabel?.text = "🔴 \(cell.textLabel!.text!)"
+            //cell.textLabel?.text = "🔴 \(cell.textLabel!.text!)"
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell.textLabel?.font.pointSize)!)
+            cell.imageView?.image = #imageLiteral(resourceName: "Reddot")
         } else {
             cell.imageView?.image = nil
             cell.textLabel?.font = UIFont.systemFont(ofSize: (cell.textLabel?.font.pointSize)!)

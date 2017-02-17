@@ -25,12 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        
         GMSServices.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         GMSPlacesClient.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         // Override point for customization after application launch.
         self.ref = FIRDatabase.database().reference()
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let user = FIRAuth.auth()?.currentUser {
+            if let user = FIRAuth.auth()?.currentUser {
             if (UserDefaults.standard.value(forKey: "user") != nil) {
                 self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
             } else {

@@ -26,13 +26,12 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        
-        if (scheduleItems.count > 0) {
-            self.myTable.isHidden = false
-            self.loadingString.isHidden = true
-            self.indicator.stopAnimating()
-            self.indicator.isHidden = true
-        }
+    
+        self.myTable.isHidden = true
+        self.loadingString.isHidden = false
+        self.indicator.startAnimating()
+        self.indicator.isHidden = false
+    
         
         let mistUser = UserDefaults.standard.value(forKey: "user") as! [String:Any]
         var registeredCompetitions:[String] = []
@@ -82,8 +81,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     for location:[String:Any] in comp.locationArray {
                         var loc = location
                         loc["name"] = comp.name
-                        let dateString = "\(location["date"]!)/17 \(location["time"]!)"
-                        
+                        let dateString = "\(location["date"]!)/17 \(location["startTime"]!)"
                         let date = formatter.date(from: dateString)
                         loc["date"] = date
                         let dformatter:DateFormatter = DateFormatter()
@@ -119,7 +117,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
-        cell.nameLabel?.text = "\(self.scheduleItems[indexPath.section][indexPath.row]["time"] as! String) - \(self.scheduleItems[indexPath.section][indexPath.row]["name"] as! String)"
+        cell.nameLabel?.text = "\(self.scheduleItems[indexPath.section][indexPath.row]["startTime"] as! String) - \(self.scheduleItems[indexPath.section][indexPath.row]["name"] as! String)"
         cell.numberLabel?.text = "\((self.scheduleItems[indexPath.section][indexPath.row]["location"] as! String)) \(String((self.scheduleItems[indexPath.section][indexPath.row]["roomNums"] as! [Int])[0]))"
         return cell
     }

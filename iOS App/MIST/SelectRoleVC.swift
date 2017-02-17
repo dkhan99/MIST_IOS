@@ -15,6 +15,7 @@ class SelectRoleVC: UIViewController {
     var ref:FIRDatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.ref = FIRDatabase.database().reference()
         print("current user \(FIRAuth.auth()?.currentUser)")
         if let user = FIRAuth.auth()?.currentUser {
@@ -36,18 +37,18 @@ class SelectRoleVC: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
+    
     @IBAction func guestSelected(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "isGuest")
+        self.performSegue(withIdentifier: "alreadyLoggedIn", sender: self)
+        
     }
     @IBAction func studentSelected(_ sender: UIButton) {
         UserDefaults.standard.set(false, forKey: "isGuest")
     }
     @IBAction func coachSelected(_ sender: UIButton) {
         UserDefaults.standard.set(false, forKey: "isGuest")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,14 +62,14 @@ class SelectRoleVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "coach") {
-            if let DestVC = segue.destination as? RegisterVC {
-                DestVC.role = "Coach"
+            if segue.destination is LoginScreenVC {
                 UserDefaults.standard.set("Coach", forKey: "role")
             } 
         } else if (segue.identifier == "student") {
             UserDefaults.standard.set("Student", forKey: "role")
         } else if (segue.identifier == "isGuest") {
             UserDefaults.standard.set(true, forKey: "isGuest")
+            
         }
     }
     /*

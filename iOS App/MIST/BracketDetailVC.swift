@@ -11,7 +11,7 @@ import UIKit
 class BracketDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var titleString: String = ""
-    var resultArray:[[String:Any]] = []
+    var resultArray:NSDictionary = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.titleString
@@ -30,22 +30,32 @@ class BracketDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ((self.resultArray[section] as [String:Any])["participantArray"] as! [String]).count
+        return (self.resultArray.value(forKey: self.resultArray.allKeys[section] as! String) as! [[String:Any]]).count
+    }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let title = UILabel()
+        title.font = UIFont(name: "Montserrat-Regular", size: 16)!
+        title.textColor = UIColor.darkGray
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel!.font=title.font
+        header.textLabel!.textColor = title.textColor
+        header.contentView.backgroundColor = UIColor.white
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
-        cell.nameLabel?.text = ((self.resultArray[indexPath.section] as [String:Any])["participantArray"] as? [String])?[indexPath.row]
-        cell.numberLabel?.text = ""
+        cell.nameLabel?.text = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["teamName"] as! String?
+        cell.numberLabel?.text = "\(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["day"] as! String) \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["time"] as! String) - \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["building"] as! String) \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["room"] as! String)"
         return cell
 
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.resultArray.count
+        return self.resultArray.allKeys.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.resultArray[section]["title"] as! String?
+        return self.resultArray.allKeys[section] as? String
     }
     /*
     // MARK: - Navigation

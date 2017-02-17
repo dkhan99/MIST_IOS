@@ -13,6 +13,7 @@ import FirebaseDatabase
 import FirebaseMessaging
 
 class LoginScreenVC: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -20,6 +21,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.layer.cornerRadius = loginButton.frame.height/2
         ref = FIRDatabase.database().reference()
         self.emailField.autocorrectionType = .no
         // Do any additional setup after loading the view.

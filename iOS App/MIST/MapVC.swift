@@ -19,18 +19,16 @@ import GoogleMaps
 //    "  }" +
 //"]"
 class MapVC: UIViewController {
-    var mapView: GMSMapView!
-    @IBOutlet weak var sub: UIView!
+    @IBOutlet weak var mapView: GMSMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.update), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         let camera = GMSCameraPosition.camera(withLatitude: 33.95536, longitude: -83.37410, zoom: 17.0)
         
         
-        mapView = GMSMapView.map(withFrame: sub.bounds, camera: camera)
+        mapView.camera = camera
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
-        sub.addSubview(mapView)
         addLocations()
         let path = GMSMutablePath()
         path.add(CLLocationCoordinate2D(latitude: 33.953483, longitude: -83.375382))

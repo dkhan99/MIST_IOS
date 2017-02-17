@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "book_24.png",
+      "filename" : "planner.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "book_48.png",
+      "filename" : "planner-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "book_64.png",
+      "filename" : "planner-2.png",
       "scale" : "3x"
     }
   ],

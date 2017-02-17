@@ -39,9 +39,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let user = (UserDefaults.standard.value(forKey: "user") as! NSDictionary)
             self.nameLabel.text = user.value(forKey: "name") as? String
             self.mistIDLabel.text = user.value(forKey: "mistId") as? String
-            if let type = (user.value(forKey: "userType") as? String) {
-                self.segment.isHidden = (type == "coach")
-            }
             var number = "\(user.value(forKey: "phoneNumber") as! Int)"
             number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
             number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
@@ -49,7 +46,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.teamLabel.text = user.value(forKey: "team") as? String
             guestSTring.isHidden = true
             logo.isHidden = true
-            self.title = "My MIST"
+            self.title = "MY MIST"
             
             if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
                 FIRMessaging.messaging().subscribe(toTopic: "/topics/\(team)")
@@ -85,10 +82,10 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         UIApplication.shared.applicationIconBadgeNumber = count
         
-//        ref.observeSingleEvent(of: .value, with: { snapshot in
-//            let competitions = snapshot.value as! [String:Any]
-//            UserDefaults.standard.set(competitions, forKey: "competitions")
-//        })
+        //        ref.observeSingleEvent(of: .value, with: { snapshot in
+        //            let competitions = snapshot.value as! [String:Any]
+        //            UserDefaults.standard.set(competitions, forKey: "competitions")
+        //        })
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -98,31 +95,54 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func setupTeam() {
         var teamObject:NSDictionary = [:]
         let user = UserDefaults.standard.value(forKey: "user") as! NSDictionary
-        if (UserDefaults.standard.value(forKey: "team") == nil) {
-            self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
-                teamObject = snapshot.value as! NSDictionary
-                UserDefaults.standard.set(teamObject, forKey: "team")
-            })
-        } else {
-            teamObject = UserDefaults.standard.value(forKey: "team") as! NSDictionary
-        }
-        let keyList:[String] = teamObject.allKeys as! [String]
-        for key in keyList {
-            
-            if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
-                self.teammembers[1].append(teamObject.value(forKey: key) as! NSDictionary)
-            } else { //Coach
-                self.teammembers[0].append(teamObject.value(forKey: key) as! NSDictionary)
+        
+        
+        self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+            teamObject = snapshot.value as! NSDictionary
+            UserDefaults.standard.set(teamObject, forKey: "team")
+            let keyList:[String] = teamObject.allKeys as! [String]
+            var newteam:[[NSDictionary]] = [[],[]]
+            for key in keyList {
+                
+                if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
+                    newteam[1].append(teamObject.value(forKey: key) as! NSDictionary)
+                } else { //Coach
+                    newteam[0].append(teamObject.value(forKey: key) as! NSDictionary)
+                }
             }
-        }
-        print("Team members count is \(self.teammembers[1].count)")
-        if (self.teammembers.count > 0) {
-            self.teammembers[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
-            self.teammembers[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+            print("Team members count is \(newteam[1].count)")
+            if (newteam.count > 0) {
+                newteam[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                newteam[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                self.myTable.reloadData()
+            }
+            self.teammembers = newteam
+            
+            self.myTable.reloadData()
+        })
+        
+        if let teamObject = UserDefaults.standard.value(forKey: "team") as? NSDictionary {
+            
+            let keyList:[String] = teamObject.allKeys as! [String]
+            var newteam:[[NSDictionary]] = [[],[]]
+            for key in keyList {
+                
+                if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
+                    newteam[1].append(teamObject.value(forKey: key) as! NSDictionary)
+                } else { //Coach
+                    newteam[0].append(teamObject.value(forKey: key) as! NSDictionary)
+                }
+            }
+            print("Team members count is \(newteam[1].count)")
+            if (newteam.count > 0) {
+                newteam[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                newteam[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                self.myTable.reloadData()
+            }
+            self.teammembers = newteam
+            
             self.myTable.reloadData()
         }
-
-        self.myTable.reloadData()
     }
     override func viewDidLayoutSubviews() {
         if (UserDefaults.standard.bool(forKey: "isGuest")) {
@@ -137,15 +157,25 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             // Send USER DATA HERE
         }
     }
-   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
-        cell.nameLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
-        var number = String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!)
-        number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
-        number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
-        cell.numberLabel?.text = number
-        return cell
+        let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
+        let isCompetitor = (value?.value(forKey: "userType") as? String == "competitor")
+        if (indexPath.section == 0 || !isCompetitor) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as! MISTTableViewCell
+            cell.nameLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
+            var number = String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!)
+            number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
+            number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
+            cell.numberLabel?.text = number
+            cell.isUserInteractionEnabled = true
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameTableViewCell
+            cell.nameLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
+            cell.isUserInteractionEnabled = false
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0) {
@@ -154,22 +184,39 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return "Competitors"
         }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alert:UIAlertController = UIAlertController(title: "Contact \(teammembers[indexPath.section][indexPath.row].value(forKey: "name") as! String)", message: nil, preferredStyle: .actionSheet)
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let title = UILabel()
+        title.font = UIFont(name: "Montserrat-Regular", size: 16)!
+        title.textColor = UIColor.darkGray
         
-        let action1:UIAlertAction = UIAlertAction(title: "Call \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: { alertAction in
-            let formatedNumber = String(describing: self.teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!).components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
-            let phoneUrl = "telprompt://\(formatedNumber)"
-            let url:URL = URL(string: phoneUrl)!
-            UIApplication.shared.open(url)
-        })
-        let action2:UIAlertAction = UIAlertAction(title: "Message \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: nil)
-        let action3:UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(action1)
-        alert.addAction(action2)
-        alert.addAction(action3)
-        self.present(alert, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel!.font=title.font
+        header.textLabel!.textColor = title.textColor
+        header.contentView.backgroundColor = UIColor.white
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
+        let isCompetitor = (value?.value(forKey: "userType") as? String == "competitor")
+        if (indexPath.section == 0 || !isCompetitor) {
+            let alert:UIAlertController = UIAlertController(title: "Contact \(teammembers[indexPath.section][indexPath.row].value(forKey: "name") as! String)", message: nil, preferredStyle: .actionSheet)
+            
+            let action1:UIAlertAction = UIAlertAction(title: "Call \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: { alertAction in
+                let formatedNumber = String(describing: self.teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!).components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+                let phoneUrl = "telprompt://\(formatedNumber)"
+                let url:URL = URL(string: phoneUrl)!
+                UIApplication.shared.open(url)
+            })
+            let action2:UIAlertAction = UIAlertAction(title: "Message \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: nil)
+            let action3:UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(action1)
+            alert.addAction(action2)
+            alert.addAction(action3)
+            self.present(alert, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return teammembers.count
@@ -203,7 +250,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func unwindToMIST(unwindSegue: UIStoryboardSegue) {
         
     }
