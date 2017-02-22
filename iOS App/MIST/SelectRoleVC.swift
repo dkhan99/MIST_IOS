@@ -13,9 +13,11 @@ import FirebaseMessaging
 
 class SelectRoleVC: UIViewController {
     var ref:FIRDatabaseReference?
+    var didWarn = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
+        
         self.ref = FIRDatabase.database().reference()
         print("current user \(FIRAuth.auth()?.currentUser)")
         if let user = FIRAuth.auth()?.currentUser {
@@ -37,7 +39,16 @@ class SelectRoleVC: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !Reachability.isInternetAvailable() && !didWarn {
+            let alert = UIAlertController(title: "No Internet Connection", message: "This app requires an internet connection to use most of its features. Please check your connection before you continue.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+            didWarn = true
+        }
+    }
     @IBAction func guestSelected(_ sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "isGuest")
         self.performSegue(withIdentifier: "alreadyLoggedIn", sender: self)
@@ -50,7 +61,7 @@ class SelectRoleVC: UIViewController {
         UserDefaults.standard.set(false, forKey: "isGuest")
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

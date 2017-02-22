@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedNotification:[String:Any] = [:]
@@ -16,7 +17,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
+            }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let not = (UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary]) {
@@ -29,8 +30,22 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 defaultLabel.isHidden = true
             }
         } else {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { (settings) in
+                if(settings.authorizationStatus != .authorized)
+                {
+                    DispatchQueue.main.async {
+                        self.defaultLabel.text = "You have not enabled push notifications for MIST Atlanta"
+                    }
+                } else if self.defaultLabel.text != "You have no notifications" {
+                    DispatchQueue.main.async {
+                        self.defaultLabel.text = "You have no notifications"
+                    }
+                }
+            }
             tableView.isHidden = true
             defaultLabel.isHidden = false
+
         }
 
     }
@@ -83,9 +98,12 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let seconds:Int = -1*Int(date.timeIntervalSinceNow)
         var unit = ""
         let hours = seconds / 3600;
+        let days = hours / 24;
         let mins = (seconds % 3600) / 60;
         let secs = seconds % 60;
-        if (hours > 1) {
+        if days > 1 {
+            unit = "\(days) days"
+        } else if (hours > 1) {
             unit = "\(hours) hours"
         } else if (mins > 1) {
             unit = "\(mins) min"

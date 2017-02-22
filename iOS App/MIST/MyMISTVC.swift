@@ -24,6 +24,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var mistIDLabel: UILabel!
+    var didWarn = false
     var ref: FIRDatabaseReference! = FIRDatabase.database().reference()
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
@@ -48,12 +49,59 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             logo.isHidden = true
             self.title = "MY MIST"
             
-            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
-                FIRMessaging.messaging().subscribe(toTopic: "/topics/\(team)")
+            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] as? String {
+                let replacedTeam = team.replacingOccurrences(of: " ", with: "_")
+                print("Attempting to subscribe to \(replacedTeam)")
+                FIRMessaging.messaging().subscribe(toTopic: "/topics/\(replacedTeam)")
+                
             }
             if (self.teammembers[1].isEmpty) {
                 setupTeam()
             }
+            let mistUser = UserDefaults.standard.value(forKey: "user") as! [String:Any]
+            var registeredCompetitions:[String] = []
+            if (mistUser["userType"] as! String == "competitor") {
+                
+                if let groupProject = mistUser["groupProject"] {
+                    if(groupProject as! String != "") {
+                        registeredCompetitions.append(groupProject as! String)
+                    }
+                }
+                if let knowledge = mistUser["knowledge"] {
+                    if(knowledge as! String != "") {
+                        registeredCompetitions.append(knowledge as! String)
+                    }
+                }
+                if let art = mistUser["art"] {
+                    if(art as! String != "") {
+                        registeredCompetitions.append(art as! String)
+                    }
+                }
+                
+                if let sports = mistUser["sports"] {
+                    if (sports as! String != "") {
+                        if (mistUser["gender"] as! String == "Male") {
+                            registeredCompetitions.append("Brother's \(sports)")
+                        } else {
+                            registeredCompetitions.append("Sister's \(sports)")
+                        }
+                        
+                    }
+                }
+                if let writing = mistUser["writing"] {
+                    if (writing as! String != "") {
+                        registeredCompetitions.append(writing as! String)
+                    }
+                }
+                for competitionName in registeredCompetitions {
+                    var cleanName = competitionName.replacingOccurrences(of: "'", with: "_")
+                    cleanName = cleanName.replacingOccurrences(of: " ", with: "_")
+                    cleanName = cleanName.replacingOccurrences(of: "/", with: "_")
+                    print("Attempting to subscribe to \(cleanName)")
+                    FIRMessaging.messaging().subscribe(toTopic: "/topics/\(cleanName)")
+                }
+            }
+
             
         } else { // GUEST
             for v in self.view.subviews {
@@ -98,27 +146,28 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
         self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
-            teamObject = snapshot.value as! NSDictionary
-            UserDefaults.standard.set(teamObject, forKey: "team")
-            let keyList:[String] = teamObject.allKeys as! [String]
-            var newteam:[[NSDictionary]] = [[],[]]
-            for key in keyList {
-                
-                if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
-                    newteam[1].append(teamObject.value(forKey: key) as! NSDictionary)
-                } else { //Coach
-                    newteam[0].append(teamObject.value(forKey: key) as! NSDictionary)
+            if let tO = snapshot.value as? NSDictionary {
+                teamObject = tO
+                UserDefaults.standard.set(teamObject, forKey: "team")
+                let keyList:[String] = teamObject.allKeys as! [String]
+                var newteam:[[NSDictionary]] = [[],[]]
+                for key in keyList {
+                    
+                    if (((teamObject.value(forKey: key) as! NSDictionary).value(forKey: "isCompetitor") as! Int) == 1) { // competitor
+                        newteam[1].append(teamObject.value(forKey: key) as! NSDictionary)
+                    } else { //Coach
+                        newteam[0].append(teamObject.value(forKey: key) as! NSDictionary)
+                    }
                 }
-            }
-            print("Team members count is \(newteam[1].count)")
-            if (newteam.count > 0) {
-                newteam[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
-                newteam[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                if (newteam.count > 0) {
+                    newteam[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                    newteam[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
+                    self.myTable.reloadData()
+                }
+                self.teammembers = newteam
+                
                 self.myTable.reloadData()
             }
-            self.teammembers = newteam
-            
-            self.myTable.reloadData()
         })
         
         if let teamObject = UserDefaults.standard.value(forKey: "team") as? NSDictionary {
@@ -133,7 +182,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     newteam[0].append(teamObject.value(forKey: key) as! NSDictionary)
                 }
             }
-            print("Team members count is \(newteam[1].count)")
             if (newteam.count > 0) {
                 newteam[0].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
                 newteam[1].sort(by: {($0.value(forKey: "name") as! String) < ($1.value(forKey: "name") as! String)})
@@ -144,10 +192,23 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.myTable.reloadData()
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !Reachability.isInternetAvailable() && !didWarn {
+            let alert = UIAlertController(title: "No Internet Connection", message: "This app requires an internet connection to use most of its features. Please check your connection before you continue.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+            didWarn = true
+        }
+        
+    }
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         if (UserDefaults.standard.bool(forKey: "isGuest")) {
             self.signOutButton.title  = "Sign In"
         }
+        
     }
     
     @IBAction func segChanged(_ sender: UISegmentedControl) {
@@ -159,22 +220,33 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
-        let isCompetitor = (value?.value(forKey: "userType") as? String == "competitor")
-        if (indexPath.section == 0 || !isCompetitor) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as! MISTTableViewCell
-            cell.nameLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
-            var number = String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!)
-            number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
-            number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
-            cell.numberLabel?.text = number
-            cell.isUserInteractionEnabled = true
-            return cell
+        if let user = UserDefaults.standard.value(forKey: "user") as? NSDictionary {
+            let isCompetitor = (user.value(forKey: "userType") as? String == "competitor")
+            if (indexPath.section == 0 || !isCompetitor) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as! MISTTableViewCell
+                if let name = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String! {
+                    cell.nameLabel?.text = name
+                }
+                if let num = teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber") {
+                    var number = String(describing: num)
+                    number.insert("-", at: number.index(number.startIndex, offsetBy: 6))
+                    number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
+                    cell.numberLabel?.text = number
+                    cell.isUserInteractionEnabled = true
+                } else {
+                    cell.isUserInteractionEnabled = false
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameTableViewCell
+                cell.isUserInteractionEnabled = false
+                if let name = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String {
+                    cell.nameLabel?.text = name
+                }
+                return cell
+            }
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameTableViewCell
-            cell.nameLabel?.text = teammembers[indexPath.section][indexPath.row].value(forKey: "name") as? String!
-            cell.isUserInteractionEnabled = false
-            return cell
+            return tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath) as! NameTableViewCell
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -235,10 +307,11 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/coach")
             }
-            FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/\((UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"]!)")
+            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
+                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/\(team)")
+            }
             do {
-                try
-                    FIRAuth.auth()?.signOut()
+                try FIRAuth.auth()?.signOut()
             } catch {
                 print("could not sign out")
             }

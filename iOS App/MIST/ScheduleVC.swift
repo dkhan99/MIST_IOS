@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseMessaging
 
 class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

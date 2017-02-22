@@ -34,6 +34,25 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
+    @IBAction func forgotPassword(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Forgot Your Password?", message: "Enter the email associated with your account to receive instructions on resetting your password", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Email"
+        })
+        alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { action in
+            if alert.textFields![0].text != "" {
+                FIRAuth.auth()?.sendPasswordReset(withEmail: (alert.textFields?[0].text!)!, completion: { error in
+                    if error != nil {
+                        let errorAlert = UIAlertController(title: "Password Reset Error", message: "\(error!.localizedDescription) - Please try again with a valid email", preferredStyle: .alert)
+                        errorAlert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                        self.present(errorAlert, animated: true)
+                    }
+                })
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true)
+    }
     @IBAction func unwindLogin(segue: UIStoryboardSegue) {
     }
     
@@ -46,12 +65,20 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
+        if self.view.frame.minY < 0 {
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        }
         if (emailField.text != nil) && (passField.text != nil) {
+            self.loginButton.isEnabled = false
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
             
                 if let error = error {
+                    if error._code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
+                        print("NETWORK ERROR >>>>>>>>>>>>>>>>")
+                    }
                     //print(error.localizedDescription)
                     //self.errorLabel.text = error.localizedDescription
+                    
                     let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
                         self.passField.text = ""
@@ -92,6 +119,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                     
                     
                 }
+                self.loginButton.isEnabled = true
             })
             
             

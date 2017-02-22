@@ -45,8 +45,15 @@ class BracketDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
-        cell.nameLabel?.text = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["teamName"] as! String?
-        cell.numberLabel?.text = "\(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["day"] as! String) \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["time"] as! String) - \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["building"] as! String) \(((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["room"] as! String)"
+        cell.nameLabel?.text = (((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["teamName"] as! String?) ?? ""
+        
+        let day = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["day"] as? String
+        let time = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["time"] as? String
+        let building = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["building"] as? String
+        let room = ((self.resultArray.value(forKey: self.resultArray.allKeys[indexPath.section] as! String) as! [[String:Any]])[indexPath.row])["room"] as? String
+        if (day != nil && time != nil && building != nil && room != nil) {
+            cell.numberLabel?.text = "\(day!) \(time!) - \(building!) \(room!)"
+        }
         return cell
 
     }

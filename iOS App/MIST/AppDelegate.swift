@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
-        
         GMSServices.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         GMSPlacesClient.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         // Override point for customization after application launch.
         self.ref = FIRDatabase.database().reference()
         self.storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            if let user = FIRAuth.auth()?.currentUser {
+        
+        if let user = FIRAuth.auth()?.currentUser {
             if (UserDefaults.standard.value(forKey: "user") != nil) {
                 self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
             } else {
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         UserDefaults.standard.set(teamObject, forKey: "team")
                         self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
                     })
-                
+                    
                 })
             }
             UserDefaults.standard.set(false, forKey: "isGuest")
@@ -85,15 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        var currentNotifications:[NSDictionary] = []
-//        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
-//            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
-//        }
-//            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String)], at: 0)
-//        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
-//        completionHandler(.newData)
-//    }
+    //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    //        var currentNotifications:[NSDictionary] = []
+    //        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
+    //            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
+    //        }
+    //            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String)], at: 0)
+    //        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+    //        completionHandler(.newData)
+    //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let state:UIApplicationState = application.applicationState
@@ -104,8 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if(state==UIApplicationState.background || (state==UIApplicationState.inactive && !self.appIsStarting)) {
             // Background
             print("background")
-//            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
-//            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
+            //            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
+            //            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
             currentNotifications.insert(["title":userInfo["title"] ?? "","body":userInfo["body"] ?? "","time":date,"read":false], at: 0)
             UserDefaults.standard.set(currentNotifications, forKey: "notifications")
@@ -128,11 +128,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             application.applicationIconBadgeNumber = count
             if let root = (self.window?.rootViewController as? UITabBarController) {
-            
+                
                 if count>0 {
-                
+                    
                     root.tabBar.items?[4].badgeValue = "\(count)"
-                
+                    
                 } else {
                     root.tabBar.items?[4].badgeValue = nil
                 }
@@ -159,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else {
                 root.tabBar.items?[4].badgeValue = nil
             }
-
+            
         }
         completionHandler(.newData)
     }
@@ -196,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
         self.appIsStarting = false
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -206,18 +206,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Entering background")
         UserDefaults.standard.set(false, forKey: "gotmessage")
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         self.appIsStarting = true
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.appIsStarting = false
         connectToFcm()
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
@@ -226,12 +226,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 extension AppDelegate : FIRMessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
     func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-//        NSLog("got something")
-//        var currentNotifications:[NSDictionary] = []
-//        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
-//            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
-//        }
-//        currentNotifications.append(["title":((remoteMessage.appData as NSDictionary)["title"] as! String)])
-//        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
+        //        NSLog("got something")
+        //        var currentNotifications:[NSDictionary] = []
+        //        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
+        //            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
+        //        }
+        //        currentNotifications.append(["title":((remoteMessage.appData as NSDictionary)["title"] as! String)])
+        //        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
     }
 }

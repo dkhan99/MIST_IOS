@@ -21,10 +21,11 @@ class RegisterVC: UIViewController {
     var role:String! = "Student"
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.circle.layer.cornerRadius = self.circle.frame.height/2
-        self.continueButton.layer.cornerRadius = self.continueButton.frame.height/2
         
+        // Do any additional setup after loading the view.
+        
+        self.continueButton.layer.cornerRadius = self.continueButton.frame.height/2.0
+        self.circle.clipsToBounds = true
     }
     
     
@@ -38,6 +39,7 @@ class RegisterVC: UIViewController {
     }
     @IBAction func register(_ sender: UIButton) {
         if ((emailField.text != "") && (passField.text != "") && (mistIDField.text != "")) {
+            self.continueButton.isEnabled = false
             self.ref = FIRDatabase.database().reference()
             // FIX THIS >>>>><<<<<<<>>>>>>><<<<<
             self.ref.child("user").observe(.value, with: {snapshot in
@@ -52,10 +54,15 @@ class RegisterVC: UIViewController {
                     
                 } else {
                     self.ref.child("registered-user").observeSingleEvent(of: .value, with:{  snapshot in
-                        if (!(snapshot.value as! NSDictionary).allKeys(for: self.mistIDField.text!).isEmpty) {
+                        if (!(snapshot.value as! NSDictionary).allKeys.contains { element in
+                            if (element as! String == self.mistIDField.text!) {
+                                return true
+                            } else {
+                                return false
+                            }
+                        }) {
                             // User already exists!
-                            print("User already exists")
-                            let alert = UIAlertController(title: "Alert", message: "This user already exists!", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "Alert", message: "A user with this MIST ID already exists!", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
                                 self.passField.text = ""
                                 self.mistIDField.text = ""
@@ -111,7 +118,7 @@ class RegisterVC: UIViewController {
                         }
                     })
                 }
-                
+                self.continueButton.isEnabled = true
             })
             
         } else {
@@ -120,7 +127,10 @@ class RegisterVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.circle.layer.cornerRadius = self.circle.frame.width/2.0
+    }
     /*
      // MARK: - Navigation
      

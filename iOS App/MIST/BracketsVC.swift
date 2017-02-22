@@ -90,15 +90,20 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBAction func viewBracket(_ sender: UIButton) {
         let compName = self.competitionList[myPicker.selectedRow(inComponent: 0)]
         // Get result
-        if (bracketList.contains(compName)) {
+        if (bracketList.contains(compName) && !self.results.isEmpty) {
             self.resultArray = self.results[compName] as! NSDictionary
+            self.performSegue(withIdentifier: "brackets", sender: nil)
+        } else {
+            if !Reachability.isInternetAvailable() {
+                let alert = UIAlertController(title: "No Internet Connection", message: "This app requires an internet connection to use most of its features. Please check your connection before you continue.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
         }
-        self.performSegue(withIdentifier: "brackets", sender: nil)
     }
     @IBAction func viewRules(_ sender: UIButton) {
-//        if let url = URL(string: "https://static1.squarespace.com/static/5670ede7a976af3e2f3af0af/t/5869929b20099ecdf7a0dc22/1483313820637/Culinary+Arts+Ballot+pdf.pdf") {
-//            UIApplication.shared.open(url)
-//        }
+
         let url = urlList[self.myPicker.selectedRow(inComponent: 0)]
         let svc = SFSafariViewController(url: URL(string: url)!)
         self.present(svc,animated:true, completion:nil)
