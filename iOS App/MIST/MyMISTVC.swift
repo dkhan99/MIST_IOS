@@ -267,6 +267,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         header.contentView.backgroundColor = UIColor.white
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
         let isCompetitor = (value?.value(forKey: "userType") as? String == "competitor")
         if (indexPath.section == 0 || !isCompetitor) {
@@ -284,7 +285,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addAction(action2)
             alert.addAction(action3)
             self.present(alert, animated: true)
-            tableView.deselectRow(at: indexPath, animated: true)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
             

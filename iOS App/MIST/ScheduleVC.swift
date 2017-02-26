@@ -74,7 +74,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ref.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 let comp = Competition(snapshot: item as! FIRDataSnapshot)
-                if (registeredCompetitions.contains(comp.name) || comp.name == "Awards" || comp.name == "Lunch" || comp.name == "Dinner") {
+                if (registeredCompetitions.contains(comp.name) || !comp.isCompetition /*comp.name == "Awards" || comp.name == "Lunch" || comp.name == "Dinner"*/) {
                     // User is registered for this competition
                     let formatter:DateFormatter = DateFormatter()
                     formatter.dateFormat="MM/dd/yy hh:mma"
@@ -133,13 +133,18 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            if let building = self.scheduleItems[indexPath.section][indexPath.row]["location"] as? String {
+                delegate.showPin = building
+            }
+            self.tabBarController?.selectedIndex = 0
+        }
     }
     
     
     @IBAction func segChanged(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {
             self.performSegue(withIdentifier: "unwindToMIST", sender: self)
-            
             self.segment.selectedSegmentIndex = 1
             // Send USER DATA HERE
         }

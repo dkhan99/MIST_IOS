@@ -17,6 +17,8 @@ import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
+    
+    var showPin: String?
     var storyboard: UIStoryboard?
     var window: UIWindow?
     var ref:FIRDatabaseReference!
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         GMSServices.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         GMSPlacesClient.provideAPIKey("AIzaSyAhd71yK1xC2CcjtRA185gJrU8_GsWd24s")
         // Override point for customization after application launch.

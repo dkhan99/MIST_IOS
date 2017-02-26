@@ -14,10 +14,12 @@ struct Competition {
     let name: String
     let ref: FIRDatabaseReference?
     let locationArray:[[String:Any]]
+    let isCompetition:Bool
     
     init(name: String, locationArray: [[String:Any]]) {
         self.name = name
         self.locationArray = locationArray
+        self.isCompetition = false
         self.ref = nil
     }
     
@@ -25,6 +27,7 @@ struct Competition {
         name = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         locationArray = snapshotValue["locationArray"] as! [[String:Any]]
+        isCompetition = snapshotValue["isCompetition"] as! Bool
         ref = snapshot.ref
     }
     

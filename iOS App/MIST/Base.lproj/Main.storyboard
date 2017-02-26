@@ -105,7 +105,7 @@ Cgo
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="numberCell" rowHeight="72" id="NuU-On-MYS" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="414" height="72"/>
+                                        <rect key="frame" x="0.0" y="56" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NuU-On-MYS" id="IFB-Vq-da0">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
@@ -137,7 +137,7 @@ Cgo
                                                                 <constraint firstAttribute="height" constant="20" id="ggm-2w-FGn"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
-                                                            <color key="textColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.14346050129999999" green="0.14346050129999999" blue="0.14346050129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -167,7 +167,7 @@ Cgo
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameCell" id="0aC-2S-IS9" customClass="NameTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="127" width="414" height="72"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0aC-2S-IS9" id="F7G-A0-7kP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
@@ -422,7 +422,7 @@ Cgo
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIt-cH-f4G">
-                                <rect key="frame" x="23" y="54.999999999999993" width="368" height="67.333333333333314"/>
+                                <rect key="frame" x="23" y="55" width="368" height="67"/>
                                 <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Friday, March 17th">
@@ -433,7 +433,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dfj-Gj-tAi">
-                                <rect key="frame" x="23" y="140.33333333333334" width="368" height="67.333333333333314"/>
+                                <rect key="frame" x="23" y="140" width="368" height="67"/>
                                 <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Saturday, March 18th">
@@ -444,7 +444,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="705-UQ-zfa">
-                                <rect key="frame" x="23" y="225.66666666666669" width="368" height="67.000000000000057"/>
+                                <rect key="frame" x="23" y="225" width="368" height="67"/>
                                 <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Sunday, March 19th">
@@ -455,7 +455,7 @@ Cgo
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need Help?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cd-e4-Uyj">
-                                <rect key="frame" x="23" y="360.66666666666669" width="142" height="26"/>
+                                <rect key="frame" x="23" y="360" width="142" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="142" id="jFj-Wj-JAd"/>
                                 </constraints>
@@ -464,7 +464,7 @@ Cgo
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HKl-M4-sdb">
-                                <rect key="frame" x="23" y="400.66666666666674" width="368" height="67.333333333333314"/>
+                                <rect key="frame" x="23" y="400" width="368" height="67"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -476,10 +476,17 @@ Cgo
                                         </fragment>
                                         <fragment>
                                             <string key="content">MIST Help Line
-   (123)-123-1234</string>
+</string>
                                             <attributes>
                                                 <color key="NSColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="   (678)-561-6478">
+                                            <attributes>
+                                                <color key="NSColor" red="0.70552000000000004" green="0.0" blue="0.099330000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -488,7 +495,7 @@ Cgo
                                     <attributedString key="attributedTitle">
                                         <fragment>
                                             <string key="content">   MIST Help Line
-   (123)-123-1234</string>
+    (678)-561-6478</string>
                                             <attributes>
                                                 <color key="NSColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
@@ -502,13 +509,13 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1EE-0E-Pid">
-                                <rect key="frame" x="23" y="484.00000000000006" width="368" height="67.333333333333428"/>
+                                <rect key="frame" x="23" y="483" width="368" height="67"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment>
                                             <string key="content">   Campus Police
-   (123)-123-1234</string>
+   (706)-542-5813</string>
                                             <attributes>
                                                 <color key="NSBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <color key="NSColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -522,7 +529,7 @@ Cgo
                                     <attributedString key="attributedTitle">
                                         <fragment>
                                             <string key="content">   Campus Police
-   (706)-255-1365</string>
+   (706)-542-5813</string>
                                             <attributes>
                                                 <color key="NSColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
@@ -536,10 +543,10 @@ Cgo
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="5BG-lm-1YT">
-                                <rect key="frame" x="338" y="417.66666666666669" width="34" height="33.666666666666629"/>
+                                <rect key="frame" x="338" y="417" width="34" height="33"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="XbB-BF-bXW">
-                                <rect key="frame" x="338" y="501.33333333333326" width="34" height="33.666666666666742"/>
+                                <rect key="frame" x="338" y="500" width="34" height="33"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -605,28 +612,52 @@ Cgo
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLA-v4-gcl" customClass="GMSMapView">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-2c-kzj">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <connections>
+                                    <outlet property="delegate" destination="4Ra-fm-dCw" id="zNb-9P-9Ye"/>
+                                </connections>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="agJ-2M-Q6E">
+                                <rect key="frame" x="121" y="8" width="172" height="29"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="H42-78-cwA"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Main Area"/>
+                                    <segment title="Basketball"/>
+                                </segments>
+                                <color key="tintColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segChanged:" destination="4Ra-fm-dCw" eventType="valueChanged" id="N7h-Xm-GsS"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="kLA-v4-gcl" secondAttribute="trailing" id="68d-lY-Ef6"/>
-                            <constraint firstItem="kLA-v4-gcl" firstAttribute="leading" secondItem="idI-zl-1j1" secondAttribute="leading" id="JPA-iY-Psh"/>
-                            <constraint firstItem="kLA-v4-gcl" firstAttribute="top" secondItem="idI-zl-1j1" secondAttribute="top" id="aTf-KR-r08"/>
-                            <constraint firstItem="kLA-v4-gcl" firstAttribute="bottom" secondItem="L3X-TX-tCE" secondAttribute="top" id="bXr-Xf-QIZ"/>
+                            <constraint firstItem="L3X-TX-tCE" firstAttribute="top" secondItem="qVA-2c-kzj" secondAttribute="bottom" id="GLF-us-bMm"/>
+                            <constraint firstItem="qVA-2c-kzj" firstAttribute="top" secondItem="jKt-7e-Fvr" secondAttribute="bottom" id="IVF-9Q-HcM"/>
+                            <constraint firstItem="qVA-2c-kzj" firstAttribute="top" secondItem="agJ-2M-Q6E" secondAttribute="bottom" constant="-36" id="YfX-6p-fLw"/>
+                            <constraint firstItem="agJ-2M-Q6E" firstAttribute="top" secondItem="jKt-7e-Fvr" secondAttribute="bottom" constant="8" symbolic="YES" id="aDS-DE-woU"/>
+                            <constraint firstAttribute="trailing" secondItem="qVA-2c-kzj" secondAttribute="trailing" id="eZx-yM-pSO"/>
+                            <constraint firstItem="agJ-2M-Q6E" firstAttribute="centerX" secondItem="qVA-2c-kzj" secondAttribute="centerX" id="iGp-fI-FaL"/>
+                            <constraint firstItem="qVA-2c-kzj" firstAttribute="leading" secondItem="idI-zl-1j1" secondAttribute="leading" id="sth-ov-o9d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MAP" id="eLV-gT-Jjk"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="eLV-gT-Jjk">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mapView" destination="kLA-v4-gcl" id="JaD-HE-Z4x"/>
+                        <outlet property="mapView" destination="qVA-2c-kzj" id="PNw-Zx-GmA"/>
+                        <outlet property="segment" destination="agJ-2M-Q6E" id="zQG-8c-Vf8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Bd-5W-Fr8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3360.8000000000002" y="-2447.226386806597"/>
+            <point key="canvasLocation" x="3359.4202898550725" y="-2447.2826086956525"/>
         </scene>
         <!--NOTIFICATIONS-->
         <scene sceneID="YRv-OD-bP1">
@@ -648,18 +679,18 @@ Cgo
                                         <rect key="frame" x="0.0" y="28" width="414" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Sc-Jf-l2K" id="pgW-h9-gZd">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="60.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nJl-1E-XMf">
-                                                    <rect key="frame" x="40" y="21" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="40" y="20" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tcy-Rr-7sN">
-                                                    <rect key="frame" x="335" y="21" width="44" height="20.333333333333332"/>
+                                                    <rect key="frame" x="335" y="20" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -807,8 +838,8 @@ Cgo
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="775-Nt-64u" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="414" height="72"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="775-Nt-64u" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="56" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="775-Nt-64u" id="UjB-ds-2Gh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
@@ -836,7 +867,7 @@ Cgo
                                                                 <constraint firstAttribute="height" constant="20" id="awM-UC-XmJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="15"/>
-                                                            <color key="textColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.14346050126903553" green="0.14346050126903553" blue="0.14346050126903553" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -874,7 +905,7 @@ Cgo
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJ4-en-Gu4">
-                                <rect key="frame" x="138.66666666666669" y="207" width="137.00000000000006" height="21"/>
+                                <rect key="frame" x="139" y="207" width="137" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -885,7 +916,7 @@ Cgo
                                 <color key="color" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="6n0-Fx-JfQ">
-                                <rect key="frame" x="113.66666666666669" y="8" width="187" height="29"/>
+                                <rect key="frame" x="114" y="8" width="187" height="29"/>
                                 <segments>
                                     <segment title="My Team"/>
                                     <segment title="My Schedule"/>
@@ -956,13 +987,13 @@ Cgo
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udg-5i-AeK">
-                                <rect key="frame" x="169.66666666666666" y="155" width="75" height="30"/>
+                                <rect key="frame" x="170" y="155" width="75" height="30"/>
                                 <state key="normal" title="View EULA">
                                     <color key="titleColor" red="0.70619374509999999" green="0.0" blue="0.09812819213" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWD-Jm-jFe">
-                                <rect key="frame" x="157.66666666666666" y="193" width="98" height="30"/>
+                                <rect key="frame" x="158" y="193" width="98" height="30"/>
                                 <state key="normal" title="View Licenses">
                                     <color key="titleColor" red="0.70619374509999999" green="0.0" blue="0.09812819213" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -1001,7 +1032,7 @@ Cgo
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlD-jU-n8y">
-                                <rect key="frame" x="164.66666666666666" y="515" width="85" height="30"/>
+                                <rect key="frame" x="165" y="515" width="85" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="nKL-j6-JCj"/>
                                 </constraints>
@@ -1015,7 +1046,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg0-Rq-W0Z">
-                                <rect key="frame" x="168" y="565" width="78" height="30"/>
+                                <rect key="frame" x="168.33333333333334" y="565" width="78" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0kk-Wr-N40"/>
                                 </constraints>
@@ -1028,7 +1059,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrF-Zt-gIH">
-                                <rect key="frame" x="131" y="465" width="154" height="30"/>
+                                <rect key="frame" x="131.33333333333331" y="465" width="153.99999999999994" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cuc-O7-bpJ"/>
                                 </constraints>
@@ -1130,14 +1161,14 @@ Cgo
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <view clipsSubviews="YES" alpha="0.45000000000000001" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-uU-2Gz">
-                                <rect key="frame" x="116" y="109" width="180" height="180"/>
+                                <rect key="frame" x="116" y="109" width="182" height="182"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J1c-uU-2Gz" secondAttribute="height" multiplier="1:1" id="r5e-qp-VUI"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phP-N1-Av0">
-                                <rect key="frame" x="182.66666666666666" y="594" width="48" height="30"/>
+                                <rect key="frame" x="183" y="594" width="48" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jgi-J0-9Lz"/>
                                 </constraints>
@@ -1149,7 +1180,7 @@ Cgo
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="L1R-Tz-hhY">
-                                <rect key="frame" x="166.66666666666666" y="163" width="80" height="72"/>
+                                <rect key="frame" x="167" y="163" width="80" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="sv3-1Y-YpS"/>
                                 </constraints>
@@ -1340,7 +1371,7 @@ Cgo
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rur-Tm-jzO">
-                                <rect key="frame" x="20" y="294" width="374" height="62.333333333333314"/>
+                                <rect key="frame" x="20" y="294" width="374" height="62"/>
                                 <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                 <state key="normal" title="VIEW RULES">
@@ -1351,7 +1382,7 @@ Cgo
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5e-BL-Rxo">
-                                <rect key="frame" x="20" y="364.33333333333331" width="374" height="62.333333333333371"/>
+                                <rect key="frame" x="20" y="364" width="374" height="62"/>
                                 <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                 <state key="normal" title="VIEW BRACKETS">
@@ -1415,7 +1446,7 @@ Cgo
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="D0I-d0-Ytw" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="414" height="72"/>
+                                        <rect key="frame" x="0.0" y="56" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0I-d0-Ytw" id="7l8-gO-N83">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
@@ -1666,7 +1697,7 @@ Cgo
         <image name="trophy" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RJz-bZ-GEb"/>
+        <segue reference="3Ci-qD-1Nf"/>
         <segue reference="a0e-Jb-1Ir"/>
         <segue reference="uKb-ej-Zoq"/>
     </inferredMetricsTieBreakers>

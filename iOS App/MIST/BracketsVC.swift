@@ -81,6 +81,11 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 }
             }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,21 +98,26 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         if (bracketList.contains(compName) && !self.results.isEmpty) {
             self.resultArray = self.results[compName] as! NSDictionary
             self.performSegue(withIdentifier: "brackets", sender: nil)
+        } else if !Reachability.isInternetAvailable() {
+            let alert = UIAlertController(title: "No Internet Connection", message: "This app requires an internet connection to use most of its features. Please check your connection before you continue.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
         } else {
-            if !Reachability.isInternetAvailable() {
-                let alert = UIAlertController(title: "No Internet Connection", message: "This app requires an internet connection to use most of its features. Please check your connection before you continue.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Ok", style: .cancel)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-            }
+            let alert = UIAlertController(title: "No Bracket Data", message: "This competition has no bracket data at this time. Please check again at a later time.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
         }
     }
     @IBAction func viewRules(_ sender: UIButton) {
 
         let url = urlList[self.myPicker.selectedRow(inComponent: 0)]
         let svc = SFSafariViewController(url: URL(string: url)!)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.present(svc,animated:true, completion:nil)
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.competitionList.count
     }

@@ -63,11 +63,34 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.isHidden = true
         defaultLabel.isHidden = false
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var notifications = UserDefaults.standard.value(forKey: "notifications") as! [[String:Any]]
+            notifications.remove(at: indexPath.row)
+            UserDefaults.standard.set(notifications, forKey: "notifications")
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            var count = 0
+            for notification:[String:Any] in notifications {
+                if notification["read"] as! Bool == false {
+                    count+=1
+                }
+            }
+            UIApplication.shared.applicationIconBadgeNumber = count
+            if count>0 {
+                self.tabBarController?.tabBar.items?[4].badgeValue = "\(count)"
+            } else {
+                self.tabBarController?.tabBar.items?[4].badgeValue = nil
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ((UserDefaults.standard.value(forKey: "notifications") as? [NSDictionary]) ?? []).count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                var currentNotifications:[[String:Any]] = []
+        tableView.deselectRow(at: indexPath, animated: true)
+        var currentNotifications:[[String:Any]] = []
         if (UserDefaults.standard.value(forKey: "notifications") != nil) {
             currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [[String:Any]]
         }
