@@ -10,10 +10,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseMessaging
+import MessageUI
 
-class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var guestSTring: UILabel!
-    
+class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var profilePic: UIImageView!
@@ -22,6 +21,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var signOutButton: UIBarButtonItem!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var guestText: UITextView!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var mistIDLabel: UILabel!
     var didWarn = false
@@ -45,7 +45,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             number.insert("-", at: number.index(number.startIndex, offsetBy: 3))
             self.mobileLabel.text = "\(number)"
             self.teamLabel.text = user.value(forKey: "team") as? String
-            guestSTring.isHidden = true
+            guestText.isHidden = true
             logo.isHidden = true
             self.title = "MY MIST"
             
@@ -108,7 +108,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 v.isHidden = true
             }
             self.title = "MIST"
-            guestSTring.isHidden = false
+            guestText.isHidden = false
             logo.isHidden = false
             
         }
@@ -136,6 +136,9 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //        })
         // Fill in information
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -205,6 +208,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        guestText.setContentOffset(CGPoint.zero, animated: false)
         if (UserDefaults.standard.bool(forKey: "isGuest")) {
             self.signOutButton.title  = "Sign In"
         }
@@ -266,6 +270,15 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         header.textLabel!.textColor = title.textColor
         header.contentView.backgroundColor = UIColor.white
     }
+    func sendSMSText(phoneNumber: String) {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = ""
+            controller.recipients = [phoneNumber]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let value = UserDefaults.standard.value(forKey: "user") as? NSDictionary
@@ -279,7 +292,10 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let url:URL = URL(string: phoneUrl)!
                 UIApplication.shared.open(url)
             })
-            let action2:UIAlertAction = UIAlertAction(title: "Message \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: nil)
+            let action2:UIAlertAction = UIAlertAction(title: "Message \(String(describing: teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!))", style: .default, handler: { alertAction in
+                let formatedNumber = String(describing: self.teammembers[indexPath.section][indexPath.row].value(forKey: "phoneNumber")!).components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+                self.sendSMSText(phoneNumber: formatedNumber)
+            })
             let action3:UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alert.addAction(action1)
             alert.addAction(action2)

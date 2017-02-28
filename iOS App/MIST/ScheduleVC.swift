@@ -27,7 +27,6 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-    
         self.myTable.isHidden = true
         self.loadingString.isHidden = false
         self.indicator.startAnimating()
@@ -70,8 +69,9 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        var newSchedule:[[[String:Any]]] = [[],[],[]]
+        
         ref.observe(.value, with: { snapshot in
+            var newSchedule:[[[String:Any]]] = [[],[],[]]
             for item in snapshot.children {
                 let comp = Competition(snapshot: item as! FIRDataSnapshot)
                 if (registeredCompetitions.contains(comp.name) || !comp.isCompetition /*comp.name == "Awards" || comp.name == "Lunch" || comp.name == "Dinner"*/) {
@@ -119,7 +119,17 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
         cell.nameLabel?.text = "\(self.scheduleItems[indexPath.section][indexPath.row]["startTime"] as! String) - \(self.scheduleItems[indexPath.section][indexPath.row]["name"] as! String)"
-        cell.numberLabel?.text = "\((self.scheduleItems[indexPath.section][indexPath.row]["location"] as! String)) \(String((self.scheduleItems[indexPath.section][indexPath.row]["roomNums"] as! [Int])[0]))"
+        var room = ""
+        if let roomArray = self.scheduleItems[indexPath.section][indexPath.row]["roomNums"] as? [String] {
+            for roomString in roomArray {
+                if roomString != roomArray.last {
+                    room = room + roomString + ", "
+                } else if roomString != "" {
+                    room = room + "and " + roomString
+                }
+            }
+        }
+        cell.numberLabel?.text = "\((self.scheduleItems[indexPath.section][indexPath.row]["location"] as! String)) \(room)"
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -140,8 +150,6 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.tabBarController?.selectedIndex = 0
         }
     }
-    
-    
     @IBAction func segChanged(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {
             self.performSegue(withIdentifier: "unwindToMIST", sender: self)
@@ -158,8 +166,6 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.loadingString.isHidden = false
             self.indicator.startAnimating()
         }
-        
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

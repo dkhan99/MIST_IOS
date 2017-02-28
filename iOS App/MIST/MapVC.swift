@@ -11,13 +11,13 @@ import UIKit
 
 var locations:Array<(name:String, subtitle:String, coordinate:CLLocationCoordinate2D, pin:MISTPin?, image:UIImage?)> = [
 ("Chapel","⛪️" ,CLLocationCoordinate2D(latitude: 33.956669, longitude: -83.375192), nil, UIImage(named: "chapel")),
-    ("Chapel Field","🍔",CLLocationCoordinate2D(latitude: 33.956454, longitude:  -83.375147), nil, UIImage(named: "burger")),
-    ("Caldwell","🏆",CLLocationCoordinate2D(latitude: 33.954917, longitude: -83.375304), nil, UIImage(named: "troph")),
-    ("Sanford","🏆",CLLocationCoordinate2D(latitude: 33.953701, longitude: -83.375024), nil, UIImage(named: "troph")),
+    ("North Campus Green","🍔",CLLocationCoordinate2D(latitude: 33.956454, longitude:  -83.375147), nil, UIImage(named: "burger")),
+    ("Caldwell Hall","📝",CLLocationCoordinate2D(latitude: 33.954917, longitude: -83.375304), nil, UIImage(named: "paper")),
+    ("Sanford Hall","📝",CLLocationCoordinate2D(latitude: 33.953701, longitude: -83.375024), nil, UIImage(named: "paper")),
     ("North Parking Deck","🚘",CLLocationCoordinate2D(latitude: 33.956125, longitude: -83.372546), nil, UIImage(named: "car")),
     ("East Parking Deck","🚘",CLLocationCoordinate2D(latitude: 33.938125, longitude: -83.369314), nil, UIImage(named: "car")),
     ("Classic Center","🏅",CLLocationCoordinate2D(latitude: 33.960552, longitude: -83.372337), nil, UIImage(named: "medal")),
-    ("Ramsey Student Center","🏀",CLLocationCoordinate2D(latitude: 33.937612, longitude: -83.370851), nil, UIImage(named: "ball"))
+    ("Ramsey Center","🏀",CLLocationCoordinate2D(latitude: 33.937612, longitude: -83.370851), nil, UIImage(named: "ball"))
 ]
 
 var image:UIImage?
@@ -25,7 +25,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
     let MISTlocation = CLLocationCoordinate2D(latitude: 33.957000, longitude: -83.374652)
-    let distanceSpan = 2500.0
+    let distanceSpan = 800.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +67,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         let myItem = MKMapItem(placemark: myLocation)
         
         let alert = UIAlertController(title: pin.title, message: "Would you like to navigate to this location?", preferredStyle: .actionSheet)
-        let navigateAction = UIAlertAction(title: "Navigate in Maps", style: .default, handler: { action in
+        let navigateAction = UIAlertAction(title: "Navigate using Maps", style: .default, handler: { action in
             MKMapItem.openMaps(with: [myItem, destItem], launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving])
         })
         alert.addAction(navigateAction)
@@ -77,7 +77,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     @IBAction func segChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            mapView.setRegion(MKCoordinateRegionMakeWithDistance(MISTlocation, 750, 750), animated: true)
+            mapView.setRegion(MKCoordinateRegionMakeWithDistance(MISTlocation, distanceSpan , distanceSpan), animated: true)
         } else {
             mapView.setRegion(MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 33.937612, longitude: -83.370851), 600, 600), animated: true)
         }
@@ -92,6 +92,13 @@ class MapVC: UIViewController, MKMapViewDelegate {
             if let pinName = delegate.showPin {
                 print(pinName)
                 if let i = locations.index(where: {$0.name == pinName && $0.pin != nil}) {
+                    if locations[i].pin?.title == "Ramsey Center" || locations[i].pin?.title == "East Parking Deck" {
+                        self.segment.selectedSegmentIndex = 1
+                        self.segChanged(self.segment)
+                    } else {
+                        self.segment.selectedSegmentIndex = 0
+                        self.segChanged(self.segment)
+                    }
                     mapView.selectAnnotation(locations[i].pin!, animated: true)
                 }
                 delegate.showPin = nil

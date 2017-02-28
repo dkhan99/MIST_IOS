@@ -29,7 +29,7 @@ class HelpVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func callMIST(_ sender: UIButton) {
-        let formatedNumber = "123-123-1234"
+        let formatedNumber = "678-561-6478"
         let phoneUrl = "telprompt://\(formatedNumber)"
         let url:URL = URL(string: phoneUrl)!
         UIApplication.shared.open(url)
@@ -37,20 +37,30 @@ class HelpVC: UIViewController {
     @IBAction func viewFriday(_ sender: UIButton) {
         let url = "http://www.getmistified.com/atlanta/wp-content/uploads/2015/03/ForPostingMIST2015OfficialDesignedProgram.pdf"
         let svc = SFSafariViewController(url: URL(string: url)!)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.present(svc,animated:true, completion:nil)
     }
 
     @IBAction func callCampusPolice(_ sender: UIButton) {
-        let formatedNumber = "123-123-1234"
-        let phoneUrl = "telprompt://\(formatedNumber)"
-        let url:URL = URL(string: phoneUrl)!
-        UIApplication.shared.open(url)
+        
+        let alert = UIAlertController(title: "Call Campus Police", message: "You should only call the police in the case of an emergency. Are you sure you want to call campus police?", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Yes", style: .default, handler: { alertAction in
+            let formatedNumber = "706-542-5813"
+            let phoneUrl = "telprompt://\(formatedNumber)"
+            let url:URL = URL(string: phoneUrl)!
+            UIApplication.shared.open(url)
+        })
+        let action2 = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(action2)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         super.viewWillAppear(animated)
     }
     

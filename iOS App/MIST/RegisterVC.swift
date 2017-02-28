@@ -17,7 +17,6 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var mistIDField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var circle: UIView!
     var role:String! = "Student"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class RegisterVC: UIViewController {
         // Do any additional setup after loading the view.
         
         self.continueButton.layer.cornerRadius = self.continueButton.frame.height/2.0
-        self.circle.clipsToBounds = true
     }
     
     
@@ -127,9 +125,14 @@ class RegisterVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.circle.layer.cornerRadius = self.circle.frame.width/2.0
+    
+    @IBAction func userAgreement(_ sender: UIButton) {
+        let url = "http://www.mistatlanta.com"
+        UIApplication.shared.open(NSURL(string:url) as! URL, options: [:], completionHandler: nil)
+    }
+    @IBAction func privacyPolicy(_ sender: UIButton) {
+        let url = "http://www.mistatlanta.com"
+        UIApplication.shared.open(NSURL(string: url) as! URL, options: [:], completionHandler: nil)
     }
     /*
      // MARK: - Navigation
