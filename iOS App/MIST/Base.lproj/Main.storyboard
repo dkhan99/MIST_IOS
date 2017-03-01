@@ -960,18 +960,18 @@ Notification body</string>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="775-Nt-64u" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="319" height="72"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="775-Nt-64u" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="56" width="321" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="775-Nt-64u" id="UjB-ds-2Gh">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="321" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qW-q3-zyr">
-                                                    <rect key="frame" x="8" y="4" width="303" height="64"/>
+                                                    <rect key="frame" x="8" y="4" width="305" height="64"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-6X-s89">
-                                                            <rect key="frame" x="4" y="4" width="295" height="30"/>
+                                                            <rect key="frame" x="4" y="4" width="297" height="30"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Name">
                                                                     <attributes>
@@ -984,7 +984,7 @@ Notification body</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSU-RA-PBG">
-                                                            <rect key="frame" x="4" y="38" width="295" height="20"/>
+                                                            <rect key="frame" x="4" y="38" width="297" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="awM-UC-XmJ"/>
                                                             </constraints>
