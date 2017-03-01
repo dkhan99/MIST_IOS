@@ -11,7 +11,7 @@ import UIKit
 
 var locations:Array<(name:String, subtitle:String, coordinate:CLLocationCoordinate2D, pin:MISTPin?, image:UIImage?)> = [
 ("Chapel","⛪️" ,CLLocationCoordinate2D(latitude: 33.956669, longitude: -83.375192), nil, UIImage(named: "chapel")),
-    ("North Campus Green","🍔",CLLocationCoordinate2D(latitude: 33.956454, longitude:  -83.375147), nil, UIImage(named: "burger")),
+    ("North Campus Green","🍔",CLLocationCoordinate2D(latitude: 33.956856, longitude:  -83.374749), nil, UIImage(named: "burger")),
     ("Caldwell Hall","📝",CLLocationCoordinate2D(latitude: 33.954917, longitude: -83.375304), nil, UIImage(named: "paper")),
     ("Sanford Hall","📝",CLLocationCoordinate2D(latitude: 33.953701, longitude: -83.375024), nil, UIImage(named: "paper")),
     ("North Parking Deck","🚘",CLLocationCoordinate2D(latitude: 33.956125, longitude: -83.372546), nil, UIImage(named: "car")),

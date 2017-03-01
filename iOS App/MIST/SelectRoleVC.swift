@@ -22,11 +22,11 @@ class SelectRoleVC: UIViewController {
         print("current user \(FIRAuth.auth()?.currentUser)")
         if let user = FIRAuth.auth()?.currentUser {
             print("user uid is \(user.uid)")
-            self.ref?.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
+            self.ref?.child("mist_2017_registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                 let value = snapshot.value as! NSDictionary
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
                 print("already logged in")
-                self.ref?.child("team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                self.ref?.child("mist_2017_team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                     let teamObject = snapshot.value as! NSDictionary
                     UserDefaults.standard.set(teamObject, forKey: "team")
                     self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)

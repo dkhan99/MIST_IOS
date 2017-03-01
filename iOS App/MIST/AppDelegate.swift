@@ -38,10 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if (UserDefaults.standard.value(forKey: "user") != nil) {
                 self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
             } else {
-                self.ref.child("registered-user").child(user.uid).observe(.value, with: { (snapshot) in
+                self.ref.child("mist_2017_registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                     let value = snapshot.value as? NSDictionary
                     UserDefaults.standard.set(value, forKey: "user")
-                    self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                    self.ref.child("mist_2017_team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                         let teamObject = snapshot.value as! NSDictionary
                         UserDefaults.standard.set(teamObject, forKey: "team")
                         self.window?.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyTabBarController")
@@ -87,16 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // TODO: Handle data of notification
         
     }
-    
-    //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    //        var currentNotifications:[NSDictionary] = []
-    //        if (UserDefaults.standard.value(forKey: "notifications") != nil) {
-    //            currentNotifications = UserDefaults.standard.value(forKey: "notifications") as! [NSDictionary]
-    //        }
-    //            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String)], at: 0)
-    //        UserDefaults.standard.set(currentNotifications, forKey: "notifications")
-    //        completionHandler(.newData)
-    //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let state:UIApplicationState = application.applicationState

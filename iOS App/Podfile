@@ -10,8 +10,6 @@ target 'MIST' do
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Database'
-  pod ‘GoogleMaps’
-  pod ‘GooglePlaces’
   target 'MISTTests' do
     inherit! :search_paths
     # Pods for testing

@@ -13,11 +13,14 @@ import FirebaseDatabase
 import FirebaseMessaging
 
 class LoginScreenVC: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var distanceleft: NSLayoutConstraint!
+    @IBOutlet weak var distancetotop: NSLayoutConstraint!
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passField: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
     var ref: FIRDatabaseReference!
+    var userIsEditing = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +34,33 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        distanceleft.constant = 12
+        distancetotop.constant = 81
+        for view in self.view.subviews {
+            view.resignFirstResponder()
+        }
+        
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        distanceleft.constant = self.view.frame.size.width/5
+        distancetotop.constant = 20
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passField.becomeFirstResponder()
+        } else {
+            distanceleft.constant = 12
+            distancetotop.constant = 81
+            for view in self.view.subviews {
+                view.resignFirstResponder()
+            }
+            loginPressed(loginButton)
+        }
+        return true
     }
     @IBAction func forgotPassword(_ sender: UIButton) {
         let alert = UIAlertController(title: "Forgot Your Password?", message: "Enter the email associated with your account to receive instructions on resetting your password", preferredStyle: .alert)
@@ -56,19 +84,14 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
     @IBAction func unwindLogin(segue: UIStoryboardSegue) {
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-        if textField == passField {
-            self.view.frame = CGRect(x: 0, y: -85, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        }
-        return true
-    }
+   
     
     @IBAction func loginPressed(_ sender: UIButton) {
-        if self.view.frame.minY < 0 {
-            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        }
-        if (emailField.text != nil) && (passField.text != nil) {
+        
+        if (emailField.text != "") && (passField.text != "") {
+            view.endEditing(true)
+            distanceleft.constant = 12
+            distancetotop.constant = 81
             self.loginButton.isEnabled = false
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
             
@@ -93,8 +116,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
                     }
                     // Segue to next screen
-                    self.errorLabel.text=""
-                    self.ref.child("registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
+                   self.ref.child("mist_2017_registered-user").child(user!.uid).observe(.value, with: { (snapshot) in
                         let value = snapshot.value as? NSDictionary
                         if (value?.value(forKey: "userType") as? String == "competitor") {
                             FIRMessaging.messaging().subscribe(toTopic: "/topics/competitor")
@@ -102,7 +124,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                             FIRMessaging.messaging().subscribe(toTopic: "/topics/coach")
                         }
                         UserDefaults.standard.set(value, forKey: "user")
-                        self.ref.child("team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                        self.ref.child("mist_2017_team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
                             self.performSegue(withIdentifier: "passLogin", sender: nil)
@@ -111,7 +133,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                     })
                     
                     if let refreshedToken = FIRInstanceID.instanceID().token() {
-                        self.ref.child("registered-user/\(user!.uid)/token").setValue(refreshedToken)
+                        self.ref.child("mist_2017_registered-user/\(user!.uid)/token").setValue(refreshedToken)
                         
                     }
                     
@@ -124,7 +146,10 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
             
             
         } else {
-            self.errorLabel.text = "Please enter your email and mobile number to continue."
+            let alert = UIAlertController(title: "Login Error", message: "Please enter your email and password to continue.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
         }
         
     }

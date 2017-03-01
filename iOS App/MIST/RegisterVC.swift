@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     var ref: FIRDatabaseReference!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
@@ -37,13 +37,14 @@ class RegisterVC: UIViewController {
     }
     @IBAction func register(_ sender: UIButton) {
         if ((emailField.text != "") && (passField.text != "") && (mistIDField.text != "")) {
+            view.endEditing(true)
             self.continueButton.isEnabled = false
             self.ref = FIRDatabase.database().reference()
             // FIX THIS >>>>><<<<<<<>>>>>>><<<<<
-            self.ref.child("user").observe(.value, with: {snapshot in
+            self.ref.child("mist_2017_user").observe(.value, with: {snapshot in
                 let users = snapshot.value as? NSDictionary
                 if (!(users?.allKeys as! [String]).contains(self.mistIDField.text!)) {
-                    let alert = UIAlertController(title: "Registration Error", message: "MIST-ID not found. Please check your format and try a  gain. (e.g. 1234-1234 or 1234-12345)", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Registration Error", message: "MIST-ID not found. Please check your format and try again. (e.g. 1234-1234 or 1234-12345)", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
                         self.mistIDField.text = ""
                         self.mistIDField.becomeFirstResponder()
@@ -51,7 +52,7 @@ class RegisterVC: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                     
                 } else {
-                    self.ref.child("registered-user").observeSingleEvent(of: .value, with:{  snapshot in
+                    self.ref.child("mist_2017_registered-user").observeSingleEvent(of: .value, with:{  snapshot in
                         if (!(snapshot.value as! NSDictionary).allKeys.contains { element in
                             if (element as! String == self.mistIDField.text!) {
                                 return true
@@ -69,8 +70,7 @@ class RegisterVC: UIViewController {
                             }))
                             self.present(alert, animated: true, completion: nil)
                         } else { // User does not exist
-                            print("creating new user in database")
-                            self.ref.child("user").child(self.mistIDField.text!).observeSingleEvent(of: .value, with: {(snapshot) in
+                            self.ref.child("mist_2017_user").child(self.mistIDField.text!).observeSingleEvent(of: .value, with: {(snapshot) in
                                 let value = snapshot.value as! NSDictionary
                                 FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.passField.text!) { (user, error) in
                                     
@@ -94,16 +94,16 @@ class RegisterVC: UIViewController {
                                         } else {
                                             FIRMessaging.messaging().subscribe(toTopic: "/topics/coach")
                                         }
-                                        self.ref.child("registered-user").child(user!.uid).setValue(value)
+                                        self.ref.child("mist_2017_registered-user").child(user!.uid).setValue(value)
                                         UserDefaults.standard.set(value, forKey: "user")
                                         
-                                        self.ref.child("team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                                        self.ref.child("mist_2017_team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                                             let teamObject = snapshot.value as! NSDictionary
                                             UserDefaults.standard.set(teamObject, forKey: "team")
                                         })
                                         self.errorLabel.text=""
                                         if let refreshedToken = FIRInstanceID.instanceID().token() {
-                                            self.ref.child("registered-user/\(user!.uid)/token").setValue(refreshedToken)
+                                            self.ref.child("mist_2017_registered-user/\(user!.uid)/token").setValue(refreshedToken)
                                         }
                                         self.performSegue(withIdentifier: "success", sender: nil)
                                         UserDefaults.standard.set(false, forKey: "isGuest")
@@ -127,12 +127,22 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction func userAgreement(_ sender: UIButton) {
-        let url = "http://www.mistatlanta.com"
+        let url = "http://www.mistatlanta.com/legal/eula"
         UIApplication.shared.open(NSURL(string:url) as! URL, options: [:], completionHandler: nil)
     }
     @IBAction func privacyPolicy(_ sender: UIButton) {
-        let url = "http://www.mistatlanta.com"
+        let url = "http://www.mistatlanta.com/legal/privacy"
         UIApplication.shared.open(NSURL(string: url) as! URL, options: [:], completionHandler: nil)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            mistIDField.becomeFirstResponder()
+        } else if textField == mistIDField {
+            passField.becomeFirstResponder()
+        } else {
+            register(continueButton)
+        }
+        return true
     }
     /*
      // MARK: - Navigation

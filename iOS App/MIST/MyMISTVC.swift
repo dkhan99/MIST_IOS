@@ -148,7 +148,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
         let user = UserDefaults.standard.value(forKey: "user") as! NSDictionary
         
         
-        self.ref.child("team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+        self.ref.child("mist_2017_team").child((user.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
             if let tO = snapshot.value as? NSDictionary {
                 teamObject = tO
                 UserDefaults.standard.set(teamObject, forKey: "team")
