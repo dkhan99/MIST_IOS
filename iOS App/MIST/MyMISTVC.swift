@@ -93,8 +93,14 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
                         registeredCompetitions.append(writing as! String)
                     }
                 }
+                if let brackets = mistUser["brackets"] {
+                    if (brackets as! String != "") {
+                        registeredCompetitions.append(brackets as! String)
+                    }
+                }
+                print("registered competitions: \(registeredCompetitions)")
                 for competitionName in registeredCompetitions {
-                    var cleanName = competitionName.replacingOccurrences(of: "'", with: "_")
+                    var cleanName = competitionName.replacingOccurrences(of: "\'", with: "_")
                     cleanName = cleanName.replacingOccurrences(of: " ", with: "_")
                     cleanName = cleanName.replacingOccurrences(of: "/", with: "_")
                     print("Attempting to subscribe to \(cleanName)")
@@ -139,7 +145,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
     }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         self.dismiss(animated: true, completion: nil)
-    }
+    }   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

@@ -27,12 +27,25 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        self.myTable.isHidden = true
-        self.loadingString.isHidden = false
-        self.indicator.startAnimating()
-        self.indicator.isHidden = false
-    
-        
+        if let sched = UserDefaults.standard.value(forKey: "schedule") as? [[[String:Any]]] {
+            if sched[0].isEmpty {
+                print("sched is empty, activate spinner")
+                self.myTable.isHidden = true
+                self.loadingString.isHidden = false
+                self.indicator.startAnimating()
+                self.indicator.isHidden = false
+            } else {
+                print("sched has items")
+                self.scheduleItems = sched
+                myTable.reloadData()
+            }
+        } else {
+            print("sched is empty, activate spinner")
+            self.myTable.isHidden = true
+            self.loadingString.isHidden = false
+            self.indicator.startAnimating()
+            self.indicator.isHidden = false
+        }
         let mistUser = UserDefaults.standard.value(forKey: "user") as! [String:Any]
         var registeredCompetitions:[String] = []
         if (mistUser["userType"] as! String == "competitor") {
@@ -68,9 +81,14 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     registeredCompetitions.append(writing as! String)
                 }
             }
+            if let brackets = mistUser["brackets"] {
+                if (brackets as! String != "") {
+                    registeredCompetitions.append(brackets as! String)
+                }
+            }
         }
         
-        ref.observe(.value, with: { snapshot in
+        ref.observeSingleEvent(of: .value, with: { snapshot in
             var newSchedule:[[[String:Any]]] = [[],[],[]]
             for item in snapshot.children {
                 let comp = Competition(snapshot: item as! FIRDataSnapshot)
@@ -101,13 +119,13 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             newSchedule[2].sort(by: {
                 ($0["date"] as! Date) < ($1["date"] as! Date)
             })
-//            UserDefaults.standard.set(newSchedule, forKey: "schedule")
             self.scheduleItems = newSchedule
             self.myTable.reloadData()
             self.myTable.isHidden = false
             self.loadingString.isHidden = true
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
+            UserDefaults.standard.set(newSchedule, forKey: "schedule")
             
         })
         FIRAuth.auth()!.addStateDidChangeListener { auth, user in
@@ -118,14 +136,13 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MISTTableViewCell
-        cell.nameLabel?.text = "\(self.scheduleItems[indexPath.section][indexPath.row]["startTime"] as! String) - \(self.scheduleItems[indexPath.section][indexPath.row]["name"] as! String)"
+        cell.nameLabel?.text = "\((self.scheduleItems[indexPath.section][indexPath.row]["startTime"] as! String).replacingOccurrences(of: "am", with: "").replacingOccurrences(of: "pm", with: ""))-\(self.scheduleItems[indexPath.section][indexPath.row]["endTime"] as! String): \(self.scheduleItems[indexPath.section][indexPath.row]["name"] as! String)"
         var room = ""
         if let roomArray = self.scheduleItems[indexPath.section][indexPath.row]["roomNums"] as? [String] {
             for roomString in roomArray {
-                if roomString != roomArray.last {
-                    room = room + roomString + ", "
-                } else if roomString != "" {
-                    room = room + "and " + roomString
+                room = room + roomString
+                if roomString != roomArray.last! {
+                    room = room + ", "
                 }
             }
         }
@@ -159,13 +176,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if (self.scheduleItems.count == 0) {
-            
-            self.myTable.isHidden = true
-            self.indicator.isHidden = false
-            self.loadingString.isHidden = false
-            self.indicator.startAnimating()
-        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

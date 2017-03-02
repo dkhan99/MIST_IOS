@@ -12,10 +12,20 @@ import UserNotifications
 class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedNotification:[String:Any] = [:]
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var defaultLabel: UILabel!
+    @IBOutlet weak var notificationView: UIView!
+    @IBOutlet weak var notificationTitleLabel: UILabel!
+    @IBOutlet weak var notificationTimeLabel: UILabel!
+    @IBOutlet weak var notificationBodyLabel: UILabel!
+    @IBOutlet weak var darkView: UIView!
+    var isShowingNotification = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationView.layer.cornerRadius = 15.0
+        notificationView.layer.masksToBounds = false
+        notificationView.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        notificationView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        notificationView.layer.shadowOpacity = 0.8
         // Do any additional setup after loading the view.
             }
     override func viewWillAppear(_ animated: Bool) {
@@ -111,8 +121,23 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
         self.selectedNotification = currentNotifications[indexPath.row]
+        
         selectedNotification["time"] = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
-        self.performSegue(withIdentifier: "detail", sender: self)
+        
+        notificationTitleLabel.text = self.selectedNotification["title"] as? String ?? "Title"
+        notificationTimeLabel.text = self.selectedNotification["time"] as? String ?? ""
+        notificationBodyLabel.text = self.selectedNotification["body"] as? String ?? ""
+        
+        notificationView.isHidden = false
+        darkView.isHidden = false
+        isShowingNotification = true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (isShowingNotification) {
+            notificationView.isHidden = true
+            darkView.isHidden = true
+            isShowingNotification = false
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -148,18 +173,9 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func myNotificationUnwindAction(unwindSegue: UIStoryboardSegue){
-    }
+   
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "detail") {
-            let destVC = segue.destination as! NotificationDetailVC
-            destVC.titleText = self.selectedNotification["title"] as! String
-            destVC.timeText = self.selectedNotification["time"] as! String
-            destVC.bodyText = self.selectedNotification["body"] as! String
-        }
-    }
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

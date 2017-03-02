@@ -34,13 +34,24 @@ class HelpVC: UIViewController {
         let url:URL = URL(string: phoneUrl)!
         UIApplication.shared.open(url)
     }
-    @IBAction func viewFriday(_ sender: UIButton) {
-        let url = "http://www.getmistified.com/atlanta/wp-content/uploads/2015/03/ForPostingMIST2015OfficialDesignedProgram.pdf"
-        let svc = SFSafariViewController(url: URL(string: url)!)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        self.present(svc,animated:true, completion:nil)
+    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showProgram" {
+            if let dest = segue.destination as? ProgramVC {
+                switch sender as! UIButton {
+                case fridayButton:
+                    dest.day = "FRIDAY"
+                case saturdayButton:
+                    dest.day = "SATURDAY"
+                case sundayButton:
+                    dest.day = "SUNDAY"
+                default:
+                    break;
+                }
+            }
+        }
     }
-
     @IBAction func callCampusPolice(_ sender: UIButton) {
         
         let alert = UIAlertController(title: "Call Campus Police", message: "You should only call the police in the case of an emergency. Are you sure you want to call campus police?", preferredStyle: .alert)

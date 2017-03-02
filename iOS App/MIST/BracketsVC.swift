@@ -80,6 +80,11 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     bracketsButton.alpha = 0.4
                 }
             }
+        resultref.observeSingleEvent(of: .value, with: { snapshot in
+            if let value = snapshot.value as? [String:Any] {
+                self.results = value
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +100,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBAction func viewBracket(_ sender: UIButton) {
         let compName = self.competitionList[myPicker.selectedRow(inComponent: 0)]
         // Get result
-        if (bracketList.contains(compName) && !self.results.isEmpty) {
+        if (bracketList.contains(compName) && !self.results.isEmpty) && (self.results[compName] as? NSDictionary) != nil {
             self.resultArray = self.results[compName] as! NSDictionary
             self.performSegue(withIdentifier: "brackets", sender: nil)
         } else if !Reachability.isInternetAvailable() {
