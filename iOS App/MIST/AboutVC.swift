@@ -10,9 +10,11 @@ import UIKit
 
 class AboutVC: UIViewController {
 
+    @IBOutlet weak var aboutView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "0.2.2"
+        aboutView.text = "Copyright © MIST Atlanta 2017\n\nDeveloper: Muhammad Doukmak\nVersion: \(version) Released March 3, 2017"
         // Do any additional setup after loading the view.
     }
     
@@ -26,13 +28,13 @@ class AboutVC: UIViewController {
         case "Instagram" :
             url = "https://www.instagram.com/mistatlanta/"
         case "User Agreement" :
-            url = "http://www.mistatlanta.com/legal/eula"
+            url = "https://www.mistatlanta.com/legal/eula"
         case "Privacy Policy" :
-            url = "http://www.mistatlanta.com/legal/privacy"
+            url = "https://www.mistatlanta.com/legal/privacy"
         case "Licenses" :
-            url = "http://www.mistatlanta.com/legal/licenses"
+            url = "https://www.mistatlanta.com/legal/licenses"
         default:
-            url = "http://www.mistatlanta.com"
+            url = "https://www.mistatlanta.com"
         }
         UIApplication.shared.open(NSURL(string:url) as! URL, options: [:], completionHandler: nil)
     }

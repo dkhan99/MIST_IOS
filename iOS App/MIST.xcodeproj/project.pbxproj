@@ -39,8 +39,6 @@
 		5294EB831E10F47400CF60A5 /* MyMISTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB821E10F47400CF60A5 /* MyMISTVC.swift */; };
 		5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB861E10F47400CF60A5 /* Main.storyboard */; };
 		5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */; };
-		5294EB981E10F47400CF60A5 /* MISTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EB971E10F47400CF60A5 /* MISTTests.swift */; };
-		5294EBA31E10F47400CF60A5 /* MISTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBA21E10F47400CF60A5 /* MISTUITests.swift */; };
 		5294EBB11E10FCEC00CF60A5 /* LoginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */; };
 		5294EBB31E1115C000CF60A5 /* SelectRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294EBB21E1115C000CF60A5 /* SelectRoleVC.swift */; };
 		52B567EB1E5D343900523AC5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B567EA1E5D343900523AC5 /* Reachability.swift */; };
@@ -57,27 +55,8 @@
 		52EDF3691E67CA2F00D8EE05 /* SATURDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF3681E67CA2F00D8EE05 /* SATURDAY.pdf */; };
 		52EDF36B1E67CA3200D8EE05 /* SUNDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF36A1E67CA3200D8EE05 /* SUNDAY.pdf */; };
 		52FE24B11E6289030065E037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE24B01E6289030065E037 /* Assets.xcassets */; };
-		8E3FD9614A8502D71011895A /* Pods_MISTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC48BC64F2D710AE8989D8B /* Pods_MISTTests.framework */; };
-		B00AFEF7EF49CF39AFDAB1AB /* Pods_MISTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */; };
 		B983D7C67F92F879CC287EA2 /* Pods_MIST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856D5ADA7A7A3E33A8EE03CF /* Pods_MIST.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5294EB941E10F47400CF60A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5294EB751E10F47400CF60A5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5294EB7C1E10F47400CF60A5;
-			remoteInfo = MIST;
-		};
-		5294EB9F1E10F47400CF60A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5294EB751E10F47400CF60A5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5294EB7C1E10F47400CF60A5;
-			remoteInfo = MIST;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0F8CDEA32D3EE18E6027BF9B /* Pods-MIST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MIST/Pods-MIST.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,10 +95,8 @@
 		5294EB871E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5294EB8C1E10F47400CF60A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5294EB8E1E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5294EB931E10F47400CF60A5 /* MISTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MISTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5294EB971E10F47400CF60A5 /* MISTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISTTests.swift; sourceTree = "<group>"; };
 		5294EB991E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5294EB9E1E10F47400CF60A5 /* MISTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MISTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5294EBA21E10F47400CF60A5 /* MISTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISTUITests.swift; sourceTree = "<group>"; };
 		5294EBA41E10F47400CF60A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5294EBB01E10FCEC00CF60A5 /* LoginScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenVC.swift; sourceTree = "<group>"; };
@@ -155,22 +132,6 @@
 			files = (
 				52B567ED1E5F624000523AC5 /* MapKit.framework in Frameworks */,
 				B983D7C67F92F879CC287EA2 /* Pods_MIST.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5294EB901E10F47400CF60A5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E3FD9614A8502D71011895A /* Pods_MISTTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5294EB9B1E10F47400CF60A5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B00AFEF7EF49CF39AFDAB1AB /* Pods_MISTUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,8 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				5294EB7D1E10F47400CF60A5 /* MIST.app */,
-				5294EB931E10F47400CF60A5 /* MISTTests.xctest */,
-				5294EB9E1E10F47400CF60A5 /* MISTUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,48 +295,6 @@
 			productReference = 5294EB7D1E10F47400CF60A5 /* MIST.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5294EB921E10F47400CF60A5 /* MISTTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5294EBAA1E10F47400CF60A5 /* Build configuration list for PBXNativeTarget "MISTTests" */;
-			buildPhases = (
-				C4DAA434E6092154F991E867 /* [CP] Check Pods Manifest.lock */,
-				5294EB8F1E10F47400CF60A5 /* Sources */,
-				5294EB901E10F47400CF60A5 /* Frameworks */,
-				5294EB911E10F47400CF60A5 /* Resources */,
-				63597BD3A89F9A55D5DA9D4A /* [CP] Embed Pods Frameworks */,
-				CDA6038B299132953E36551D /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5294EB951E10F47400CF60A5 /* PBXTargetDependency */,
-			);
-			name = MISTTests;
-			productName = MISTTests;
-			productReference = 5294EB931E10F47400CF60A5 /* MISTTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		5294EB9D1E10F47400CF60A5 /* MISTUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5294EBAD1E10F47400CF60A5 /* Build configuration list for PBXNativeTarget "MISTUITests" */;
-			buildPhases = (
-				A379831C1FF3785ED99F1556 /* [CP] Check Pods Manifest.lock */,
-				5294EB9A1E10F47400CF60A5 /* Sources */,
-				5294EB9B1E10F47400CF60A5 /* Frameworks */,
-				5294EB9C1E10F47400CF60A5 /* Resources */,
-				AB56C7E88D3B81E1EED06302 /* [CP] Embed Pods Frameworks */,
-				FEE9AD1054D92373B8562FD3 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5294EBA01E10F47400CF60A5 /* PBXTargetDependency */,
-			);
-			name = MISTUITests;
-			productName = MISTUITests;
-			productReference = 5294EB9E1E10F47400CF60A5 /* MISTUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -401,18 +318,6 @@
 							};
 						};
 					};
-					5294EB921E10F47400CF60A5 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZT3UTJ3H6V;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5294EB7C1E10F47400CF60A5;
-					};
-					5294EB9D1E10F47400CF60A5 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZT3UTJ3H6V;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5294EB7C1E10F47400CF60A5;
-					};
 				};
 			};
 			buildConfigurationList = 5294EB781E10F47400CF60A5 /* Build configuration list for PBXProject "MIST" */;
@@ -429,8 +334,6 @@
 			projectRoot = "";
 			targets = (
 				5294EB7C1E10F47400CF60A5 /* MIST */,
-				5294EB921E10F47400CF60A5 /* MISTTests */,
-				5294EB9D1E10F47400CF60A5 /* MISTUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -468,20 +371,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5294EB911E10F47400CF60A5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5294EB9C1E10F47400CF60A5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -515,81 +404,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MIST/Pods-MIST-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		63597BD3A89F9A55D5DA9D4A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MISTTests/Pods-MISTTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A379831C1FF3785ED99F1556 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AB56C7E88D3B81E1EED06302 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MISTUITests/Pods-MISTUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C4DAA434E6092154F991E867 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CDA6038B299132953E36551D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MISTTests/Pods-MISTTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EB7FB49757CE5B8E0A8CA6B6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -603,21 +417,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MIST/Pods-MIST-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FEE9AD1054D92373B8562FD3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MISTUITests/Pods-MISTUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -652,36 +451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5294EB8F1E10F47400CF60A5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5294EB981E10F47400CF60A5 /* MISTTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5294EB9A1E10F47400CF60A5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5294EBA31E10F47400CF60A5 /* MISTUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5294EB951E10F47400CF60A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5294EB7C1E10F47400CF60A5 /* MIST */;
-			targetProxy = 5294EB941E10F47400CF60A5 /* PBXContainerItemProxy */;
-		};
-		5294EBA01E10F47400CF60A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5294EB7C1E10F47400CF60A5 /* MIST */;
-			targetProxy = 5294EB9F1E10F47400CF60A5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5294EB861E10F47400CF60A5 /* Main.storyboard */ = {
@@ -813,6 +583,7 @@
 				PROVISIONING_PROFILE = "a168d2e4-dc4c-4e18-bd18-7b0e8d8b0a5e";
 				PROVISIONING_PROFILE_SPECIFIER = "MIST App Development Profile";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -833,68 +604,7 @@
 				PROVISIONING_PROFILE = "b2147a6e-4bb4-46d8-9231-0cee0326c491";
 				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.Muhammad-Doukmak.MISTAtlanta";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		5294EBAB1E10F47400CF60A5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F50B02AF571A08ED2309E7E /* Pods-MISTTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ZT3UTJ3H6V;
-				INFOPLIST_FILE = MISTTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Doukmak.MISTTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIST.app/MIST";
-			};
-			name = Debug;
-		};
-		5294EBAC1E10F47400CF60A5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A464BDC9BDABEA5A8C335A2 /* Pods-MISTTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = ZT3UTJ3H6V;
-				INFOPLIST_FILE = MISTTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Doukmak.MISTTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIST.app/MIST";
-			};
-			name = Release;
-		};
-		5294EBAE1E10F47400CF60A5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E556AAFDD88E21459D3BC14B /* Pods-MISTUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = ZT3UTJ3H6V;
-				INFOPLIST_FILE = MISTUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Doukmak.MISTUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = MIST;
-			};
-			name = Debug;
-		};
-		5294EBAF1E10F47400CF60A5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E12F76C24E4DB2C608A969C2 /* Pods-MISTUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = ZT3UTJ3H6V;
-				INFOPLIST_FILE = MISTUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Doukmak.MISTUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = MIST;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -915,24 +625,6 @@
 			buildConfigurations = (
 				5294EBA81E10F47400CF60A5 /* Debug */,
 				5294EBA91E10F47400CF60A5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5294EBAA1E10F47400CF60A5 /* Build configuration list for PBXNativeTarget "MISTTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5294EBAB1E10F47400CF60A5 /* Debug */,
-				5294EBAC1E10F47400CF60A5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5294EBAD1E10F47400CF60A5 /* Build configuration list for PBXNativeTarget "MISTUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5294EBAE1E10F47400CF60A5 /* Debug */,
-				5294EBAF1E10F47400CF60A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

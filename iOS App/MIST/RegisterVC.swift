@@ -127,11 +127,11 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func userAgreement(_ sender: UIButton) {
-        let url = "http://www.mistatlanta.com/legal/eula"
+        let url = "https://www.mistatlanta.com/legal/eula"
         UIApplication.shared.open(NSURL(string:url) as! URL, options: [:], completionHandler: nil)
     }
     @IBAction func privacyPolicy(_ sender: UIButton) {
-        let url = "http://www.mistatlanta.com/legal/privacy"
+        let url = "https://www.mistatlanta.com/legal/privacy"
         UIApplication.shared.open(NSURL(string: url) as! URL, options: [:], completionHandler: nil)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

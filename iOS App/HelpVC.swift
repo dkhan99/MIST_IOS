@@ -27,6 +27,7 @@ class HelpVC: UIViewController {
         saturdayButton.layer.cornerRadius = 15.0
         sundayButton.layer.cornerRadius = 15.0
         // Do any additional setup after loading the view.
+        addShadows()
     }
     @IBAction func callMIST(_ sender: UIButton) {
         let formatedNumber = "678-561-6478"
@@ -35,7 +36,16 @@ class HelpVC: UIViewController {
         UIApplication.shared.open(url)
     }
     
-   
+    func addShadows() {
+        for view in self.view.subviews {
+            if let button = view as? UIButton {
+                button.layer.masksToBounds = false
+                button.layer.shadowColor = UIColor.black.withAlphaComponent(0.8).cgColor
+                button.layer.shadowOffset = CGSize(width: 0, height: 0)
+                button.layer.shadowOpacity = 0.8
+            }
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showProgram" {
             if let dest = segue.destination as? ProgramVC {

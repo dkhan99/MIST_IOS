@@ -66,7 +66,7 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 self.results = value
             }
         })
-        
+        addShadows()
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +86,16 @@ class BracketsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             }
         })
     }
-    
+    func addShadows() {
+        for view in self.view.subviews {
+            if let button = view as? UIButton {
+                button.layer.masksToBounds = false
+                button.layer.shadowColor = UIColor.black.withAlphaComponent(0.8).cgColor
+                button.layer.shadowOffset = CGSize(width: 0, height: 0)
+                button.layer.shadowOpacity = 0.8
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent

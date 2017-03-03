@@ -22,7 +22,7 @@ var locations:Array<(name:String, subtitle:String, coordinate:CLLocationCoordina
 ]
 
 var image:UIImage?
-class MapVC: UIViewController, MKMapViewDelegate {
+class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var mapView: MKMapView!
     let MISTlocation = CLLocationCoordinate2D(latitude: 33.957000, longitude: -83.374652)
@@ -35,6 +35,8 @@ class MapVC: UIViewController, MKMapViewDelegate {
         self.navigationItem.rightBarButtonItem = buttonItem
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(MISTlocation, distanceSpan, distanceSpan), animated: true)
         addPins()
+        
+        
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "pin"
@@ -87,11 +89,14 @@ class MapVC: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         segment.selectedSegmentIndex = 0
         self.segChanged(self.segment)
-        
+        if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
         let del = UIApplication.shared.delegate
         if let delegate = del as? AppDelegate {
             if let pinName = delegate.showPin {
-                print(pinName)
                 if let i = locations.index(where: {$0.name == pinName && $0.pin != nil}) {
                     if locations[i].pin?.title == "Ramsey Center" || locations[i].pin?.title == "East Parking Deck" {
                         self.segment.selectedSegmentIndex = 1
@@ -106,6 +111,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
             }
         }
     }
+    
     private func addPins() {
         for (index, location) in locations.enumerated() {
             let newPin = MISTPin(title: location.subtitle + " " + location.name, subtitle: "", coordinate: location.coordinate)

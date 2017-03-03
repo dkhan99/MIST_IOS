@@ -29,18 +29,15 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.hidesBackButton = true
         if let sched = UserDefaults.standard.value(forKey: "schedule") as? [[[String:Any]]] {
             if sched[0].isEmpty {
-                print("sched is empty, activate spinner")
                 self.myTable.isHidden = true
                 self.loadingString.isHidden = false
                 self.indicator.startAnimating()
                 self.indicator.isHidden = false
             } else {
-                print("sched has items")
                 self.scheduleItems = sched
                 myTable.reloadData()
             }
         } else {
-            print("sched is empty, activate spinner")
             self.myTable.isHidden = true
             self.loadingString.isHidden = false
             self.indicator.startAnimating()

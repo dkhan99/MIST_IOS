@@ -93,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         if(state==UIApplicationState.background || (state==UIApplicationState.inactive && !self.appIsStarting)) {
             // Background
-            print("background")
             //            let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
             //            currentNotifications.insert(["title":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "body":(((userInfo["aps"] as! NSDictionary)["alert"] as! NSDictionary!)["title"] as! String), "time":date, "read":false], at: 0)
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
@@ -128,11 +127,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         } else if (state == UIApplicationState.inactive && self.appIsStarting) {
+
+            
             // user tapped notification
-            print("user tapped notification")
         } else {
             // app is active
-            print("active")
             let date:NSDate = NSDate.init(timeIntervalSince1970: TimeInterval.init(Int(userInfo["time"] as! String)!/1000))
             currentNotifications.insert(["title":userInfo["title"] ?? "","body":userInfo["body"] ?? "","time":date,"read":false], at: 0)
             UserDefaults.standard.set(currentNotifications, forKey: "notifications")
@@ -193,19 +192,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.appIsStarting = false
         FIRMessaging.messaging().disconnect()
         print("Disconnected from FCM.")
-        print("Entering background")
         UserDefaults.standard.set(false, forKey: "gotmessage")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         self.appIsStarting = true
+        
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         self.appIsStarting = false
         connectToFcm()
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

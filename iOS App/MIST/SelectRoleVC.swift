@@ -19,24 +19,19 @@ class SelectRoleVC: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.ref = FIRDatabase.database().reference()
-        print("current user \(FIRAuth.auth()?.currentUser)")
         if let user = FIRAuth.auth()?.currentUser {
-            print("user uid is \(user.uid)")
             self.ref?.child("mist_2017_registered-user").child(user.uid).observe(.value, with: { (snapshot) in
                 let value = snapshot.value as! NSDictionary
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                print("already logged in")
                 self.ref?.child("mist_2017_team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                     let teamObject = snapshot.value as! NSDictionary
                     UserDefaults.standard.set(teamObject, forKey: "team")
                     self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
-                    print("ALREADY ALREADY LOGGED IN")
                 })
             })
         } else {
             UserDefaults.standard.set(false, forKey: "isLoggedIn")
-            print("not logged in")
-        }
+            }
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {

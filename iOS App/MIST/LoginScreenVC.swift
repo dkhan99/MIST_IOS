@@ -97,10 +97,8 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
             
                 if let error = error {
                     if error._code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
-                        print("NETWORK ERROR >>>>>>>>>>>>>>>>")
                     }
-                    //print(error.localizedDescription)
-                    //self.errorLabel.text = error.localizedDescription
+                    
                     
                     let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in

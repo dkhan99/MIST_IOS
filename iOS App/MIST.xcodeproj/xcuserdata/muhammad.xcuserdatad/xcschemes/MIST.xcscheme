@@ -20,6 +20,34 @@
                ReferencedContainer = "container:MIST.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5294EB921E10F47400CF60A5"
+               BuildableName = "MISTTests.xctest"
+               BlueprintName = "MISTTests"
+               ReferencedContainer = "container:MIST.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5294EB9D1E10F47400CF60A5"
+               BuildableName = "MISTUITests.xctest"
+               BlueprintName = "MISTUITests"
+               ReferencedContainer = "container:MIST.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,26 +56,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5294EB921E10F47400CF60A5"
-               BuildableName = "MISTTests.xctest"
-               BlueprintName = "MISTTests"
-               ReferencedContainer = "container:MIST.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5294EB9D1E10F47400CF60A5"
-               BuildableName = "MISTUITests.xctest"
-               BlueprintName = "MISTUITests"
-               ReferencedContainer = "container:MIST.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

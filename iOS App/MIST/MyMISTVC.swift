@@ -15,10 +15,12 @@ import MessageUI
 class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var myTable: UITableView!
-    @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePic: UIView!
     @IBOutlet weak var MyTeam: UILabel!
+    @IBOutlet weak var roleIcon: UILabel!
     @IBOutlet weak var signOutButton: UIBarButtonItem!
+    @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var guestText: UITextView!
@@ -29,11 +31,15 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.profilePic.layer.cornerRadius = 15.0
+        self.profilePic.layer.masksToBounds = false
+        self.profilePic.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
+        self.profilePic.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.profilePic.layer.shadowOpacity = 0.8
         self.automaticallyAdjustsScrollViewInsets = false
         myTable.contentInset = UIEdgeInsets.zero;
-        profilePic.layer.cornerRadius = self.profilePic.frame.size.height / 2;
-        profilePic.clipsToBounds = true
+//        profilePic.layer.cornerRadius = self.profilePic.frame.size.height / 2;
+//        profilePic.clipsToBounds = true
         myTable.sectionHeaderHeight = 0
         myTable.sectionFooterHeight = 0
         if (FIRAuth.auth()?.currentUser != nil) {
@@ -61,7 +67,8 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
             let mistUser = UserDefaults.standard.value(forKey: "user") as! [String:Any]
             var registeredCompetitions:[String] = []
             if (mistUser["userType"] as! String == "competitor") {
-                
+                self.roleIcon.text = "✏️"
+                self.roleLabel.text = "Competitor"
                 if let groupProject = mistUser["groupProject"] {
                     if(groupProject as! String != "") {
                         registeredCompetitions.append(groupProject as! String)
@@ -98,7 +105,6 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
                         registeredCompetitions.append(brackets as! String)
                     }
                 }
-                print("registered competitions: \(registeredCompetitions)")
                 for competitionName in registeredCompetitions {
                     var cleanName = competitionName.replacingOccurrences(of: "\'", with: "_")
                     cleanName = cleanName.replacingOccurrences(of: " ", with: "_")
