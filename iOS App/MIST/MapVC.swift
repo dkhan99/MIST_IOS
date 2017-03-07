@@ -18,7 +18,11 @@ var locations:Array<(name:String, subtitle:String, coordinate:CLLocationCoordina
     ("North Parking Deck","🚘",CLLocationCoordinate2D(latitude: 33.956125, longitude: -83.372546), nil, UIImage(named: "car")),
     ("East Parking Deck","🚘",CLLocationCoordinate2D(latitude: 33.938125, longitude: -83.369314), nil, UIImage(named: "car")),
     ("Classic Center","🏅",CLLocationCoordinate2D(latitude: 33.960552, longitude: -83.372337), nil, UIImage(named: "medal")),
-    ("Ramsey Center","🏀",CLLocationCoordinate2D(latitude: 33.937612, longitude: -83.370851), nil, UIImage(named: "ball"))
+    ("Ramsey Center","🏀",CLLocationCoordinate2D(latitude: 33.937612, longitude: -83.370851), nil, UIImage(named: "ball")),
+    
+    ("Cali N Tito's","🍽",CLLocationCoordinate2D(latitude: 33.942376, longitude: -83.383795), nil, UIImage(named: "fork")),
+    ("Mediterranean Grill","🍽",CLLocationCoordinate2D(latitude: 33.939523, longitude: -83.386104), nil, UIImage(named: "fork")),
+    ("Subway","🍽",CLLocationCoordinate2D(latitude: 33.939935, longitude: -83.385896), nil, UIImage(named: "fork"))
 ]
 
 var image:UIImage?
@@ -27,16 +31,28 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     let MISTlocation = CLLocationCoordinate2D(latitude: 33.957000, longitude: -83.374652)
     let distanceSpan = 800.0
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         let buttonItem:MKUserTrackingBarButtonItem = MKUserTrackingBarButtonItem.init(mapView: mapView)
         buttonItem.customView?.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = buttonItem
+        mapView.userTrackingMode = MKUserTrackingMode.follow
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(MISTlocation, distanceSpan, distanceSpan), animated: true)
         addPins()
         
         
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .denied {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "pin"
@@ -89,10 +105,10 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         super.viewWillAppear(animated)
         segment.selectedSegmentIndex = 0
         self.segChanged(self.segment)
-        if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
+        if CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .denied {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         let del = UIApplication.shared.delegate
         if let delegate = del as? AppDelegate {
@@ -114,7 +130,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     private func addPins() {
         for (index, location) in locations.enumerated() {
-            let newPin = MISTPin(title: location.subtitle + " " + location.name, subtitle: "", coordinate: location.coordinate)
+            let newPin = MISTPin(title: location.subtitle + " " + location.name, subtitle: location.subtitle == "🍽" ? "Restaurant" : "", coordinate: location.coordinate)
             locations[index].pin = newPin
             mapView.addAnnotation(newPin)
         }

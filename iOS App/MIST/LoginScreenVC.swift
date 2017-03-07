@@ -18,6 +18,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var passField: UITextField!
     var ref: FIRDatabaseReference!
     var userIsEditing = false
@@ -93,6 +94,8 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
             distanceleft.constant = 12
             distancetotop.constant = 81
             self.loginButton.isEnabled = false
+            self.loginButton.alpha = 0.3
+            self.indicator.startAnimating()
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
             
                 if let error = error {
@@ -107,6 +110,9 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                         self.emailField.becomeFirstResponder()
                     }))
                     self.present(alert, animated: true, completion: nil)
+                    self.loginButton.isEnabled = true
+                    self.loginButton.alpha = 1.0
+                    self.indicator.stopAnimating()
                 }
                 if user != nil {
                     if (UserDefaults.standard.value(forKey: "user") != nil) {
@@ -125,6 +131,9 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                         self.ref.child("mist_2017_team").child((value!.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
                             let teamObject = snapshot.value as! NSDictionary
                             UserDefaults.standard.set(teamObject, forKey: "team")
+                            self.loginButton.isEnabled = true
+                            self.loginButton.alpha = 1.0
+                            self.indicator.stopAnimating()
                             self.performSegue(withIdentifier: "passLogin", sender: nil)
                         })
 
@@ -138,16 +147,20 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
                     UserDefaults.standard.set(false, forKey: "isGuest")
                     
                     
+                } else {
+                    self.loginButton.isEnabled = true
+                    self.loginButton.alpha = 1.0
+                    self.indicator.stopAnimating()
                 }
-                self.loginButton.isEnabled = true
             })
-            
-            
         } else {
             let alert = UIAlertController(title: "Login Error", message: "Please enter your email and password to continue.", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
+            self.loginButton.isEnabled = true
+            self.loginButton.alpha = 1.0
+            self.indicator.stopAnimating()
         }
         
     }

@@ -12,6 +12,9 @@
 		5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */; };
 		5213DC6A1E1EB10200F14F9C /* BracketsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC691E1EB10200F14F9C /* BracketsVC.swift */; };
 		5213DC701E1EC7EC00F14F9C /* BracketDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */; };
+		5215C0431E6E2E3A00DF48EA /* FRIDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */; };
+		5215C0441E6E2E3A00DF48EA /* SATURDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */; };
+		5215C0451E6E2E3A00DF48EA /* SUNDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */; };
 		52264C211E2289A900D62553 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52264C201E2289A900D62553 /* RegisterVC.swift */; };
 		52815CD21E122D9500D491A6 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD11E122D9500D491A6 /* MyTabBarController.swift */; };
 		52815CD41E1230ED00D491A6 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD31E1230ED00D491A6 /* ScheduleVC.swift */; };
@@ -51,9 +54,6 @@
 		52E3EBBB1E4673D5003AF9D6 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3EBBA1E4673D5003AF9D6 /* Competition.swift */; };
 		52EBF43F1E1D1451004EBE1E /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBF43E1E1D1451004EBE1E /* HelpVC.swift */; };
 		52EDF3611E67B58100D8EE05 /* ProgramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF3601E67B58100D8EE05 /* ProgramVC.swift */; };
-		52EDF3671E67CA2900D8EE05 /* FRIDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF3661E67CA2900D8EE05 /* FRIDAY.pdf */; };
-		52EDF3691E67CA2F00D8EE05 /* SATURDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF3681E67CA2F00D8EE05 /* SATURDAY.pdf */; };
-		52EDF36B1E67CA3200D8EE05 /* SUNDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF36A1E67CA3200D8EE05 /* SUNDAY.pdf */; };
 		52FE24B11E6289030065E037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FE24B01E6289030065E037 /* Assets.xcassets */; };
 		B983D7C67F92F879CC287EA2 /* Pods_MIST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856D5ADA7A7A3E33A8EE03CF /* Pods_MIST.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +65,9 @@
 		5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5213DC691E1EB10200F14F9C /* BracketsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketsVC.swift; sourceTree = "<group>"; };
 		5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketDetailVC.swift; sourceTree = "<group>"; };
+		5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FRIDAY.pdf; sourceTree = "<group>"; };
+		5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SATURDAY.pdf; sourceTree = "<group>"; };
+		5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SUNDAY.pdf; sourceTree = "<group>"; };
 		52264C201E2289A900D62553 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		5267CF7C1E1435AA009AF182 /* MIST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIST.entitlements; sourceTree = "<group>"; };
 		52815CD11E122D9500D491A6 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
@@ -111,9 +114,6 @@
 		52E3EBBA1E4673D5003AF9D6 /* Competition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		52EBF43E1E1D1451004EBE1E /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpVC.swift; path = ../HelpVC.swift; sourceTree = "<group>"; };
 		52EDF3601E67B58100D8EE05 /* ProgramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramVC.swift; sourceTree = "<group>"; };
-		52EDF3661E67CA2900D8EE05 /* FRIDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FRIDAY.pdf; sourceTree = "<group>"; };
-		52EDF3681E67CA2F00D8EE05 /* SATURDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SATURDAY.pdf; sourceTree = "<group>"; };
-		52EDF36A1E67CA3200D8EE05 /* SUNDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SUNDAY.pdf; sourceTree = "<group>"; };
 		52FE24B01E6289030065E037 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7929D32561BD91882BC2E8DA /* Pods_MISTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MISTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A464BDC9BDABEA5A8C335A2 /* Pods-MISTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MISTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MISTTests/Pods-MISTTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,12 +210,12 @@
 				52C84D751E39998C009E9C08 /* NotificationDetailVC.swift */,
 				52C84D711E381CCC009E9C08 /* NotificationsVC.swift */,
 				52EDF3601E67B58100D8EE05 /* ProgramVC.swift */,
-				52EDF3661E67CA2900D8EE05 /* FRIDAY.pdf */,
-				52EDF3681E67CA2F00D8EE05 /* SATURDAY.pdf */,
-				52EDF36A1E67CA3200D8EE05 /* SUNDAY.pdf */,
 				5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */,
 				5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */,
 				5294EB8E1E10F47400CF60A5 /* Info.plist */,
+				5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */,
+				5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */,
+				5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */,
 			);
 			path = MIST;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528C64D71E55FBAB0013FD71 /* Montserrat-MediumItalic.ttf in Resources */,
-				52EDF36B1E67CA3200D8EE05 /* SUNDAY.pdf in Resources */,
+				5215C0451E6E2E3A00DF48EA /* SUNDAY.pdf in Resources */,
 				528C64D31E55FBAB0013FD71 /* Montserrat-Italic.ttf in Resources */,
 				528C64DC1E55FBAB0013FD71 /* Montserrat-ThinItalic.ttf in Resources */,
 				5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */,
@@ -353,7 +353,7 @@
 				5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */,
 				528C64D41E55FBAB0013FD71 /* Montserrat-Light.ttf in Resources */,
 				528C64D81E55FBAB0013FD71 /* Montserrat-Regular.ttf in Resources */,
-				52EDF3691E67CA2F00D8EE05 /* SATURDAY.pdf in Resources */,
+				5215C0441E6E2E3A00DF48EA /* SATURDAY.pdf in Resources */,
 				528C64CD1E55FBAB0013FD71 /* Montserrat-Bold.ttf in Resources */,
 				528C64CC1E55FBAB0013FD71 /* Montserrat-BlackItalic.ttf in Resources */,
 				528C64DA1E55FBAB0013FD71 /* Montserrat-SemiBoldItalic.ttf in Resources */,
@@ -363,7 +363,7 @@
 				528C64DB1E55FBAB0013FD71 /* Montserrat-Thin.ttf in Resources */,
 				528C64D01E55FBAB0013FD71 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				528C64D51E55FBAB0013FD71 /* Montserrat-LightItalic.ttf in Resources */,
-				52EDF3671E67CA2900D8EE05 /* FRIDAY.pdf in Resources */,
+				5215C0431E6E2E3A00DF48EA /* FRIDAY.pdf in Resources */,
 				528C64CE1E55FBAB0013FD71 /* Montserrat-BoldItalic.ttf in Resources */,
 				528C64D61E55FBAB0013FD71 /* Montserrat-Medium.ttf in Resources */,
 				52FE24B11E6289030065E037 /* Assets.xcassets in Resources */,

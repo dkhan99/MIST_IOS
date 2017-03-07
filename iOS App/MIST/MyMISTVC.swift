@@ -31,6 +31,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
     var teammembers: [[NSDictionary]] = [[],[]]
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("View did load")
         self.profilePic.layer.cornerRadius = 15.0
         self.profilePic.layer.masksToBounds = false
         self.profilePic.layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor

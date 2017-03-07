@@ -14,7 +14,7 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "0.2.2"
-        aboutView.text = "Copyright © MIST Atlanta 2017\n\nDeveloper: Muhammad Doukmak\nVersion: \(version) Released March 3, 2017"
+        aboutView.text = "Copyright © MIST Atlanta 2017\n\nDeveloper: Muhammad Doukmak\nVersion: \(version) Released March 6, 2017"
         // Do any additional setup after loading the view.
     }
     

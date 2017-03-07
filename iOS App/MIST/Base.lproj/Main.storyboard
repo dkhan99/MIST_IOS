@@ -476,7 +476,7 @@ Cgo
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need Help?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cd-e4-Uyj">
-                                <rect key="frame" x="19" y="310" width="142" height="26"/>
+                                <rect key="frame" x="19" y="272" width="142" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="142" id="jFj-Wj-JAd"/>
                                 </constraints>
@@ -484,131 +484,38 @@ Cgo
                                 <color key="textColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HKl-M4-sdb">
-                                <rect key="frame" x="19" y="350" width="282" height="50.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HKl-M4-sdb">
+                                <rect key="frame" x="19" y="312" width="282" height="50.5"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="   ">
-                                            <attributes>
-                                                <color key="NSColor" red="0.071346498219698795" green="0.50926975388601037" blue="0.021642573497843688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".SFNSDisplay"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment>
-                                            <string key="content">MIST Help Line
-</string>
-                                            <attributes>
-                                                <color key="NSColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".SFNSDisplay"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment content="   (678)-561-6478">
-                                            <attributes>
-                                                <color key="NSColor" red="0.70552000000000004" green="0.0" blue="0.099330000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".SFNSDisplay"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <state key="highlighted">
-                                    <attributedString key="attributedTitle">
-                                        <fragment>
-                                            <string key="content">   MIST Help Line
+                                    <string key="title">   MIST Help Line
    (678)-561-6478</string>
-                                            <attributes>
-                                                <color key="NSColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".SFNSDisplay"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                    <tabStops>
-                                                        <textTab alignment="left" location="28">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="56">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="84">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="112">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="140">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="168">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="196">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="224">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="252">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="280">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="308">
-                                                            <options/>
-                                                        </textTab>
-                                                        <textTab alignment="left" location="336">
-                                                            <options/>
-                                                        </textTab>
-                                                    </tabStops>
-                                                </paragraphStyle>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <color key="titleColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="callMIST:" destination="qAE-lQ-Afx" eventType="touchUpInside" id="YXC-zM-i6d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="characterWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1EE-0E-Pid">
-                                <rect key="frame" x="19" y="416.5" width="282" height="50.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1EE-0E-Pid">
+                                <rect key="frame" x="19" y="378.5" width="282" height="50.5"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment>
-                                            <string key="content">   Campus Police
+                                    <string key="title">   Campus Police
    (706)-542-5813</string>
-                                            <attributes>
-                                                <color key="NSBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                <color key="NSColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <color key="titleColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="highlighted">
-                                    <attributedString key="attributedTitle">
-                                        <fragment>
-                                            <string key="content">   Campus Police
-   (706)-542-5813</string>
-                                            <attributes>
-                                                <color key="NSColor" red="0.34492689370000001" green="0.34891134499999998" blue="0.35717940329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <color key="titleColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="callCampusPolice:" destination="qAE-lQ-Afx" eventType="touchUpInside" id="MFa-MN-c1c"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="5BG-lm-1YT">
-                                <rect key="frame" x="248" y="363" width="32" height="25.5"/>
+                                <rect key="frame" x="248" y="325" width="32" height="25.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="XbB-BF-bXW">
-                                <rect key="frame" x="248" y="430" width="32" height="25"/>
+                                <rect key="frame" x="248" y="392" width="32" height="25"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -617,7 +524,7 @@ Cgo
                             <constraint firstItem="1EE-0E-Pid" firstAttribute="width" secondItem="HKl-M4-sdb" secondAttribute="width" id="4Yy-oA-w03"/>
                             <constraint firstItem="XbB-BF-bXW" firstAttribute="centerX" secondItem="5BG-lm-1YT" secondAttribute="centerX" id="4qi-q1-otc"/>
                             <constraint firstItem="5BG-lm-1YT" firstAttribute="height" secondItem="HKl-M4-sdb" secondAttribute="height" multiplier="0.5" id="6Yw-cf-Nof"/>
-                            <constraint firstItem="0Cd-e4-Uyj" firstAttribute="top" secondItem="705-UQ-zfa" secondAttribute="bottom" constant="67.666666666666742" id="6sr-7b-6Sv"/>
+                            <constraint firstItem="0Cd-e4-Uyj" firstAttribute="top" secondItem="705-UQ-zfa" secondAttribute="bottom" constant="30" id="6sr-7b-6Sv"/>
                             <constraint firstItem="KIt-cH-f4G" firstAttribute="top" secondItem="Iei-74-LSO" secondAttribute="bottom" constant="55" id="8kZ-J6-0AO"/>
                             <constraint firstItem="KIt-cH-f4G" firstAttribute="centerX" secondItem="org-pP-hI4" secondAttribute="centerX" id="BmO-aH-6NH"/>
                             <constraint firstItem="Dfj-Gj-tAi" firstAttribute="centerX" secondItem="KIt-cH-f4G" secondAttribute="centerX" id="GVG-N3-Vjf"/>
@@ -652,6 +559,8 @@ Cgo
                     <connections>
                         <outlet property="CampusPoliceButton" destination="1EE-0E-Pid" id="xpd-9p-Hsp"/>
                         <outlet property="MISTHelpButton" destination="HKl-M4-sdb" id="8cN-rw-rL2"/>
+                        <outlet property="MISTphone" destination="5BG-lm-1YT" id="ouW-xb-dmC"/>
+                        <outlet property="Policephone" destination="XbB-BF-bXW" id="f31-yj-ng4"/>
                         <outlet property="fridayButton" destination="KIt-cH-f4G" id="d4D-Ya-Vg7"/>
                         <outlet property="navItem" destination="zqc-Km-iae" id="UQc-PF-sIl"/>
                         <outlet property="saturdayButton" destination="Dfj-Gj-tAi" id="poV-2Z-lr6"/>
@@ -1720,6 +1629,9 @@ Version: 0.2.1 Released March 1, 2017</string>
                                     <constraint firstAttribute="width" secondItem="xIY-em-kU9" secondAttribute="height" multiplier="319:208" id="hJd-FQ-scP"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="isn-nZ-n6a">
+                                <rect key="frame" x="150" y="364" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1731,14 +1643,18 @@ Version: 0.2.1 Released March 1, 2017</string>
                             <constraint firstItem="YIW-D4-129" firstAttribute="centerX" secondItem="jVb-4g-iBM" secondAttribute="centerX" id="GAm-Ch-Nwg"/>
                             <constraint firstItem="87s-9S-lEr" firstAttribute="centerX" secondItem="ThI-j1-slK" secondAttribute="centerX" id="HhT-ng-aJV"/>
                             <constraint firstItem="Hew-AD-ddS" firstAttribute="centerX" secondItem="ThI-j1-slK" secondAttribute="centerX" id="KPu-vu-adm"/>
+                            <constraint firstItem="Hew-AD-ddS" firstAttribute="top" secondItem="isn-nZ-n6a" secondAttribute="bottom" constant="2" id="MJp-6r-rds"/>
                             <constraint firstItem="xIY-em-kU9" firstAttribute="centerX" secondItem="ThI-j1-slK" secondAttribute="centerX" id="Pxl-hF-ysg"/>
                             <constraint firstItem="wTm-nh-g8G" firstAttribute="top" secondItem="87s-9S-lEr" secondAttribute="bottom" id="SyL-p5-B8I"/>
                             <constraint firstItem="jVb-4g-iBM" firstAttribute="centerX" secondItem="ThI-j1-slK" secondAttribute="centerX" id="aRH-VJ-3Im"/>
                             <constraint firstItem="Hew-AD-ddS" firstAttribute="width" secondItem="YIW-D4-129" secondAttribute="width" id="deM-cf-20f"/>
                             <constraint firstItem="xIY-em-kU9" firstAttribute="leading" secondItem="ThI-j1-slK" secondAttribute="leadingMargin" constant="12" id="gSu-Kz-TRA"/>
+                            <constraint firstItem="isn-nZ-n6a" firstAttribute="leading" secondItem="ThI-j1-slK" secondAttribute="leadingMargin" constant="134" id="hSV-aZ-U63"/>
                             <constraint firstItem="87s-9S-lEr" firstAttribute="top" secondItem="Hew-AD-ddS" secondAttribute="bottom" constant="17" id="j9s-to-7U3"/>
                             <constraint firstItem="YIW-D4-129" firstAttribute="width" secondItem="jVb-4g-iBM" secondAttribute="width" id="pAc-oN-l06"/>
+                            <constraint firstItem="isn-nZ-n6a" firstAttribute="top" secondItem="YIW-D4-129" secondAttribute="bottom" constant="3" id="ps7-13-FPr"/>
                             <constraint firstItem="jVb-4g-iBM" firstAttribute="width" secondItem="ThI-j1-slK" secondAttribute="width" multiplier="0.7" id="uDu-40-jwB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="isn-nZ-n6a" secondAttribute="trailing" constant="134" id="x0i-fz-b5T"/>
                             <constraint firstItem="YIW-D4-129" firstAttribute="top" secondItem="jVb-4g-iBM" secondAttribute="bottom" constant="8" id="y1B-Vj-TeC"/>
                         </constraints>
                     </view>
@@ -1746,6 +1662,7 @@ Version: 0.2.1 Released March 1, 2017</string>
                         <outlet property="distanceleft" destination="gSu-Kz-TRA" id="Fx0-Bx-XFy"/>
                         <outlet property="distancetotop" destination="8K3-7q-nSf" id="vAL-So-LlE"/>
                         <outlet property="emailField" destination="jVb-4g-iBM" id="S6z-ng-JfC"/>
+                        <outlet property="indicator" destination="isn-nZ-n6a" id="ZCv-jf-w1v"/>
                         <outlet property="loginButton" destination="Hew-AD-ddS" id="O1J-qS-3GT"/>
                         <outlet property="logo" destination="xIY-em-kU9" id="Enk-mV-Bs9"/>
                         <outlet property="passField" destination="YIW-D4-129" id="T9y-Uu-SM4"/>
@@ -2119,9 +2036,9 @@ Version: 0.2.1 Released March 1, 2017</string>
         <image name="unnamed" width="943" height="258"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="s59-LE-RPt"/>
-        <segue reference="uKb-ej-Zoq"/>
+        <segue reference="3Ci-qD-1Nf"/>
         <segue reference="uOq-M8-AbP"/>
+        <segue reference="uKb-ej-Zoq"/>
         <segue reference="SdN-mS-2tC"/>
     </inferredMetricsTieBreakers>
 </document>
