@@ -19,6 +19,7 @@ class HelpVC: UIViewController {
     @IBOutlet weak var sundayButton: UIButton!
     @IBOutlet weak var MISTphone: UIImageView!
     @IBOutlet weak var Policephone: UIImageView!
+    @IBOutlet weak var questionButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         MISTHelpButton.layer.cornerRadius = 15.0
@@ -28,6 +29,8 @@ class HelpVC: UIViewController {
         fridayButton.layer.cornerRadius = 15.0
         saturdayButton.layer.cornerRadius = 15.0
         sundayButton.layer.cornerRadius = 15.0
+        questionButton.layer.cornerRadius = 15.0
+        questionButton.layer.masksToBounds = true
         // Do any additional setup after loading the view.
         addShadows()
         
@@ -72,6 +75,31 @@ class HelpVC: UIViewController {
         }
     }
     
+    @IBAction func askQuestion(_ sender: Any) {
+        let today = Date.init()
+        let formatter:DateFormatter = DateFormatter()
+        formatter.dateFormat="MM/dd/yy hh:mma"
+        formatter.timeZone = NSTimeZone.system
+//                let todayString = "3/21/17 10:00am"
+//                let today = formatter.date(from: todayString)!
+        let end = "3/20/17 12:00am"
+        let enddate = formatter.date(from: end)
+        if (today < enddate!) {
+            if let isGuest = UserDefaults.standard.value(forKey: "isGuest") as? Bool{
+                if isGuest {
+                    let alert = UIAlertController(title: "Please sign in first", message: "We're sorry, but this feature is for registered MIST users. Please sign in to your account to submit a question.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    performSegue(withIdentifier: "askQuestion", sender: self)
+                }
+            }
+        } else {
+            let alert = UIAlertController(title: "Submissions are closed", message: "The time for submitting questions has passed.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     func addShadows() {
         for view in self.view.subviews {
             if let button = view as? UIButton {

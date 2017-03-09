@@ -12,10 +12,11 @@
 		5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */; };
 		5213DC6A1E1EB10200F14F9C /* BracketsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC691E1EB10200F14F9C /* BracketsVC.swift */; };
 		5213DC701E1EC7EC00F14F9C /* BracketDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */; };
-		5215C0431E6E2E3A00DF48EA /* FRIDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */; };
-		5215C0441E6E2E3A00DF48EA /* SATURDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */; };
-		5215C0451E6E2E3A00DF48EA /* SUNDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */; };
+		5215C0491E70AD8C00DF48EA /* SUNDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0461E70AD8C00DF48EA /* SUNDAY.pdf */; };
+		5215C04A1E70AD8C00DF48EA /* SATURDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0471E70AD8C00DF48EA /* SATURDAY.pdf */; };
+		5215C04B1E70AD8C00DF48EA /* FRIDAY.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5215C0481E70AD8C00DF48EA /* FRIDAY.pdf */; };
 		52264C211E2289A900D62553 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52264C201E2289A900D62553 /* RegisterVC.swift */; };
+		5253608D1E7111C900717C8B /* QuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5253608C1E7111C900717C8B /* QuestionVC.swift */; };
 		52815CD21E122D9500D491A6 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD11E122D9500D491A6 /* MyTabBarController.swift */; };
 		52815CD41E1230ED00D491A6 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD31E1230ED00D491A6 /* ScheduleVC.swift */; };
 		52815CD61E12321500D491A6 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52815CD51E12321500D491A6 /* MapVC.swift */; };
@@ -65,10 +66,11 @@
 		5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5213DC691E1EB10200F14F9C /* BracketsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketsVC.swift; sourceTree = "<group>"; };
 		5213DC6F1E1EC7EC00F14F9C /* BracketDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketDetailVC.swift; sourceTree = "<group>"; };
-		5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FRIDAY.pdf; sourceTree = "<group>"; };
-		5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SATURDAY.pdf; sourceTree = "<group>"; };
-		5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SUNDAY.pdf; sourceTree = "<group>"; };
+		5215C0461E70AD8C00DF48EA /* SUNDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SUNDAY.pdf; sourceTree = "<group>"; };
+		5215C0471E70AD8C00DF48EA /* SATURDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SATURDAY.pdf; sourceTree = "<group>"; };
+		5215C0481E70AD8C00DF48EA /* FRIDAY.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = FRIDAY.pdf; sourceTree = "<group>"; };
 		52264C201E2289A900D62553 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		5253608C1E7111C900717C8B /* QuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionVC.swift; sourceTree = "<group>"; };
 		5267CF7C1E1435AA009AF182 /* MIST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIST.entitlements; sourceTree = "<group>"; };
 		52815CD11E122D9500D491A6 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		52815CD31E1230ED00D491A6 /* ScheduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				52815CD51E12321500D491A6 /* MapVC.swift */,
 				52FE24B01E6289030065E037 /* Assets.xcassets */,
 				5294EB861E10F47400CF60A5 /* Main.storyboard */,
+				5253608C1E7111C900717C8B /* QuestionVC.swift */,
 				52C85CEA1E65004400A9302F /* AboutVC.swift */,
 				5202B3A21E3DD8C400CF07AF /* MISTTableViewCell.swift */,
 				528C64DE1E56582D0013FD71 /* NameTableViewCell.swift */,
@@ -213,9 +216,9 @@
 				5213DC671E1E341F00F14F9C /* GoogleService-Info.plist */,
 				5294EB8B1E10F47400CF60A5 /* LaunchScreen.storyboard */,
 				5294EB8E1E10F47400CF60A5 /* Info.plist */,
-				5215C0401E6E2E3A00DF48EA /* FRIDAY.pdf */,
-				5215C0411E6E2E3A00DF48EA /* SATURDAY.pdf */,
-				5215C0421E6E2E3A00DF48EA /* SUNDAY.pdf */,
+				5215C0461E70AD8C00DF48EA /* SUNDAY.pdf */,
+				5215C0471E70AD8C00DF48EA /* SATURDAY.pdf */,
+				5215C0481E70AD8C00DF48EA /* FRIDAY.pdf */,
 			);
 			path = MIST;
 			sourceTree = "<group>";
@@ -344,7 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				528C64D71E55FBAB0013FD71 /* Montserrat-MediumItalic.ttf in Resources */,
-				5215C0451E6E2E3A00DF48EA /* SUNDAY.pdf in Resources */,
 				528C64D31E55FBAB0013FD71 /* Montserrat-Italic.ttf in Resources */,
 				528C64DC1E55FBAB0013FD71 /* Montserrat-ThinItalic.ttf in Resources */,
 				5294EB8D1E10F47400CF60A5 /* LaunchScreen.storyboard in Resources */,
@@ -352,18 +354,19 @@
 				528C64CB1E55FBAB0013FD71 /* Montserrat-Black.ttf in Resources */,
 				5213DC681E1E341F00F14F9C /* GoogleService-Info.plist in Resources */,
 				528C64D41E55FBAB0013FD71 /* Montserrat-Light.ttf in Resources */,
+				5215C0491E70AD8C00DF48EA /* SUNDAY.pdf in Resources */,
+				5215C04A1E70AD8C00DF48EA /* SATURDAY.pdf in Resources */,
 				528C64D81E55FBAB0013FD71 /* Montserrat-Regular.ttf in Resources */,
-				5215C0441E6E2E3A00DF48EA /* SATURDAY.pdf in Resources */,
 				528C64CD1E55FBAB0013FD71 /* Montserrat-Bold.ttf in Resources */,
 				528C64CC1E55FBAB0013FD71 /* Montserrat-BlackItalic.ttf in Resources */,
 				528C64DA1E55FBAB0013FD71 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				5215C04B1E70AD8C00DF48EA /* FRIDAY.pdf in Resources */,
 				5294EB881E10F47400CF60A5 /* Main.storyboard in Resources */,
 				528C64D11E55FBAB0013FD71 /* Montserrat-ExtraLight.ttf in Resources */,
 				528C64CF1E55FBAB0013FD71 /* Montserrat-ExtraBold.ttf in Resources */,
 				528C64DB1E55FBAB0013FD71 /* Montserrat-Thin.ttf in Resources */,
 				528C64D01E55FBAB0013FD71 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				528C64D51E55FBAB0013FD71 /* Montserrat-LightItalic.ttf in Resources */,
-				5215C0431E6E2E3A00DF48EA /* FRIDAY.pdf in Resources */,
 				528C64CE1E55FBAB0013FD71 /* Montserrat-BoldItalic.ttf in Resources */,
 				528C64D61E55FBAB0013FD71 /* Montserrat-Medium.ttf in Resources */,
 				52FE24B11E6289030065E037 /* Assets.xcassets in Resources */,
@@ -426,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5253608D1E7111C900717C8B /* QuestionVC.swift in Sources */,
 				52815CD41E1230ED00D491A6 /* ScheduleVC.swift in Sources */,
 				5294EB811E10F47400CF60A5 /* AppDelegate.swift in Sources */,
 				52B567EB1E5D343900523AC5 /* Reachability.swift in Sources */,

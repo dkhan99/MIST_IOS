@@ -97,7 +97,7 @@ class LoginScreenVC: UIViewController, UITextFieldDelegate {
             self.loginButton.alpha = 0.3
             self.indicator.startAnimating()
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passField.text!, completion: { (user, error) in
-            
+                
                 if let error = error {
                     if error._code == FIRAuthErrorCode.errorCodeNetworkError.rawValue {
                     }

@@ -44,6 +44,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
         myTable.sectionHeaderHeight = 0
         myTable.sectionFooterHeight = 0
         if (FIRAuth.auth()?.currentUser != nil) {
+            FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/guest")
             let user = (UserDefaults.standard.value(forKey: "user") as! NSDictionary)
             self.nameLabel.text = user.value(forKey: "name") as? String
             self.mistIDLabel.text = user.value(forKey: "mistId") as? String
@@ -120,6 +121,7 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
             for v in self.view.subviews {
                 v.isHidden = true
             }
+            FIRMessaging.messaging().subscribe(toTopic: "/topics/guest")
             self.title = "MIST"
             guestText.isHidden = false
             logo.isHidden = false
@@ -336,8 +338,10 @@ class MyMISTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MF
             } else {
                 FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/coach")
             }
-            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] {
-                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/\(team)")
+            if let team = (UserDefaults.standard.value(forKey: "user") as! [String:Any])["team"] as? String {
+                let replacedTeam = team.replacingOccurrences(of: " ", with: "_")
+                print("Attempting to subscribe to \(replacedTeam)")
+                FIRMessaging.messaging().unsubscribe(fromTopic: "/topics/\(replacedTeam)")
             }
             do {
                 try FIRAuth.auth()?.signOut()

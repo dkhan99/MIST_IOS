@@ -17,6 +17,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var mistIDField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     var role:String! = "Student"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBAction func register(_ sender: UIButton) {
         if ((emailField.text != "") && (passField.text != "") && (mistIDField.text != "")) {
             view.endEditing(true)
-            self.continueButton.isEnabled = false
             self.ref = FIRDatabase.database().reference()
+            self.continueButton.isEnabled = false
+            self.continueButton.alpha = 0.3
+            self.indicator.startAnimating()
             // FIX THIS >>>>><<<<<<<>>>>>>><<<<<
             self.ref.child("mist_2017_user").observe(.value, with: {snapshot in
                 let users = snapshot.value as? NSDictionary
@@ -49,16 +52,16 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                         self.mistIDField.text = ""
                         self.mistIDField.becomeFirstResponder()
                     }))
+                    self.continueButton.isEnabled = true
+                    self.continueButton.alpha = 1.0
+                    self.indicator.stopAnimating()
                     self.present(alert, animated: true, completion: nil)
                     
                 } else {
                     self.ref.child("mist_2017_registered-user").observeSingleEvent(of: .value, with:{  snapshot in
-                        if (!(snapshot.value as! NSDictionary).allKeys.contains { element in
-                            if (element as! String == self.mistIDField.text!) {
-                                return true
-                            } else {
-                                return false
-                            }
+                        let val = snapshot.value as! NSDictionary
+                        if (val.allKeys.contains { element in
+                            return (val[element as! String] as! NSDictionary)["mistId"] as! String == self.mistIDField.text!
                         }) {
                             // User already exists!
                             let alert = UIAlertController(title: "Alert", message: "A user with this MIST ID already exists!", preferredStyle: UIAlertControllerStyle.alert)
@@ -68,6 +71,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                                 self.emailField.text = ""
                                 self.emailField.becomeFirstResponder()
                             }))
+                            self.continueButton.isEnabled = true
+                            self.continueButton.alpha = 1.0
+                            self.indicator.stopAnimating()
                             self.present(alert, animated: true, completion: nil)
                         } else { // User does not exist
                             self.ref.child("mist_2017_user").child(self.mistIDField.text!).observeSingleEvent(of: .value, with: {(snapshot) in
@@ -82,6 +88,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                                             self.emailField.becomeFirstResponder()
                                         }))
                                         self.present(alert, animated: true, completion: nil)
+                                        self.continueButton.isEnabled = true
+                                        self.continueButton.alpha = 1.0
+                                        self.indicator.stopAnimating()
                                     }
                                     if user != nil {
                                         // Segue to next screen
@@ -105,6 +114,9 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                                         if let refreshedToken = FIRInstanceID.instanceID().token() {
                                             self.ref.child("mist_2017_registered-user/\(user!.uid)/token").setValue(refreshedToken)
                                         }
+                                        self.continueButton.isEnabled = true
+                                        self.continueButton.alpha = 1.0
+                                        self.indicator.stopAnimating()
                                         self.performSegue(withIdentifier: "success", sender: nil)
                                         UserDefaults.standard.set(false, forKey: "isGuest")
                                         
@@ -116,12 +128,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                         }
                     })
                 }
-                self.continueButton.isEnabled = true
             })
             
         } else {
             let alert = UIAlertController(title: "Registration Error", message: "Please complete all required fields", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.continueButton.isEnabled = true
+            self.continueButton.alpha = 1.0
+            self.indicator.stopAnimating()
             self.present(alert, animated: true, completion: nil)
         }
     }
