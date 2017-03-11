@@ -44,7 +44,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             self.continueButton.alpha = 0.3
             self.indicator.startAnimating()
             // FIX THIS >>>>><<<<<<<>>>>>>><<<<<
-            self.ref.child("mist_2017_user").observe(.value, with: {snapshot in
+            self.ref.child("mist_2017_user").observeSingleEvent(of: .value, with: {snapshot in
                 let users = snapshot.value as? NSDictionary
                 if (!(users?.allKeys as! [String]).contains(self.mistIDField.text!)) {
                     let alert = UIAlertController(title: "Registration Error", message: "MIST-ID not found. Please check your format and try again. (e.g. 1234-1234 or 1234-12345)", preferredStyle: UIAlertControllerStyle.alert)
@@ -58,12 +58,11 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     self.present(alert, animated: true, completion: nil)
                     
                 } else {
-                    self.ref.child("mist_2017_registered-user").observeSingleEvent(of: .value, with:{  snapshot in
-                        let val = snapshot.value as! NSDictionary
-                        if (val.allKeys.contains { element in
-                            return (val[element as! String] as! NSDictionary)["mistId"] as! String == self.mistIDField.text!
-                        }) {
+                    let q = self.ref.child("mist_2017_registered-user").queryOrdered(byChild: "mistId").queryEqual(toValue: self.mistIDField.text!)
+                    q.observeSingleEvent(of: .value, with: {  snapshot in
+                        if let val = snapshot.value as? NSDictionary {
                             // User already exists!
+                            print(val)
                             let alert = UIAlertController(title: "Alert", message: "A user with this MIST ID already exists!", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
                                 self.passField.text = ""
@@ -106,7 +105,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                                         self.ref.child("mist_2017_registered-user").child(user!.uid).setValue(value)
                                         UserDefaults.standard.set(value, forKey: "user")
                                         
-                                        self.ref.child("mist_2017_team").child((value.value(forKey: "team")! as? String)!).observe(.value, with: { (snapshot) in
+                                        self.ref.child("mist_2017_team").child((value.value(forKey: "team")! as? String)!).observeSingleEvent(of: .value, with: { (snapshot) in
                                             let teamObject = snapshot.value as! NSDictionary
                                             UserDefaults.standard.set(teamObject, forKey: "team")
                                         })

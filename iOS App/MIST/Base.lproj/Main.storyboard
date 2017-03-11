@@ -1458,10 +1458,10 @@ Version: 0.2.1 Released March 9, 2017</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JIZ-EN-aar">
-                                <rect key="frame" x="83" y="310" width="154" height="123"/>
+                                <rect key="frame" x="85.5" y="310" width="149" height="117"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrF-Zt-gIH">
-                                        <rect key="frame" x="0.0" y="0.0" width="154" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="149" height="39"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="COMPETITOR">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1472,7 +1472,7 @@ Version: 0.2.1 Released March 9, 2017</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlD-jU-n8y">
-                                        <rect key="frame" x="34.5" y="41" width="85" height="41"/>
+                                        <rect key="frame" x="33" y="39" width="83" height="39"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="COACH">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1483,7 +1483,7 @@ Version: 0.2.1 Released March 9, 2017</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg0-Rq-W0Z">
-                                        <rect key="frame" x="38" y="82" width="78" height="41"/>
+                                        <rect key="frame" x="36" y="78" width="77" height="39"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="GUEST">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
