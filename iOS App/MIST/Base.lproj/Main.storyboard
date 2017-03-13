@@ -104,7 +104,7 @@ Cgo
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="numberCell" rowHeight="72" id="NuU-On-MYS" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NuU-On-MYS" id="IFB-Vq-da0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -166,7 +166,7 @@ Cgo
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameCell" id="0aC-2S-IS9" customClass="NameTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="127.5" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0aC-2S-IS9" id="F7G-A0-7kP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -823,18 +823,18 @@ Cg
                                         <rect key="frame" x="0.0" y="28" width="320" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Sc-Jf-l2K" id="pgW-h9-gZd">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nJl-1E-XMf">
-                                                    <rect key="frame" x="45" y="20" width="34" height="21"/>
+                                                    <rect key="frame" x="45" y="20" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tcy-Rr-7sN">
-                                                    <rect key="frame" x="241" y="20" width="44" height="21"/>
+                                                    <rect key="frame" x="241" y="20" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -868,22 +868,22 @@ Cg
                                 <color key="backgroundColor" white="0.0" alpha="0.25240796232876711" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llh-mG-eay" userLabel="notification">
-                                <rect key="frame" x="35" y="90.5" width="250" height="274"/>
+                                <rect key="frame" x="21" y="84.5" width="278" height="286"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEp-0n-M6I">
-                                        <rect key="frame" x="15" y="8" width="220" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="UEp-0n-M6I">
+                                        <rect key="frame" x="15" y="8" width="248" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HO-E5-n0t">
-                                        <rect key="frame" x="15" y="37" width="220" height="18"/>
+                                        <rect key="frame" x="15" y="37" width="248" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mlk-IJ-LWB">
-                                        <rect key="frame" x="15" y="63" width="220" height="203"/>
+                                        <rect key="frame" x="20" y="63" width="238" height="203"/>
                                         <string key="text">Notification body
 Notification body
 Notification body
@@ -903,12 +903,12 @@ Notification body</string>
                                 <constraints>
                                     <constraint firstItem="7HO-E5-n0t" firstAttribute="top" secondItem="UEp-0n-M6I" secondAttribute="bottom" constant="8" id="3wi-Dm-Fy7"/>
                                     <constraint firstItem="Mlk-IJ-LWB" firstAttribute="top" secondItem="7HO-E5-n0t" secondAttribute="bottom" constant="8" id="5rZ-N9-ahl"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mlk-IJ-LWB" secondAttribute="bottom" constant="8" id="Ju2-9V-HWB"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mlk-IJ-LWB" secondAttribute="trailing" constant="15" id="NMb-Sc-EGr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mlk-IJ-LWB" secondAttribute="bottom" constant="20" id="Ju2-9V-HWB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mlk-IJ-LWB" secondAttribute="trailing" constant="20" id="NMb-Sc-EGr"/>
                                     <constraint firstItem="UEp-0n-M6I" firstAttribute="top" secondItem="llh-mG-eay" secondAttribute="top" constant="8" id="PUM-nh-mBp"/>
                                     <constraint firstAttribute="trailing" secondItem="UEp-0n-M6I" secondAttribute="trailing" constant="15" id="Tjk-ph-Rnz"/>
                                     <constraint firstItem="UEp-0n-M6I" firstAttribute="leading" secondItem="llh-mG-eay" secondAttribute="leading" constant="15" id="but-c6-vXV"/>
-                                    <constraint firstItem="Mlk-IJ-LWB" firstAttribute="leading" secondItem="llh-mG-eay" secondAttribute="leading" constant="15" id="gQ5-Ud-puP"/>
+                                    <constraint firstItem="Mlk-IJ-LWB" firstAttribute="leading" secondItem="llh-mG-eay" secondAttribute="leading" constant="20" id="gQ5-Ud-puP"/>
                                     <constraint firstItem="7HO-E5-n0t" firstAttribute="leading" secondItem="llh-mG-eay" secondAttribute="leading" constant="15" id="kTc-Lz-vcM"/>
                                     <constraint firstAttribute="trailing" secondItem="7HO-E5-n0t" secondAttribute="trailing" constant="15" id="rrx-xJ-sS4"/>
                                 </constraints>
@@ -919,7 +919,7 @@ Notification body</string>
                             <constraint firstItem="Wyb-nI-bH9" firstAttribute="leading" secondItem="5KR-Se-keZ" secondAttribute="leading" id="5jE-Dr-3Bh"/>
                             <constraint firstAttribute="trailing" secondItem="Wyb-nI-bH9" secondAttribute="trailing" id="7B9-8Y-6ma"/>
                             <constraint firstItem="rx0-i6-dc1" firstAttribute="trailing" secondItem="5KR-Se-keZ" secondAttribute="trailingMargin" id="HVz-b8-QkZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="llh-mG-eay" secondAttribute="trailing" constant="19" id="RLJ-OL-TYx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="llh-mG-eay" secondAttribute="trailing" constant="5" id="RLJ-OL-TYx"/>
                             <constraint firstItem="rx0-i6-dc1" firstAttribute="top" secondItem="BFb-Qo-RN0" secondAttribute="bottom" constant="25" id="RhD-0w-597"/>
                             <constraint firstAttribute="bottom" secondItem="Wyb-nI-bH9" secondAttribute="bottom" id="Rll-Xd-8ca"/>
                             <constraint firstItem="Ben-Fk-krn" firstAttribute="top" secondItem="BFb-Qo-RN0" secondAttribute="bottom" id="XhW-Yj-pet"/>
@@ -929,7 +929,7 @@ Notification body</string>
                             <constraint firstItem="Ben-Fk-krn" firstAttribute="leading" secondItem="5KR-Se-keZ" secondAttribute="leading" id="ih9-tX-F4A"/>
                             <constraint firstItem="rx0-i6-dc1" firstAttribute="centerX" secondItem="5KR-Se-keZ" secondAttribute="centerX" id="ji8-L6-aVP"/>
                             <constraint firstItem="llh-mG-eay" firstAttribute="centerY" secondItem="5KR-Se-keZ" secondAttribute="centerY" id="s46-SO-yWJ"/>
-                            <constraint firstItem="llh-mG-eay" firstAttribute="leading" secondItem="5KR-Se-keZ" secondAttribute="leadingMargin" constant="19" id="wsA-Do-26N"/>
+                            <constraint firstItem="llh-mG-eay" firstAttribute="leading" secondItem="5KR-Se-keZ" secondAttribute="leadingMargin" constant="5" id="wsA-Do-26N"/>
                             <constraint firstItem="Ben-Fk-krn" firstAttribute="bottom" secondItem="AU3-Ov-V0k" secondAttribute="top" id="yuL-hv-eXw"/>
                         </constraints>
                     </view>
@@ -982,7 +982,7 @@ Notification body</string>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="775-Nt-64u" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="775-Nt-64u" id="UjB-ds-2Gh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -1124,7 +1124,7 @@ Notification body</string>
                                                 <string key="text">Copyright © MIST Atlanta 2017
 
 Developer: Muhammad Doukmak
-Version: 0.2.1 Released March 9, 2017</string>
+Version: 0.2.1 Released March 13, 2017</string>
                                                 <color key="textColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1458,10 +1458,10 @@ Version: 0.2.1 Released March 9, 2017</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JIZ-EN-aar">
-                                <rect key="frame" x="85.5" y="310" width="149" height="117"/>
+                                <rect key="frame" x="83" y="310" width="154" height="123"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrF-Zt-gIH">
-                                        <rect key="frame" x="0.0" y="0.0" width="149" height="39"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="41"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="COMPETITOR">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1472,7 +1472,7 @@ Version: 0.2.1 Released March 9, 2017</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlD-jU-n8y">
-                                        <rect key="frame" x="33" y="39" width="83" height="39"/>
+                                        <rect key="frame" x="34.5" y="41" width="85" height="41"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="COACH">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1483,7 +1483,7 @@ Version: 0.2.1 Released March 9, 2017</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg0-Rq-W0Z">
-                                        <rect key="frame" x="36" y="78" width="77" height="39"/>
+                                        <rect key="frame" x="38" y="82" width="78" height="41"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
                                         <state key="normal" title="GUEST">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1779,6 +1779,15 @@ Version: 0.2.1 Released March 9, 2017</string>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="isn-nZ-n6a">
                                 <rect key="frame" x="150" y="364" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-ec-jsD">
+                                <rect key="frame" x="16" y="20" width="48" height="30"/>
+                                <state key="normal" title="&lt; Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="D3q-06-yOY" kind="unwind" unwindAction="myUnwindActionWithUnwindSegue:" id="3Pl-gs-RhP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.70552427029999998" green="0.0" blue="0.099332258290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1797,7 +1806,9 @@ Version: 0.2.1 Released March 9, 2017</string>
                             <constraint firstItem="Hew-AD-ddS" firstAttribute="width" secondItem="YIW-D4-129" secondAttribute="width" id="deM-cf-20f"/>
                             <constraint firstItem="xIY-em-kU9" firstAttribute="leading" secondItem="ThI-j1-slK" secondAttribute="leadingMargin" constant="12" id="gSu-Kz-TRA"/>
                             <constraint firstItem="isn-nZ-n6a" firstAttribute="leading" secondItem="ThI-j1-slK" secondAttribute="leadingMargin" constant="134" id="hSV-aZ-U63"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Taf-ec-jsD" secondAttribute="leading" id="i2r-Ah-qWZ"/>
                             <constraint firstItem="87s-9S-lEr" firstAttribute="top" secondItem="Hew-AD-ddS" secondAttribute="bottom" constant="17" id="j9s-to-7U3"/>
+                            <constraint firstItem="Taf-ec-jsD" firstAttribute="top" secondItem="Aik-9l-GVD" secondAttribute="bottom" id="oFF-fa-5de"/>
                             <constraint firstItem="YIW-D4-129" firstAttribute="width" secondItem="jVb-4g-iBM" secondAttribute="width" id="pAc-oN-l06"/>
                             <constraint firstItem="isn-nZ-n6a" firstAttribute="top" secondItem="YIW-D4-129" secondAttribute="bottom" constant="3" id="ps7-13-FPr"/>
                             <constraint firstItem="jVb-4g-iBM" firstAttribute="width" secondItem="ThI-j1-slK" secondAttribute="width" multiplier="0.7" id="uDu-40-jwB"/>
@@ -1817,8 +1828,9 @@ Version: 0.2.1 Released March 9, 2017</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98k-lc-9sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="D3q-06-yOY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="105" y="-2362"/>
+            <point key="canvasLocation" x="105" y="-2363.0281690140846"/>
         </scene>
         <!--COMPETITIONS-->
         <scene sceneID="HiX-WF-Syb">
@@ -1908,7 +1920,7 @@ Version: 0.2.1 Released March 9, 2017</string>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="D0I-d0-Ytw" customClass="MISTTableViewCell" customModule="MIST" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0I-d0-Ytw" id="7l8-gO-N83">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -2183,9 +2195,9 @@ Version: 0.2.1 Released March 9, 2017</string>
         <image name="unnamed" width="943" height="258"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Ci-qD-1Nf"/>
-        <segue reference="uOq-M8-AbP"/>
         <segue reference="uKb-ej-Zoq"/>
+        <segue reference="uOq-M8-AbP"/>
+        <segue reference="3Ci-qD-1Nf"/>
         <segue reference="SdN-mS-2tC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -65,12 +65,7 @@ class ScheduleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if let sports = mistUser["sports"] {
                 if (sports as! String != "") {
-                    if (mistUser["gender"] as! String == "Male") {
-                        registeredCompetitions.append("Brother's \(sports)")
-                    } else {
-                        registeredCompetitions.append("Sister's \(sports)")
-                    }
-                    
+                    registeredCompetitions.append(sports as! String)
                 }
             }
             if let writing = mistUser["writing"] {
